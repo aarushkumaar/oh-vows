@@ -1,0 +1,2146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vartika &amp; Hardik — A Love Story Begins</title>
+  <meta name="description" content="You are invited to witness the union of Vartika &amp; Hardik. Scroll to reveal a story of love, family &amp; new beginnings." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ══════════════════════════════════════════════
+       RESET & BASE
+    ══════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:        #C9A227;
+      --gold-light:  #E8C96A;
+      --gold-dim:    #8A6D15;
+      --gold-subtle: rgba(201,162,39,0.18);
+      --crimson:     #6B0000;
+      --ivory:       #FAF6EE;
+      --ivory-dim:   #EDE5D8;
+      --deep-bg:     #1A0A00;
+      --sec-pad:     clamp(60px, 8vh, 120px);
+    }
+
+    html { background: var(--deep-bg); }
+
+    body {
+      overflow-x: hidden;
+      background: var(--deep-bg) url('ASSETS/Landing Page/lehanga_background.png') repeat-y center top / 100% auto;
+      color: var(--ivory);
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ══════════════════════════════════════════════
+       LOADING OVERLAY
+    ══════════════════════════════════════════════ */
+    #loading-overlay {
+      position: fixed; inset: 0; z-index: 900;
+      background: #080200;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: clamp(14px, 2.5vh, 28px);
+      pointer-events: all;
+    }
+
+    #loading-wordmark {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(22px, 5vw, 52px);
+      color: var(--gold-light);
+      letter-spacing: 0.35em;
+      text-shadow: 0 0 48px rgba(201,162,39,0.45), 0 0 4px rgba(201,162,39,0.2);
+      opacity: 0;
+      animation: ldFadeUp 0.9s ease forwards 0.25s;
+    }
+    #loading-stars {
+      color: var(--gold); font-size: clamp(12px, 2vw, 18px);
+      letter-spacing: 0.6em; opacity: 0;
+      animation: ldFadeUp 0.9s ease forwards 0.55s;
+    }
+    #loading-progress-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 9px;
+      opacity: 0; animation: ldFadeUp 0.9s ease forwards 0.85s;
+    }
+    #loading-bar-track {
+      width: clamp(140px, 32vw, 280px); height: 1px;
+      background: rgba(201,162,39,0.18); position: relative; overflow: hidden;
+      border-radius: 1px;
+    }
+    #loading-bar-fill {
+      height: 1px; width: 0%;
+      background: linear-gradient(90deg, var(--gold-dim), var(--gold-light), var(--gold-dim));
+      background-size: 200% 100%;
+      transition: width 0.18s linear;
+      animation: barShimmer 1.8s infinite linear;
+      box-shadow: 0 0 10px rgba(201,162,39,0.9);
+    }
+    #loading-text {
+      font-size: clamp(8px, 1.1vw, 10px); letter-spacing: 0.45em;
+      text-transform: uppercase; color: var(--gold); opacity: 0.55; white-space: nowrap;
+    }
+
+    @keyframes ldFadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes barShimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position:  200% 0; }
+    }
+
+    /* ══════════════════════════════════════════════
+       LIGHT BLOOM
+    ══════════════════════════════════════════════ */
+    #light-bloom {
+      position: fixed; inset: 0; z-index: 850; pointer-events: none; opacity: 0;
+      background: radial-gradient(ellipse at center,
+        rgba(255,240,200,0.92) 0%, rgba(255,220,150,0.38) 30%, transparent 70%);
+    }
+
+    /* ══════════════════════════════════════════════
+       BACKGROUND SEQUENCE
+    ══════════════════════════════════════════════ */
+    #bg-sequence { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .bg-layer {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center top;
+      background-repeat: no-repeat; opacity: 0;
+    }
+    #bg-3 { background-image: url('ASSETS/background/bg_red.png'); }
+    #bg-4 { background-image: url('ASSETS/background/bg_green.png'); }
+
+    /* ══════════════════════════════════════════════
+       PETAL CANVASES
+    ══════════════════════════════════════════════ */
+    .petal-canvas {
+      position: fixed; inset: 0; pointer-events: none; width: 100%; height: 100%;
+    }
+    #petal-back  { z-index: 5;  }
+    #petal-front { z-index: 15; }
+
+    /* ══════════════════════════════════════════════
+       TYPOGRAPHY UTILITIES
+    ══════════════════════════════════════════════ */
+    .gold-rule {
+      width: clamp(60px, 15vw, 140px); height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(10px, 1.4vw, 13px);
+      letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500;
+    }
+    .display-title {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(36px, 7vw, 96px);
+      font-weight: 400; line-height: 1.05; color: var(--ivory);
+    }
+    .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-weight: 300;
+      font-size: clamp(15px, 2.4vw, 24px);
+      color: var(--ivory-dim); letter-spacing: 0.04em;
+    }
+
+    section { position: relative; z-index: 20; }
+
+    /* ══════════════════════════════════════════════
+       §1  HERO
+    ══════════════════════════════════════════════ */
+    #hero {
+      position: relative; width: 100%; z-index: 20;
+      margin-bottom: 0; padding-bottom: 0; overflow: hidden;
+    }
+
+    #hero-img-wrap { position: relative; width: 100%; will-change: transform; }
+
+    #hero-img {
+      width: 100%; height: auto; display: block;
+      pointer-events: none; user-select: none;
+    }
+
+    /* ── Decoration overlay ── */
+    #hero-overlay {
+      position: absolute; inset: 0; z-index: 40; pointer-events: none;
+    }
+    #hero-overlay::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 38%;
+      background: linear-gradient(to bottom,
+        rgba(8,2,0,0.80) 0%, rgba(8,2,0,0.50) 38%, rgba(8,2,0,0.10) 68%, transparent 100%);
+      pointer-events: none; z-index: 1;
+    }
+
+    .garland-top {
+      position: absolute; top: 0; left: 0; right: 0; width: 100%;
+      pointer-events: none; z-index: 43;
+      max-height: clamp(100px, 18vw, 220px);
+      object-fit: cover; object-position: top;
+      filter: drop-shadow(0 6px 18px rgba(201,162,39,0.5));
+    }
+
+    /* ── Corner decoration composition (Garland + attached Lantern) ── */
+    .corner-comp {
+      position: absolute; pointer-events: none; z-index: 43;
+      display: flex; flex-direction: column; align-items: center;
+      filter: drop-shadow(0 12px 32px rgba(0,0,0,0.6)) drop-shadow(0 4px 14px rgba(201,162,39,0.4));
+    }
+
+    /* Main large compositions */
+    .corner-comp.top-left-large {
+      top: 0; left: clamp(6px, 2vw, 32px);
+      width: clamp(110px, 17.5vw, 235px);
+      animation: lanternSway 8.5s ease-in-out infinite alternate;
+      animation-delay: -1.2s;
+    }
+    .corner-comp.top-left-large .comp-lantern {
+      width: 54%; margin-top: -16%;
+    }
+
+    .corner-comp.top-right-large {
+      top: 0; right: clamp(6px, 2vw, 32px);
+      width: clamp(110px, 17.5vw, 235px);
+      transform: scaleX(-1);
+      animation: lanternSway 7.8s ease-in-out infinite alternate;
+      animation-delay: -3.5s;
+    }
+    .corner-comp.top-right-large .comp-lantern {
+      width: 54%; margin-top: -16%;
+    }
+
+    /* Replicated smaller compositions (organically offset) */
+    .corner-comp.top-left-small {
+      top: clamp(24px, 4.5vh, 65px);
+      left: clamp(100px, 15vw, 240px);
+      width: clamp(65px, 9.5vw, 135px);
+      opacity: 0.88;
+      animation: lanternSway 9.2s ease-in-out infinite alternate;
+      animation-delay: -4.8s;
+    }
+    .corner-comp.top-left-small .comp-lantern {
+      width: 54%; margin-top: -16%;
+    }
+
+    .corner-comp.top-right-small {
+      top: clamp(40px, 6.5vh, 90px);
+      right: clamp(110px, 16.5vw, 260px);
+      width: clamp(60px, 8.8vw, 128px);
+      transform: scaleX(-1);
+      opacity: 0.84;
+      animation: lanternSway 8.1s ease-in-out infinite alternate;
+      animation-delay: -2.1s;
+    }
+    .corner-comp.top-right-small .comp-lantern {
+      width: 54%; margin-top: -16%;
+    }
+
+    @keyframes lanternSway {
+      0%, 100% { transform: rotate(-1.8deg); }
+      50%       { transform: rotate(1.8deg); }
+    }
+
+    /* ── Hero text — outer wrapper handles centering ── */
+    #hero-text-outer {
+      position: absolute; top: 8%; left: 50%; transform: translateX(-50%);
+      z-index: 44; pointer-events: none;
+      width: 100%; max-width: 820px;
+      padding: 0 clamp(16px, 4vw, 48px);
+      display: flex; flex-direction: column; align-items: center;
+      gap: clamp(22px, 4vh, 44px);
+    }
+
+    #hero-text-group {
+      text-align: center; display: flex; flex-direction: column;
+      align-items: center; gap: clamp(8px, 1.5vh, 20px);
+    }
+
+    #hero-scroll-hint {
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+    }
+    .scroll-hint-line {
+      width: 1px; height: 44px;
+      background: linear-gradient(to bottom, transparent, rgba(201,162,39,0.75), transparent);
+      animation: hintPulse 2.2s ease-in-out infinite;
+    }
+    @keyframes hintPulse {
+      0%, 100% { opacity: 0.25; transform: scaleY(0.6); }
+      55%       { opacity: 1;    transform: scaleY(1);   }
+    }
+    .scroll-hint-chevron {
+      width: 10px; height: 10px;
+      border-right: 1px solid rgba(201,162,39,0.6);
+      border-bottom: 1px solid rgba(201,162,39,0.6);
+      transform: rotate(45deg);
+      animation: hintChev 2.2s ease-in-out infinite;
+      animation-delay: 0.4s;
+    }
+    @keyframes hintChev {
+      0%, 100% { opacity: 0.2; transform: rotate(45deg) translateY(-3px); }
+      55%       { opacity: 0.8; transform: rotate(45deg) translateY(3px);  }
+    }
+
+    /* ══════════════════════════════════════════════
+       §2  FRAMES GALLERY (8 frames, floating)
+    ══════════════════════════════════════════════ */
+    #frames-section {
+      margin-top: -1px;
+      padding: clamp(40px, 6vh, 90px) clamp(16px, 4vw, 60px) clamp(60px, 8vh, 120px);
+      text-align: center;
+      background-image: url('ASSETS/Landing Page/lehanga_background.png');
+      background-repeat: repeat-y; background-size: 100% auto;
+      background-position: top center;
+      position: relative; z-index: 20;
+    }
+    #frames-section .section-head {
+      display: flex; flex-direction: column; align-items: center;
+      gap: clamp(8px, 1.5vh, 16px);
+      margin-bottom: clamp(48px, 8vh, 96px);
+    }
+
+    #frames-grid {
+      display: flex; flex-wrap: wrap;
+      justify-content: center; align-items: center;
+      gap: clamp(22px, 3.2vw, 52px);
+      max-width: 1440px; margin: 0 auto;
+    }
+
+    .frame-item {
+      flex: 0 0 auto; cursor: default; opacity: 0;
+      will-change: transform;
+    }
+    .frame-item img {
+      filter: drop-shadow(0 14px 44px rgba(0,0,0,0.62)) drop-shadow(0 4px 14px rgba(201,162,39,0.22));
+      display: block; pointer-events: none; user-select: none;
+    }
+
+    .frame-item[data-size="xl"]    img { width: clamp(210px, 26vw, 390px); }
+    .frame-item[data-size="lg"]    img { width: clamp(175px, 21vw, 320px); }
+    .frame-item[data-size="md"]    img { width: clamp(145px, 17vw, 260px); }
+    .frame-item[data-size="horiz"] img { width: clamp(210px, 25vw, 370px); }
+
+    @media (max-width: 767px) {
+      #frames-grid { gap: 16px; padding: 0 8px; }
+      .frame-item[data-size="xl"]    img { width: 80vw; }
+      .frame-item[data-size="lg"]    img { width: 70vw; }
+      .frame-item[data-size="md"]    img { width: 40vw; }
+      .frame-item[data-size="horiz"] img { width: 78vw; }
+    }
+
+    /* ══════════════════════════════════════════════
+       §2b  POLAROID ROPE
+    ══════════════════════════════════════════════ */
+    #polaroid-rope-section {
+      background-image: url('ASSETS/Landing Page/lehanga_background.png');
+      background-repeat: repeat-y; background-size: 100% auto;
+      background-position: top center;
+      position: relative; z-index: 20;
+      padding: clamp(32px, 6vh, 80px) clamp(16px, 4vw, 48px) clamp(48px, 7vh, 96px);
+      overflow: visible;
+    }
+
+    #rope-svg-wrap {
+      position: absolute; top: 0; left: 0; right: 0;
+      width: 100%; pointer-events: none;
+    }
+    #rope-svg-wrap svg { width: 100%; }
+
+    #polaroids-row {
+      position: relative; display: flex; flex-wrap: wrap;
+      justify-content: center; gap: clamp(22px, 3.8vw, 52px);
+      padding-top: clamp(34px, 5.5vh, 60px);
+    }
+
+    .polaroid-item {
+      display: flex; flex-direction: column; align-items: center;
+      opacity: 0; will-change: transform;
+    }
+
+    .polaroid-clip {
+      width: 16px; height: 26px;
+      background: linear-gradient(to bottom, #D4AF37, #8C6D23);
+      border-radius: 3px 3px 0 0; margin-bottom: -6px;
+      z-index: 2; position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .polaroid-clip::before, .polaroid-clip::after {
+      content: ''; position: absolute;
+      width: 10px; height: 2px; background: rgba(0,0,0,0.3);
+      left: 50%; transform: translateX(-50%);
+    }
+    .polaroid-clip::before { top: 5px; }
+    .polaroid-clip::after  { top: 11px; }
+
+    .polaroid-body {
+      background: #FAF7F2;
+      padding: clamp(10px, 1.1vw, 13px);
+      border: 1px solid rgba(201,162,39,0.28); border-radius: 4px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.38), 0 2px 8px rgba(0,0,0,0.22);
+      transform-origin: top center;
+      width: clamp(155px, 17vw, 215px);
+      transition: box-shadow 0.4s ease;
+      will-change: transform;
+    }
+    .polaroid-body:hover {
+      box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 4px 16px rgba(201,162,39,0.28);
+    }
+
+    .polaroid-photo-wrap {
+      width: 100%; aspect-ratio: 1 / 1; overflow: hidden;
+      background: #EFE9DE; border-radius: 2px;
+      margin-bottom: clamp(7px, 1vw, 11px);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .polaroid-photo {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.6s ease;
+    }
+    .polaroid-body:hover .polaroid-photo { transform: scale(1.06); }
+
+    .polaroid-caption {
+      text-align: center; font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: clamp(12px, 1.3vw, 15px);
+      font-weight: 500; color: #3A2A1A; margin-bottom: 2px;
+    }
+    .polaroid-date {
+      text-align: center; font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: clamp(9px, 1vw, 11px); color: #8C7660;
+    }
+
+    /* ══════════════════════════════════════════════
+       §3  GRAND EVENTS (Transparent Embossed Invitations)
+    ══════════════════════════════════════════════ */
+    #dollhouse-section {
+      padding: clamp(60px, 9vh, 110px) clamp(16px, 4vw, 48px) clamp(60px, 9vh, 110px);
+      text-align: center; position: relative; z-index: 20;
+      background: transparent;
+    }
+
+    #dollhouse-section .section-head {
+      display: flex; flex-direction: column; align-items: center;
+      gap: clamp(8px, 1.5vh, 16px);
+      margin-bottom: clamp(48px, 7vh, 88px);
+    }
+
+    /* Editorial 2 + 2 + 1 Grid Layout */
+    #dollhouse-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(28px, 4vw, 64px) clamp(32px, 6vw, 90px);
+      max-width: 980px; margin: 0 auto;
+      align-items: center; justify-items: center;
+    }
+
+    .dollhouse-card:nth-child(5) {
+      grid-column: 1 / -1;
+      justify-self: center;
+    }
+
+    /* Floating physical PNG invitation */
+    .dollhouse-card {
+      cursor: pointer; opacity: 0;
+      position: relative; background: transparent;
+      border: none; box-shadow: none;
+      width: clamp(220px, 26vw, 350px);
+      transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.22, 1);
+      will-change: transform;
+    }
+
+    .dollhouse-card-img-wrap { width: 100%; background: transparent; }
+    .dollhouse-card-img-wrap img {
+      width: 100%; height: auto; display: block;
+      background: transparent;
+      /* Silhouette drop shadow for subtle paper embossing */
+      filter: drop-shadow(0 14px 32px rgba(0,0,0,0.58)) drop-shadow(0 3px 10px rgba(201,162,39,0.22));
+      transition: transform 0.48s cubic-bezier(0.22, 0.8, 0.22, 1),
+                  filter 0.48s ease;
+    }
+
+    .dollhouse-card:hover {
+      transform: translateY(-9px) scale(1.035);
+    }
+    .dollhouse-card:hover .dollhouse-card-img-wrap img {
+      filter: drop-shadow(0 22px 48px rgba(0,0,0,0.72)) drop-shadow(0 6px 20px rgba(201,162,39,0.38));
+    }
+    .dollhouse-card:active { transform: translateY(-3px) scale(1.01); }
+
+    .lantern-row {
+      display: flex; justify-content: center;
+      gap: clamp(36px, 7vw, 110px);
+      margin-top: clamp(48px, 7vh, 80px);
+      pointer-events: none;
+    }
+    .lantern-row img { filter: drop-shadow(0 4px 12px rgba(201,162,39,0.35)); }
+
+    /* ══════════════════════════════════════════════
+       SECTION DIVIDER
+    ══════════════════════════════════════════════ */
+    .section-divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: clamp(10px, 2vw, 20px); padding: clamp(16px, 3vh, 32px) 0;
+      position: relative; z-index: 20; pointer-events: none;
+    }
+    .section-divider .line {
+      flex: 1; max-width: clamp(60px, 12vw, 160px); height: 1px;
+      background: linear-gradient(to right, transparent, rgba(201,162,39,0.35), transparent);
+    }
+    .section-divider .diamond {
+      width: 7px; height: 7px; background: var(--gold);
+      transform: rotate(45deg); opacity: 0.5;
+    }
+
+    /* ══════════════════════════════════════════════
+       §4  RSVP
+    ══════════════════════════════════════════════ */
+    #rsvp-section {
+      padding: var(--sec-pad) clamp(16px, 5vw, 80px);
+      text-align: center; display: flex; flex-direction: column;
+      align-items: center; gap: clamp(20px, 4vh, 48px);
+    }
+    #rsvp-section .section-head {
+      display: flex; flex-direction: column; align-items: center;
+      gap: clamp(8px, 1.5vh, 16px);
+    }
+    .rsvp-form-card {
+      background: rgba(255,248,235,0.055); border: 1px solid rgba(201,162,39,0.22);
+      padding: clamp(28px, 5vw, 56px);
+      max-width: 520px; width: 100%;
+      display: flex; flex-direction: column; gap: clamp(14px, 2.5vh, 24px);
+    }
+    .rsvp-form-card input, .rsvp-form-card select {
+      width: 100%; background: rgba(255,248,235,0.07); border: none;
+      border-bottom: 1px solid rgba(201,162,39,0.38);
+      color: var(--ivory); font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(15px, 2vw, 18px); padding: clamp(8px, 1.5vh, 12px) 4px;
+      outline: none; transition: border-color 0.3s;
+    }
+    .rsvp-form-card input::placeholder { color: rgba(232,201,106,0.42); }
+    .rsvp-form-card input:focus, .rsvp-form-card select:focus { border-bottom-color: var(--gold-light); }
+    .rsvp-form-card select option { background: #2A1200; }
+    .btn-gold {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: clamp(12px, 2vw, 16px) clamp(30px, 5vw, 54px);
+      background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 50%, var(--gold-dim) 100%);
+      color: #1A0A00; font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(13px, 1.7vw, 17px); font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      border: none; cursor: pointer; transition: filter 0.3s, transform 0.2s;
+    }
+    .btn-gold:hover { filter: brightness(1.14); transform: translateY(-2px); }
+    .btn-gold:active { transform: translateY(0); }
+
+    /* RSVP — Chhabra Family Block */
+    .rsvp-family-card {
+      margin-top: clamp(16px, 3vh, 32px);
+      display: flex; flex-direction: column; align-items: center;
+      gap: clamp(6px, 1.2vh, 10px); text-align: center;
+    }
+    .rsvp-family-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(12px, 1.5vw, 15px);
+      letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--gold); margin-top: 8px; font-weight: 500;
+    }
+    .rsvp-family-names {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(20px, 3vw, 32px);
+      color: var(--ivory); font-weight: 400;
+    }
+    .rsvp-family-special {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: clamp(14px, 1.8vw, 18px);
+      color: var(--ivory-dim); opacity: 0.88;
+    }
+
+    /* ══════════════════════════════════════════════
+       §5  THINGS TO KNOW
+    ══════════════════════════════════════════════ */
+    #things-section { padding: var(--sec-pad) clamp(16px, 5vw, 80px); text-align: center; }
+    #things-section .section-head {
+      display: flex; flex-direction: column; align-items: center;
+      gap: clamp(8px, 1.5vh, 16px); margin-bottom: clamp(36px, 6vh, 72px);
+    }
+    #things-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 25vw, 260px), 1fr));
+      gap: clamp(14px, 2.8vw, 30px); max-width: 1080px; margin: 0 auto;
+    }
+    .thing-card {
+      background: rgba(255,248,235,0.05); border: 1px solid rgba(201,162,39,0.17);
+      padding: clamp(22px, 3.8vw, 38px) clamp(18px, 2.8vw, 30px);
+      display: flex; flex-direction: column; align-items: center;
+      gap: clamp(10px, 2vh, 16px); text-align: center; opacity: 0;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .thing-card:hover { background: rgba(255,248,235,0.09); border-color: rgba(201,162,39,0.35); }
+    .thing-icon { font-size: clamp(26px, 3.8vw, 42px); line-height: 1; }
+    .thing-title { font-size: clamp(13px, 1.7vw, 17px); letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-light); font-weight: 500; }
+    .thing-body { font-size: clamp(13px, 1.4vw, 15px); color: var(--ivory-dim); line-height: 1.65; font-weight: 300; }
+
+    /* ══════════════════════════════════════════════
+       §5b  WARDROBE PLANNER
+    ══════════════════════════════════════════════ */
+    #wardrobe-section {
+      padding: var(--sec-pad) clamp(16px, 5vw, 80px);
+      text-align: center;
+    }
+    #wardrobe-section .section-head {
+      display: flex; flex-direction: column; align-items: center;
+      gap: clamp(8px, 1.5vh, 16px); margin-bottom: clamp(36px, 6vh, 68px);
+    }
+    #wardrobe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(clamp(230px, 27vw, 320px), 1fr));
+      gap: clamp(20px, 3.2vw, 38px); max-width: 1100px; margin: 0 auto;
+    }
+    .wardrobe-card {
+      background: rgba(255, 248, 235, 0.045);
+      border: 1px solid rgba(201, 162, 39, 0.22);
+      padding: clamp(28px, 4.2vw, 44px) clamp(20px, 3vw, 32px);
+      display: flex; flex-direction: column; align-items: center;
+      gap: clamp(12px, 2vh, 18px); text-align: center; opacity: 0;
+      transition: background 0.35s, border-color 0.35s, transform 0.35s;
+    }
+    .wardrobe-card:hover {
+      background: rgba(255, 248, 235, 0.085);
+      border-color: rgba(201, 162, 39, 0.42);
+      transform: translateY(-4px);
+    }
+    .wardrobe-event {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(11px, 1.4vw, 14px);
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500;
+    }
+    .wardrobe-code {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(19px, 2.7vw, 27px);
+      color: var(--ivory); line-height: 1.25; font-style: italic;
+    }
+    .wardrobe-deco {
+      color: var(--gold); font-size: 10px;
+      letter-spacing: 0.4em; opacity: 0.55;
+    }
+
+    /* ══════════════════════════════════════════════
+       §6  COUNTDOWN
+    ══════════════════════════════════════════════ */
+    #countdown-section {
+      padding: var(--sec-pad) clamp(16px, 5vw, 80px); text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+      gap: clamp(30px, 5.5vh, 68px);
+    }
+    #countdown-section .section-head {
+      display: flex; flex-direction: column; align-items: center;
+      gap: clamp(8px, 1.5vh, 16px);
+    }
+    #countdown-grid {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: clamp(10px, 2.8vw, 38px);
+    }
+    .cd-block {
+      display: flex; flex-direction: column; align-items: center;
+      gap: clamp(5px, 1vh, 11px); min-width: clamp(68px, 13vw, 115px);
+    }
+    .cd-digits {
+      font-family: 'IM Fell English', serif; font-size: clamp(48px, 9.5vw, 100px);
+      font-weight: 400; line-height: 1; color: var(--ivory);
+      position: relative; overflow: hidden; height: 1.1em;
+      display: flex; align-items: center; justify-content: center;
+      text-shadow: 0 2px 24px rgba(201,162,39,0.28);
+    }
+    .cd-value { display: inline-block; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.22s; }
+    .cd-value.flipping-out { transform: translateY(-110%); opacity: 0; }
+    .cd-value.flipping-in  { transform: translateY(110%);  opacity: 0; }
+    .cd-separator {
+      font-family: 'IM Fell English', serif; font-size: clamp(38px, 7.5vw, 76px);
+      color: var(--gold); opacity: 0.45; align-self: flex-start; margin-top: 0.05em; line-height: 1;
+    }
+    .cd-label { font-size: clamp(9px, 1.2vw, 12px); letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); opacity: 0.65; }
+    .cd-gold-line { width: clamp(55px, 9vw, 95px); height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+    #countdown-date-note {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(14px, 1.9vw, 18px);
+      color: var(--ivory-dim); opacity: 0.68; letter-spacing: 0.1em;
+    }
+
+    /* ══════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════ */
+    #site-footer {
+      position: relative; z-index: 20; text-align: center;
+      padding: clamp(30px, 5vh, 58px) clamp(16px, 4vw, 48px);
+      border-top: 1px solid rgba(201,162,39,0.14);
+    }
+    #site-footer p {
+      font-size: clamp(11px, 1.3vw, 13px); letter-spacing: 0.25em;
+      color: var(--gold); opacity: 0.52; text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════════════
+       EVENT DETAIL VIEW
+    ══════════════════════════════════════════════ */
+    #event-detail-view {
+      position: fixed; inset: 0; z-index: 500;
+      display: none;
+      overflow-y: auto; overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      background: #0A0300;
+    }
+    #event-detail-view.is-active { display: block; }
+
+    #event-back-btn {
+      position: fixed;
+      top: clamp(14px, 2.5vh, 24px); left: clamp(14px, 2.8vw, 28px);
+      z-index: 600;
+      display: none; align-items: center; gap: 7px;
+      padding: 9px 16px;
+      background: rgba(8,2,0,0.72);
+      border: 1px solid rgba(201,162,39,0.42);
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(11px, 1.4vw, 13px); letter-spacing: 0.22em; text-transform: uppercase;
+      cursor: pointer; backdrop-filter: blur(6px);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    #event-back-btn.is-active { display: flex; }
+    #event-back-btn:hover { background: rgba(201,162,39,0.14); border-color: var(--gold); }
+    #event-back-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    .event-hero {
+      position: relative; width: 100%; min-height: 100vh;
+      display: flex; align-items: flex-end; overflow: hidden;
+    }
+    .event-hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .event-hero-grad {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(8,2,0,0.15) 0%, rgba(8,2,0,0.04) 25%,
+        rgba(8,2,0,0.45) 65%, rgba(8,2,0,0.94) 100%);
+    }
+    .event-hero-text {
+      position: relative; z-index: 2;
+      padding: clamp(40px, 7vh, 80px) clamp(24px, 6vw, 80px);
+      width: 100%; max-width: 860px; margin: 0 auto; text-align: center;
+    }
+    .ev-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(9px, 1.2vw, 11px); letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: clamp(10px, 2vh, 20px); opacity: 0;
+    }
+    .ev-gold-rule {
+      width: clamp(38px, 7vw, 75px); height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto clamp(14px, 2.5vh, 28px);
+    }
+    .ev-title {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(38px, 7.5vw, 104px);
+      font-weight: 400; line-height: 1; color: var(--ivory);
+      margin-bottom: clamp(16px, 2.8vh, 30px); opacity: 0;
+    }
+    .ev-tagline {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: clamp(15px, 2.3vw, 25px); color: var(--ivory-dim);
+      letter-spacing: 0.04em; opacity: 0;
+    }
+
+    .ev-chapter {
+      padding: clamp(55px, 9vh, 110px) clamp(24px, 8vw, 120px);
+      max-width: 860px; margin: 0 auto; text-align: center;
+    }
+    .ev-story {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: clamp(17px, 2.6vw, 30px); line-height: 1.65;
+      color: var(--ivory-dim); opacity: 0;
+    }
+
+    .ev-details-row {
+      display: flex; flex-wrap: wrap;
+      gap: clamp(28px, 4.5vw, 60px); justify-content: center;
+      padding: clamp(48px, 7.5vh, 96px) clamp(24px, 6vw, 80px);
+      max-width: 1060px; margin: 0 auto;
+    }
+    .ev-detail-item {
+      flex: 1 1 clamp(150px, 18vw, 220px);
+      text-align: center; opacity: 0;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .ev-detail-icon { font-size: clamp(22px, 3.5vw, 36px); margin-bottom: clamp(7px, 1.3vh, 14px); }
+    .ev-detail-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(8px, 1.1vw, 10px); letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 7px;
+    }
+    .ev-detail-value {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(15px, 2.3vw, 24px); color: var(--ivory); line-height: 1.3;
+    }
+    .ev-detail-sub {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: clamp(12px, 1.6vw, 17px); color: var(--ivory-dim); margin-top: 4px;
+    }
+
+    /* View Route Button */
+    .ev-route-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      margin-top: 12px; padding: 7px 16px;
+      border: 1px solid rgba(201, 162, 39, 0.48);
+      color: var(--gold-light);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(11px, 1.3vw, 13px); letter-spacing: 0.2em; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px;
+      background: rgba(201, 162, 39, 0.08);
+      transition: all 0.3s ease;
+    }
+    .ev-route-btn:hover {
+      background: rgba(201, 162, 39, 0.22);
+      border-color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+    .ev-route-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+    .ev-dresscode-wrap {
+      text-align: center; padding: 0 clamp(24px, 6vw, 80px) clamp(38px, 5.5vh, 76px);
+    }
+    .ev-dresscode-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(8px, 1.1vw, 10px); letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px; display: block;
+    }
+    .ev-dresscode-tag {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 11px 26px; border: 1px solid rgba(201,162,39,0.42);
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: clamp(13px, 1.7vw, 18px); color: var(--ivory-dim);
+      letter-spacing: 0.06em; opacity: 0;
+    }
+
+    .ev-next-zone {
+      padding: clamp(55px, 9vh, 110px) clamp(24px, 6vw, 80px);
+      text-align: center; border-top: 1px solid rgba(201,162,39,0.12);
+    }
+    .ev-next-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(9px, 1.2vw, 11px); letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--gold); opacity: 0.55; margin-bottom: 18px; display: block;
+    }
+    .ev-next-title {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(26px, 4.8vw, 60px); color: var(--ivory);
+      cursor: pointer; display: inline-block;
+      transition: opacity 0.3s, transform 0.3s;
+      border-bottom: 1px solid rgba(201,162,39,0.3);
+      padding-bottom: 6px;
+    }
+    .ev-next-title:hover { opacity: 0.72; transform: translateX(8px); }
+
+    .ev-return-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: clamp(12px, 2vh, 18px) clamp(28px, 4.5vw, 50px);
+      border: 1px solid rgba(201,162,39,0.45); color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(12px, 1.5vw, 15px); letter-spacing: 0.3em; text-transform: uppercase;
+      cursor: pointer; background: transparent; margin-top: 12px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .ev-return-btn:hover { background: rgba(201,162,39,0.1); border-color: var(--gold); }
+
+    #event-transition {
+      position: fixed; inset: 0; z-index: 550;
+      pointer-events: none; opacity: 0;
+      background: #0A0300;
+    }
+
+    /* ══════════════════════════════════════════════
+       MOBILE RESPONSIVENESS
+    ══════════════════════════════════════════════ */
+    @media (max-width: 599px) {
+      #hero-text-outer { top: 5%; }
+      .corner-comp.top-left-large  { width: clamp(65px, 16vw, 95px); left: 2px; }
+      .corner-comp.top-right-large { width: clamp(65px, 16vw, 95px); right: 2px; }
+      .corner-comp.top-left-small  { width: clamp(40px, 10vw, 55px); left: 62px; top: 12px; opacity: 0.7; }
+      .corner-comp.top-right-small { width: clamp(38px, 9.5vw, 52px); right: 65px; top: 18px; opacity: 0.7; }
+
+      #dollhouse-cards {
+        grid-template-columns: 1fr;
+        gap: clamp(20px, 4vh, 36px);
+        max-width: 310px;
+      }
+      .dollhouse-card:nth-child(5) { grid-column: 1; }
+      .dollhouse-card { width: clamp(200px, 72vw, 290px); }
+
+      .ev-details-row { flex-direction: column; align-items: center; }
+      .ev-detail-item { flex: 0 0 auto; width: 100%; }
+      #event-back-btn { top: 10px; left: 10px; padding: 7px 12px; font-size: 11px; }
+      .ev-title { font-size: clamp(32px, 11vw, 56px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ LIGHT BLOOM ══ -->
+  <div id="light-bloom"></div>
+
+  <!-- ══ LOADING OVERLAY ══ -->
+  <div id="loading-overlay" role="status" aria-live="polite" aria-label="Loading invitation">
+    <div id="loading-wordmark">Oh Vows</div>
+    <div id="loading-stars">✦ &nbsp; ✦ &nbsp; ✦</div>
+    <div id="loading-progress-wrap">
+      <div id="loading-bar-track">
+        <div id="loading-bar-fill"></div>
+      </div>
+      <p id="loading-text">Preparing your invitation…</p>
+    </div>
+  </div>
+
+  <!-- ══ EVENT DETAIL BACK BUTTON ══ -->
+  <button id="event-back-btn" type="button" aria-label="Return to events overview">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+    Events
+  </button>
+
+  <!-- ══ EVENT DETAIL VIEW ══ -->
+  <div id="event-detail-view" aria-label="Event detail" role="region">
+    <div id="event-detail-content"></div>
+  </div>
+
+  <!-- ══ EVENT TRANSITION OVERLAY ══ -->
+  <div id="event-transition" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       MAIN SITE
+  ══════════════════════════════════════════════════════ -->
+  <div id="main-site">
+
+    <!-- BACKGROUND SEQUENCE -->
+    <div id="bg-sequence" aria-hidden="true">
+      <div class="bg-layer" id="bg-3"></div>
+      <div class="bg-layer" id="bg-4"></div>
+    </div>
+
+    <!-- PETAL CANVASES -->
+    <canvas class="petal-canvas" id="petal-back"  aria-hidden="true"></canvas>
+    <canvas class="petal-canvas" id="petal-front" aria-hidden="true"></canvas>
+
+    <!-- ══════════════════════════════════
+         §1  HERO
+    ══════════════════════════════════ -->
+    <section id="hero" aria-label="Hero — Vartika &amp; Hardik">
+
+      <div id="hero-img-wrap">
+        <img id="hero-img"
+             src="ASSETS/LANDING PAGE/whole combined.png"
+             alt="Vartika and Hardik — Palace to Lehenga"
+             aria-hidden="true" />
+      </div>
+
+      <!-- Decoration overlay -->
+      <div id="hero-overlay" aria-hidden="true">
+        <img class="garland-top"
+             src="ASSETS/decorations/garland_horizontal_orange_yellow.svg"
+             alt="" style="opacity:0.92;" />
+
+        <!-- LEFT SIDE: Large Garland + Lantern, Small Garland + Lantern -->
+        <div class="corner-comp top-left-large">
+          <img class="comp-garland" src="ASSETS/decorations/garland_vertical_double.svg" alt="" />
+          <img class="comp-lantern" src="ASSETS/decorations/lartain.svg" alt="" />
+        </div>
+        <div class="corner-comp top-left-small">
+          <img class="comp-garland" src="ASSETS/decorations/garland_vertical_double.svg" alt="" />
+          <img class="comp-lantern" src="ASSETS/decorations/lartain_small.svg" alt="" />
+        </div>
+
+        <!-- RIGHT SIDE: Large Garland + Lantern, Small Garland + Lantern -->
+        <div class="corner-comp top-right-large">
+          <img class="comp-garland" src="ASSETS/decorations/garland_vertical_double.svg" alt="" />
+          <img class="comp-lantern" src="ASSETS/decorations/lartain.svg" alt="" />
+        </div>
+        <div class="corner-comp top-right-small">
+          <img class="comp-garland" src="ASSETS/decorations/garland_vertical_double.svg" alt="" />
+          <img class="comp-lantern" src="ASSETS/decorations/lartain_small.svg" alt="" />
+        </div>
+      </div>
+
+      <!-- Hero text wrapper -->
+      <div id="hero-text-outer">
+        <div id="hero-text-group" aria-label="Wedding invitation">
+          <p class="eyebrow">Together Forever</p>
+          <div class="gold-rule" style="width:clamp(38px,7.5vw,78px);"></div>
+          <h1 class="display-title">Vartika &amp; Hardik</h1>
+          <p class="tagline">Celebrating love, family &amp; new beginnings</p>
+        </div>
+        <div id="hero-scroll-hint" aria-hidden="true">
+          <div class="scroll-hint-line"></div>
+          <div class="scroll-hint-chevron"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════
+         §2  FRAMES GALLERY (8 frames)
+    ══════════════════════════════════ -->
+    <section id="frames-section" aria-label="Gallery — Frames of Forever">
+      <div class="section-head">
+        <p class="eyebrow">Our Journey</p>
+        <div class="gold-rule"></div>
+        <h2 class="display-title" style="font-size:clamp(28px,5vw,64px);">Frames of Forever</h2>
+        <p class="tagline" style="font-size:clamp(14px,1.9vw,20px);">A story told in gold</p>
+      </div>
+
+      <div id="frames-grid">
+        <div class="frame-item" data-size="lg"    data-dir="left"  data-base-rot="-2.5" data-fi="0">
+          <img src="ASSETS/frame/frame_4.png"      alt="Portrait frame" loading="lazy" />
+        </div>
+        <div class="frame-item" data-size="xl"    data-dir="up"    data-base-rot="1.5"  data-fi="1">
+          <img src="ASSETS/frame/imframe_2.png"    alt="Portrait frame" loading="lazy" />
+        </div>
+        <div class="frame-item" data-size="horiz" data-dir="up"    data-base-rot="-1"   data-fi="2">
+          <img src="ASSETS/frame/frame_5_horiz.png" alt="Landscape frame" loading="lazy" />
+        </div>
+        <div class="frame-item" data-size="xl"    data-dir="up"    data-base-rot="2"    data-fi="3">
+          <img src="ASSETS/frame/frame_1.png"      alt="Portrait frame" loading="lazy" />
+        </div>
+        <div class="frame-item" data-size="lg"    data-dir="right" data-base-rot="-1.8" data-fi="4">
+          <img src="ASSETS/frame/frame_3.png"      alt="Portrait frame" loading="lazy" />
+        </div>
+
+        <div class="frame-item" data-size="horiz" data-dir="left"  data-base-rot="1.2"  data-fi="5">
+          <img src="ASSETS/frame/frame_5_horiz.png" alt="Landscape frame" loading="lazy" />
+        </div>
+        <div class="frame-item" data-size="md"    data-dir="up"    data-base-rot="-2"   data-fi="6">
+          <img src="ASSETS/frame/imframe_2.png"    alt="Portrait frame" loading="lazy" />
+        </div>
+        <div class="frame-item" data-size="lg"    data-dir="right" data-base-rot="0.8"  data-fi="7">
+          <img src="ASSETS/frame/frame_3.png"      alt="Portrait frame" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         §2b  POLAROID ROPE
+    ══════════════════════════════════ -->
+    <div id="polaroid-rope-section" aria-label="Our memories">
+      <div id="rope-svg-wrap" aria-hidden="true">
+        <svg viewBox="0 0 1000 60" preserveAspectRatio="xMidYMid meet">
+          <path d="M -10,20 Q 150,48 300,22 T 550,20 T 800,22 T 1010,20"
+            fill="none" stroke="#B38B38" stroke-width="2.2" opacity="0.82"/>
+        </svg>
+      </div>
+
+      <div id="polaroids-row">
+        <div class="polaroid-item" data-pi="0">
+          <div class="polaroid-clip" aria-hidden="true"></div>
+          <div class="polaroid-body">
+            <div class="polaroid-photo-wrap">
+              <img class="polaroid-photo" src="ASSETS/gallery/polaroid_1.JPG" alt="Our First Trip" loading="lazy"/>
+            </div>
+            <p class="polaroid-caption">Our First Trip</p>
+            <p class="polaroid-date">Summer 2023</p>
+          </div>
+        </div>
+
+        <div class="polaroid-item" data-pi="1">
+          <div class="polaroid-clip" aria-hidden="true"></div>
+          <div class="polaroid-body">
+            <div class="polaroid-photo-wrap">
+              <img class="polaroid-photo" src="ASSETS/gallery/polaroid_2.JPG" alt="Chai &amp; Conversation" loading="lazy"/>
+            </div>
+            <p class="polaroid-caption">Chai &amp; Conversation</p>
+            <p class="polaroid-date">Monsoon 2023</p>
+          </div>
+        </div>
+
+        <div class="polaroid-item" data-pi="2">
+          <div class="polaroid-clip" aria-hidden="true"></div>
+          <div class="polaroid-body">
+            <div class="polaroid-photo-wrap">
+              <img class="polaroid-photo" src="ASSETS/gallery/polaroid_3.JPG" alt="The Proposal" loading="lazy"/>
+            </div>
+            <p class="polaroid-caption">The Proposal</p>
+            <p class="polaroid-date">Winter 2024</p>
+          </div>
+        </div>
+
+        <div class="polaroid-item" data-pi="3">
+          <div class="polaroid-clip" aria-hidden="true"></div>
+          <div class="polaroid-body">
+            <div class="polaroid-photo-wrap">
+              <img class="polaroid-photo" src="ASSETS/gallery/polaroid_4.JPG" alt="Forever Yours" loading="lazy"/>
+            </div>
+            <p class="polaroid-caption">Forever Yours</p>
+            <p class="polaroid-date">Spring 2025</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════
+         §3  GRAND EVENTS
+    ══════════════════════════════════ -->
+    <section id="dollhouse-section" aria-label="Our Grand Events">
+      <div class="section-head">
+        <p class="eyebrow">The Celebrations</p>
+        <div class="gold-rule"></div>
+        <h2 class="display-title" style="font-size:clamp(30px,5.5vw,70px);">Our Grand Events</h2>
+        <p class="tagline">Five celebrations. One eternal story.</p>
+      </div>
+
+      <!-- 2 + 2 + 1 Editorial Composition of Floating PNG Artwork -->
+      <div id="dollhouse-cards"></div>
+
+      <div class="lantern-row" aria-hidden="true">
+        <img src="ASSETS/decorations/lartain_small.svg" alt=""
+             style="width:clamp(26px,3.8vw,50px);animation:lanternSway 5.9s ease-in-out infinite alternate;animation-delay:-1.3s;" />
+        <img src="ASSETS/decorations/lartain.svg" alt=""
+             style="width:clamp(36px,5.2vw,65px);animation:lanternSway 7.0s ease-in-out infinite alternate;animation-delay:-4.0s;" />
+        <img src="ASSETS/decorations/lartain_small.svg" alt=""
+             style="width:clamp(26px,3.8vw,50px);animation:lanternSway 6.3s ease-in-out infinite alternate;animation-delay:-0.5s;" />
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <div class="line"></div><div class="diamond"></div><div class="diamond"></div><div class="diamond"></div><div class="line"></div>
+    </div>
+
+    <!-- ══════════════════════════════════
+         §4  RSVP
+    ══════════════════════════════════ -->
+    <section id="rsvp-section" aria-label="RSVP">
+      <div class="section-head">
+        <p class="eyebrow">Join Us</p>
+        <div class="gold-rule"></div>
+        <h2 class="display-title" style="font-size:clamp(28px,5vw,64px);">RSVP</h2>
+        <p class="tagline">We would be honoured to have you celebrate with us.</p>
+      </div>
+      <div class="rsvp-form-card">
+        <input type="text"   id="rsvp-name"      placeholder="Your Full Name"    autocomplete="name" />
+        <input type="email"  id="rsvp-email"     placeholder="Email Address"     autocomplete="email" />
+        <select id="rsvp-attending" aria-label="Will you attend?">
+          <option value="" disabled selected>Will you be attending? &#9662;</option>
+          <option value="yes-both">Yes — all events</option>
+          <option value="yes-wed">Yes — wedding only</option>
+          <option value="yes-some">Yes — some events</option>
+          <option value="no">Regretfully unable to attend</option>
+        </select>
+        <input type="number" id="rsvp-guests"    placeholder="Number of guests"  min="1" max="10" />
+        <button class="btn-gold" type="button" id="rsvp-submit">
+          Confirm Attendance &nbsp; &#10022;
+        </button>
+      </div>
+
+      <!-- Family Information -->
+      <div class="rsvp-family-card">
+        <div class="gold-rule" style="width: 50px; opacity: 0.6;"></div>
+        <p class="rsvp-family-title">RSVP — Chhabra Family</p>
+        <p class="rsvp-family-names">Deepa Chhabra &amp; Kamal Chhabra</p>
+        <p class="rsvp-family-special">Special — Mehar Chhabra</p>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <div class="line"></div><div class="diamond"></div><div class="diamond"></div><div class="diamond"></div><div class="line"></div>
+    </div>
+
+    <!-- ══════════════════════════════════
+         §5  THINGS TO KNOW
+    ══════════════════════════════════ -->
+    <section id="things-section" aria-label="Good to know">
+      <div class="section-head">
+        <p class="eyebrow">Good to Know</p>
+        <div class="gold-rule"></div>
+        <h2 class="display-title" style="font-size:clamp(28px,5vw,64px);">Things to Know</h2>
+      </div>
+      <div id="things-grid"></div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <div class="line"></div><div class="diamond"></div><div class="diamond"></div><div class="diamond"></div><div class="line"></div>
+    </div>
+
+    <!-- ══════════════════════════════════
+         §5b  WARDROBE PLANNER
+    ══════════════════════════════════ -->
+    <section id="wardrobe-section" aria-label="Wardrobe Planner">
+      <div class="section-head">
+        <p class="eyebrow">Style Guide</p>
+        <div class="gold-rule"></div>
+        <h2 class="display-title" style="font-size:clamp(28px,5vw,64px);">Wardrobe Planner</h2>
+        <p class="tagline" style="font-size:clamp(15px,2.2vw,22px); max-width: 600px; margin: 0 auto;">
+          &ldquo;Wear whatever brings you joy &mdash; your presence is the real party starter!&rdquo;
+        </p>
+      </div>
+
+      <div id="wardrobe-grid">
+        <div class="wardrobe-card">
+          <span class="wardrobe-event">Sagan &amp; Engagement</span>
+          <p class="wardrobe-code">Glitz and glam indo-western</p>
+          <div class="wardrobe-deco">✦ &nbsp; ✦</div>
+        </div>
+
+        <div class="wardrobe-card">
+          <span class="wardrobe-event">Haldi</span>
+          <p class="wardrobe-code">Shades of pastel with mirrors</p>
+          <div class="wardrobe-deco">✦ &nbsp; ✦</div>
+        </div>
+
+        <div class="wardrobe-card">
+          <span class="wardrobe-event">Wedding</span>
+          <p class="wardrobe-code">Grand Indian Traditionals</p>
+          <div class="wardrobe-deco">✦ &nbsp; ✦</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <div class="line"></div><div class="diamond"></div><div class="diamond"></div><div class="diamond"></div><div class="line"></div>
+    </div>
+
+    <!-- ══════════════════════════════════
+         §6  COUNTDOWN
+    ══════════════════════════════════ -->
+    <section id="countdown-section" aria-label="Countdown to the wedding">
+      <div class="section-head">
+        <p class="eyebrow">The Big Day</p>
+        <div class="gold-rule"></div>
+        <h2 class="display-title" style="font-size:clamp(28px,5vw,64px);">Counting Down</h2>
+        <p class="tagline">Until we say &ldquo;I do&rdquo;</p>
+      </div>
+      <div id="countdown-grid">
+        <div class="cd-block"><div class="cd-digits"><span class="cd-value" id="cd-days">00</span></div><div class="cd-gold-line"></div><div class="cd-label">Days</div></div>
+        <div class="cd-separator" aria-hidden="true">:</div>
+        <div class="cd-block"><div class="cd-digits"><span class="cd-value" id="cd-hours">00</span></div><div class="cd-gold-line"></div><div class="cd-label">Hours</div></div>
+        <div class="cd-separator" aria-hidden="true">:</div>
+        <div class="cd-block"><div class="cd-digits"><span class="cd-value" id="cd-mins">00</span></div><div class="cd-gold-line"></div><div class="cd-label">Minutes</div></div>
+        <div class="cd-separator" aria-hidden="true">:</div>
+        <div class="cd-block"><div class="cd-digits"><span class="cd-value" id="cd-secs">00</span></div><div class="cd-gold-line"></div><div class="cd-label">Seconds</div></div>
+      </div>
+      <p id="countdown-date-note">21 September 2026 &nbsp;&middot;&nbsp; New Delhi, India</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="site-footer">
+      <p>Vartika &amp; Hardik &nbsp;&middot;&nbsp; September 2026 &nbsp;&middot;&nbsp; With love</p>
+    </footer>
+
+  </div><!-- /#main-site -->
+
+  <!-- ══ LIBRARIES ══ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+  (() => {
+    'use strict';
+
+    /* ──────────────────────────────────────────
+       ENVIRONMENT FLAGS
+    ────────────────────────────────────────── */
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile       = window.innerWidth < 768;
+
+    /* ──────────────────────────────────────────
+       EVENT DATA (Centralized Architecture)
+    ────────────────────────────────────────── */
+    const EVENTS = [
+      {
+        id:          'engagement-cocktail',
+        label:       'Engagement Cocktail',
+        file:        'engagement cocktail.png',
+        date:        'Friday, 18 September 2026',
+        shortDate:   '18 Sept',
+        time:        '7:00 PM Onwards',
+        location:    'The Grand Palace Lawns',
+        locationSub: 'New Delhi, India',
+        mapsUrl:     'https://maps.google.com/?q=The+Grand+Palace+Lawns+New+Delhi',
+        dressCode:   'Glitz and glam indo-western',
+        tagline:     'Where two worlds came together under golden skies.',
+        story:       'An evening of laughter, light, and the first toast to forever. As dusk settles over the garden and fairy lights begin to shimmer, two families become one.',
+        bgColor:     '#100500',
+      },
+      {
+        id:          'haldi-carnival',
+        label:       'Haldi Carnival',
+        file:        'haldi carnival.png',
+        date:        'Saturday, 19 September 2026',
+        shortDate:   '19 Sept',
+        time:        '10:00 AM Onwards',
+        location:    'The Heritage Gardens',
+        locationSub: 'New Delhi, India',
+        mapsUrl:     'https://maps.google.com/?q=The+Heritage+Gardens+New+Delhi',
+        dressCode:   'Shades of pastel with mirrors',
+        tagline:     'Colour, laughter, and the blessing of a thousand flowers.',
+        story:       'Come dressed in the colour of sunshine and blessings. A morning of pure joy — where turmeric, flowers, and family music paint the air gold.',
+        bgColor:     '#0E0B00',
+      },
+      {
+        id:          'krishan-sandhya',
+        label:       'Ek Shaam Kanha ke Naam',
+        subtitle:    'An evening of divine connection',
+        file:        'Krishan Sandhya.png',
+        date:        'Sunday, 6 September 2026',
+        shortDate:   '6 Sept',
+        time:        '7:00 PM Onwards',
+        location:    'The Palace Amphitheatre',
+        locationSub: 'New Delhi, India',
+        mapsUrl:     'https://maps.google.com/?q=The+Palace+Amphitheatre+New+Delhi',
+        dressCode:   'Peacock Blues & Forest Greens',
+        tagline:     'An evening of divine connection',
+        story:       'A spiritual celebration filled with bhajans, lights, and the energy of pure devotion. Come with an open heart and be swept away by the divine.',
+        bgColor:     '#001008',
+      },
+      {
+        id:          'mata-ki-chowki',
+        label:       'Mata Ki Chowki',
+        file:        'mata ki chowki.png',
+        date:        'Sunday, 20 September 2026',
+        shortDate:   '20 Sept',
+        time:        '7:00 PM Onwards',
+        location:    'The Grand Palace, Main Hall',
+        locationSub: 'New Delhi, India',
+        mapsUrl:     'https://maps.google.com/?q=The+Grand+Palace+Main+Hall+New+Delhi',
+        dressCode:   'Red & Orange — Traditional Ethnic',
+        tagline:     'An Evening of Divine Blessings',
+        story:       'A sacred evening of kirtan and prayer to seek the blessings of the divine for the union ahead. Come with reverence and leave with grace.',
+        bgColor:     '#100000',
+      },
+      {
+        id:          'wedding',
+        label:       'The Wedding',
+        file:        'wedding.png',
+        date:        'Monday, 21 September 2026',
+        shortDate:   '21 Sept',
+        time:        '11:00 AM',
+        location:    'The Grand Palace',
+        locationSub: 'New Delhi, India',
+        mapsUrl:     'https://maps.google.com/?q=The+Grand+Palace+New+Delhi',
+        dressCode:   'Grand Indian Traditionals',
+        tagline:     'The moment everything was always leading to.',
+        story:       'Under the mandap, with fire as witness and family as shelter, Vartika and Hardik become forever. Come dressed in your finest and carry your joy.',
+        bgColor:     '#080200',
+      },
+    ];
+
+    /* ──────────────────────────────────────────
+       DOM REFS
+    ────────────────────────────────────────── */
+    const loadingOverlay      = document.getElementById('loading-overlay');
+    const loadingBarFill      = document.getElementById('loading-bar-fill');
+    const loadingText         = document.getElementById('loading-text');
+    const lightBloom          = document.getElementById('light-bloom');
+    const heroTextGroup       = document.getElementById('hero-text-group');
+    const heroTextOuter       = document.getElementById('hero-text-outer');
+    const heroScrollHint      = document.getElementById('hero-scroll-hint');
+    const bg3                 = document.getElementById('bg-3');
+    const bg4                 = document.getElementById('bg-4');
+    const mainSite            = document.getElementById('main-site');
+    const eventDetailView     = document.getElementById('event-detail-view');
+    const eventDetailContent  = document.getElementById('event-detail-content');
+    const eventBackBtn        = document.getElementById('event-back-btn');
+    const eventTransition     = document.getElementById('event-transition');
+
+    /* ──────────────────────────────────────────
+       ASSET PRELOAD
+    ────────────────────────────────────────── */
+    const MIN_MS = 1000;
+    const PRELOAD = [
+      'ASSETS/LANDING PAGE/whole combined.png',
+      'ASSETS/background/bg_red.png',
+      'ASSETS/background/bg_green.png',
+    ];
+    let preloadCount = 0;
+
+    function preloadAssets() {
+      return new Promise((resolve) => {
+        PRELOAD.forEach((src) => {
+          const img = new Image();
+          img.onload = img.onerror = () => {
+            preloadCount++;
+            const pct = Math.round((preloadCount / PRELOAD.length) * 100);
+            loadingBarFill.style.width = pct + '%';
+            loadingText.textContent = pct < 100
+              ? 'Preparing your invitation\u2026 ' + pct + '%'
+              : 'Ready \u2736';
+            if (preloadCount === PRELOAD.length) resolve();
+          };
+          img.src = src;
+        });
+      });
+    }
+
+    /* ──────────────────────────────────────────
+       REVEAL
+    ────────────────────────────────────────── */
+    function openReveal() {
+      return new Promise((resolve) => {
+        const tl = gsap.timeline({
+          onComplete() {
+            loadingOverlay.style.display = 'none';
+            resolve();
+          }
+        });
+        tl.to(lightBloom, { opacity: 0.65, duration: 0.28, ease: 'power1.in'  }, 0.3)
+          .to(lightBloom, { opacity: 0,    duration: 0.65, ease: 'power2.out' }, 0.58);
+        tl.to(loadingOverlay, { opacity: 0, duration: 0.75, ease: 'power2.inOut' }, 0.45);
+      });
+    }
+
+    /* ──────────────────────────────────────────
+       HERO ENTRANCE
+    ────────────────────────────────────────── */
+    function animateHeroIn() {
+      return new Promise((resolve) => {
+        if (prefersReduced) {
+          gsap.set(heroTextGroup,  { opacity: 1, y: 0 });
+          gsap.set(heroScrollHint, { opacity: 1 });
+          resolve();
+          return;
+        }
+        const tl = gsap.timeline({ onComplete: resolve });
+        tl.fromTo(heroTextGroup,
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' },
+          0
+        );
+        tl.fromTo(heroScrollHint,
+          { opacity: 0 },
+          { opacity: 1,  duration: 0.75, ease: 'power2.out' },
+          0.55
+        );
+      });
+    }
+
+    /* ──────────────────────────────────────────
+       HERO SCROLL EFFECTS
+    ────────────────────────────────────────── */
+    function initHeroScrollEffects() {
+      if (prefersReduced) return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const heroEl  = document.getElementById('hero');
+      const imgWrap = document.getElementById('hero-img-wrap');
+
+      ScrollTrigger.create({
+        trigger: heroEl,
+        start: 'top top',
+        end:   'bottom top',
+        scrub: true,
+        onUpdate(self) {
+          gsap.set(imgWrap, { y: -(self.progress * heroEl.offsetHeight * 0.11) });
+        }
+      });
+
+      gsap.to(heroTextOuter, {
+        opacity: 0, y: -24,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: heroEl,
+          start:   'top top',
+          end:     '28% top',
+          scrub:   1,
+        }
+      });
+    }
+
+    /* ──────────────────────────────────────────
+       FRAME & POLAROID FLOATING
+    ────────────────────────────────────────── */
+    const FRAME_FLOAT = [
+      { sy: 0.58, sx: 0.33, sr: 0.16, ay: 5,  ax: 4,  ar: 1.2, py: 0.0, px: 1.1, pr: 0.4 },
+      { sy: 0.40, sx: 0.48, sr: 0.21, ay: 7,  ax: 6,  ar: 1.8, py: 2.0, px: 0.7, pr: 2.1 },
+      { sy: 0.68, sx: 0.26, sr: 0.14, ay: 4,  ax: 5,  ar: 1.0, py: 1.2, px: 2.4, pr: 0.9 },
+      { sy: 0.50, sx: 0.41, sr: 0.19, ay: 6,  ax: 3,  ar: 1.5, py: 3.1, px: 0.5, pr: 1.6 },
+      { sy: 0.76, sx: 0.31, sr: 0.17, ay: 5,  ax: 7,  ar: 1.3, py: 0.8, px: 1.9, pr: 3.0 },
+      { sy: 0.44, sx: 0.53, sr: 0.24, ay: 8,  ax: 4,  ar: 2.0, py: 1.7, px: 3.2, pr: 0.2 },
+      { sy: 0.63, sx: 0.37, sr: 0.18, ay: 5,  ax: 5,  ar: 1.1, py: 2.5, px: 0.9, pr: 2.8 },
+      { sy: 0.54, sx: 0.44, sr: 0.22, ay: 6,  ax: 6,  ar: 1.6, py: 0.3, px: 2.1, pr: 1.4 },
+    ];
+
+    const POLAROID_FLOAT = [
+      { sy: 0.48, sr: 0.17, ay: 4,  ar: 1.8, py: 0.0, pr: 0.5 },
+      { sy: 0.58, sr: 0.21, ay: 5,  ar: 2.2, py: 1.8, pr: 1.7 },
+      { sy: 0.38, sr: 0.14, ay: 3,  ar: 1.5, py: 3.2, pr: 3.0 },
+      { sy: 0.67, sr: 0.19, ay: 6,  ar: 2.0, py: 1.1, pr: 0.9 },
+    ];
+
+    let floatT   = 0;
+    let floatRAF = null;
+    let frameEls = [];
+    let polBodyEls = [];
+
+    function initFloating() {
+      if (prefersReduced) return;
+      frameEls   = Array.from(document.querySelectorAll('.frame-item'));
+      polBodyEls = Array.from(document.querySelectorAll('.polaroid-body'));
+
+      function tick() {
+        if (!document.hidden) {
+          floatT += 0.007;
+
+          frameEls.forEach((el, i) => {
+            if (!el.classList.contains('float-on')) return;
+            const c = FRAME_FLOAT[i % FRAME_FLOAT.length];
+            const rot  = parseFloat(el.dataset.baseRot || 0);
+            const dy   = Math.sin(floatT * c.sy + c.py) * c.ay;
+            const dx   = Math.sin(floatT * c.sx + c.px) * c.ax;
+            const dr   = Math.sin(floatT * c.sr + c.pr) * c.ar;
+            el.style.transform = `rotate(${rot + dr}deg) translateY(${dy}px) translateX(${dx}px)`;
+          });
+
+          polBodyEls.forEach((el, i) => {
+            const c  = POLAROID_FLOAT[i % POLAROID_FLOAT.length];
+            const dy = Math.sin(floatT * c.sy + c.py) * c.ay;
+            const dr = Math.sin(floatT * c.sr + c.pr) * c.ar;
+            el.style.transform = `rotate(${dr}deg) translateY(${dy}px)`;
+          });
+        }
+
+        floatRAF = requestAnimationFrame(tick);
+      }
+      tick();
+    }
+
+    /* ──────────────────────────────────────────
+       FRAMES ENTRANCE
+    ────────────────────────────────────────── */
+    function initFramesAnimation() {
+      const items = document.querySelectorAll('.frame-item');
+      if (!items.length || prefersReduced) {
+        items.forEach(el => { el.style.opacity = '1'; el.classList.add('float-on'); });
+        return;
+      }
+      const dirMap = { left: { x: -55, y: 0 }, right: { x: 55, y: 0 }, up: { x: 0, y: 48 } };
+
+      items.forEach((el, i) => {
+        const d = dirMap[el.dataset.dir] || dirMap.up;
+        gsap.fromTo(el,
+          { opacity: 0, x: d.x, y: d.y + 10, scale: 0.93 },
+          {
+            opacity: 1, x: 0, y: 0, scale: 1,
+            duration: 1.05, ease: 'power3.out', delay: (i % 5) * 0.07,
+            scrollTrigger: { trigger: el, start: 'top 88%' },
+            onComplete() { el.classList.add('float-on'); }
+          }
+        );
+      });
+
+      document.querySelectorAll('.polaroid-item').forEach((el, i) => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 38 },
+          {
+            opacity: 1, y: 0, duration: 0.88, ease: 'power2.out', delay: i * 0.11,
+            scrollTrigger: { trigger: '#polaroid-rope-section', start: 'top 82%' }
+          }
+        );
+      });
+
+      gsap.to('#frames-grid', {
+        y: -22, ease: 'none',
+        scrollTrigger: {
+          trigger: '#frames-section',
+          start: 'top bottom', end: 'bottom top', scrub: true,
+        }
+      });
+    }
+
+    /* ──────────────────────────────────────────
+       POLAROID SCROLL DRIFT
+    ────────────────────────────────────────── */
+    function initPolaroidDrift() {
+      if (prefersReduced) return;
+      const speeds = [0.055, -0.04, 0.07, -0.045];
+      const items  = document.querySelectorAll('.polaroid-item');
+
+      ScrollTrigger.create({
+        trigger: '#polaroid-rope-section',
+        start: 'top bottom', end: 'bottom top',
+        scrub: true,
+        onUpdate(self) {
+          items.forEach((el, i) => {
+            const shift = self.progress * speeds[i % speeds.length] * 70;
+            el.style.marginLeft = shift + 'px';
+          });
+        }
+      });
+    }
+
+    /* ──────────────────────────────────────────
+       BACKGROUND SEQUENCE (Smooth Fabric Transition)
+    ────────────────────────────────────────── */
+    function initBgSequence() {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Cream → Red fabric transition starts smoothly near Polaroid bottom
+      ScrollTrigger.create({
+        trigger: '#polaroid-rope-section',
+        start: 'bottom 85%',
+        end: '#dollhouse-section top 35%',
+        scrub: 1.2,
+        onUpdate(self) { bg3.style.opacity = String(self.progress); }
+      });
+
+      // Red → Green fabric transition at bottom
+      ScrollTrigger.create({
+        trigger: '#things-section',
+        start: 'top 75%',
+        end: '#things-section bottom 20%',
+        scrub: 1.2,
+        onUpdate(self) {
+          bg3.style.opacity = String(1 - self.progress);
+          bg4.style.opacity = String(self.progress);
+        }
+      });
+    }
+
+    /* ──────────────────────────────────────────
+       DOLLHOUSE CARDS — BUILD (Floating PNG Artworks)
+    ────────────────────────────────────────── */
+    function buildDollhouseCards() {
+      const container = document.getElementById('dollhouse-cards');
+      EVENTS.forEach((ev) => {
+        const card = document.createElement('div');
+        card.className = 'dollhouse-card';
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', `Open ${ev.label} details`);
+        card.dataset.eventId = ev.id;
+        card.innerHTML = `
+          <div class="dollhouse-card-img-wrap">
+            <img src="ASSETS/dollhouse/${ev.file}" alt="${ev.label}" loading="lazy" />
+          </div>
+        `;
+        card.addEventListener('click', () => openEvent(ev.id));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEvent(ev.id); }
+        });
+        container.appendChild(card);
+      });
+    }
+
+    function initDollhouseAnimation() {
+      const cards = document.querySelectorAll('.dollhouse-card');
+      if (!cards.length || prefersReduced) {
+        cards.forEach(el => { el.style.opacity = '1'; });
+        return;
+      }
+      gsap.fromTo(Array.from(cards),
+        { opacity: 0, y: 50, scale: 0.92 },
+        {
+          opacity: 1, y: 0, scale: 1,
+          duration: 0.95, stagger: 0.12, ease: 'power3.out',
+          scrollTrigger: { trigger: '#dollhouse-section', start: 'top 72%' }
+        }
+      );
+    }
+
+    /* ──────────────────────────────────────────
+       THINGS TO KNOW
+    ────────────────────────────────────────── */
+    const THINGS = [
+      { icon: '👗', title: 'Dress Code',      body: 'Formal ethnic or semi-formal attire in warm tones — ivory, blush, gold, or pastels. Avoid black and white.' },
+      { icon: '✈️', title: 'Venue & Travel',  body: 'All events are held at The Grand Palace, New Delhi. Complimentary shuttle service available from select hotels.' },
+      { icon: '🏨', title: 'Accommodation',   body: 'A block of rooms has been reserved at The Heritage Suites. Please use code VARTIKA26 when booking.' },
+      { icon: '📞', title: 'Contact',         body: 'For queries, reach out to our event coordinators at +91 98765 43210 or events@ohvows.in' },
+    ];
+
+    function buildThings() {
+      const grid = document.getElementById('things-grid');
+      THINGS.forEach((t) => {
+        const card = document.createElement('div');
+        card.className = 'thing-card';
+        card.innerHTML = `
+          <div class="thing-icon" aria-hidden="true">${t.icon}</div>
+          <h3 class="thing-title">${t.title}</h3>
+          <p class="thing-body">${t.body}</p>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function initThingsAnimation() {
+      const cards = document.querySelectorAll('.thing-card');
+      if (!cards.length || prefersReduced) {
+        cards.forEach(el => { el.style.opacity = '1'; });
+        return;
+      }
+      gsap.fromTo(Array.from(cards),
+        { opacity: 0, y: 38 },
+        {
+          opacity: 1, y: 0, duration: 0.88, stagger: 0.1, ease: 'power2.out',
+          scrollTrigger: { trigger: '#things-section', start: 'top 72%' }
+        }
+      );
+    }
+
+    /* ──────────────────────────────────────────
+       WARDROBE PLANNER
+    ────────────────────────────────────────── */
+    function initWardrobeAnimation() {
+      const cards = document.querySelectorAll('.wardrobe-card');
+      if (!cards.length || prefersReduced) {
+        cards.forEach(el => { el.style.opacity = '1'; });
+        return;
+      }
+      gsap.fromTo(Array.from(cards),
+        { opacity: 0, y: 38 },
+        {
+          opacity: 1, y: 0, duration: 0.88, stagger: 0.12, ease: 'power2.out',
+          scrollTrigger: { trigger: '#wardrobe-section', start: 'top 75%' }
+        }
+      );
+    }
+
+    /* ──────────────────────────────────────────
+       COUNTDOWN
+    ────────────────────────────────────────── */
+    const WEDDING_DATE = new Date('2026-09-21T00:00:00+05:30');
+
+    function padded(n) { return String(n).padStart(2, '0'); }
+
+    function flipDigit(el, newVal) {
+      if (el.textContent === newVal) return;
+      if (prefersReduced) { el.textContent = newVal; return; }
+      el.classList.add('flipping-out');
+      setTimeout(() => {
+        el.textContent = newVal;
+        el.classList.remove('flipping-out');
+        el.classList.add('flipping-in');
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('flipping-in')));
+      }, 200);
+    }
+
+    function updateCountdown() {
+      const diff = WEDDING_DATE - new Date();
+      const els = {
+        days:  document.getElementById('cd-days'),
+        hours: document.getElementById('cd-hours'),
+        mins:  document.getElementById('cd-mins'),
+        secs:  document.getElementById('cd-secs'),
+      };
+      if (diff <= 0) {
+        Object.values(els).forEach(el => { el.textContent = '00'; });
+        return;
+      }
+      flipDigit(els.days,  padded(Math.floor(diff / 86400000)));
+      flipDigit(els.hours, padded(Math.floor((diff % 86400000) / 3600000)));
+      flipDigit(els.mins,  padded(Math.floor((diff % 3600000)  / 60000)));
+      flipDigit(els.secs,  padded(Math.floor((diff % 60000)    / 1000)));
+    }
+
+    /* ──────────────────────────────────────────
+       RSVP
+    ────────────────────────────────────────── */
+    function initRSVP() {
+      document.getElementById('rsvp-submit').addEventListener('click', () => {
+        const name = document.getElementById('rsvp-name').value.trim();
+        if (!name) { alert('Please enter your name.'); return; }
+        alert(`Thank you, ${name}! Your response has been noted. \u2736`);
+      });
+    }
+
+    /* ──────────────────────────────────────────
+       FLOWER CANVAS LAYERS
+    ────────────────────────────────────────── */
+    const FLOWER_SRCS = [
+      'ASSETS/flowers/flower_pink.svg',
+      'ASSETS/flowers/flower_white.svg',
+      'ASSETS/flowers/flower_single_yellow.svg',
+      'ASSETS/flowers/flower_single_orange.svg',
+      'ASSETS/flowers/flower_single_yellow_orange.svg',
+    ];
+    const flowerImgs = [];
+
+    function preloadFlowers() {
+      FLOWER_SRCS.forEach((src) => {
+        const img = new Image(); img.src = src; flowerImgs.push(img);
+      });
+    }
+
+    function initFlowers(canvasId, opts = {}) {
+      if (prefersReduced) return;
+      const canvas = document.getElementById(canvasId);
+      const ctx    = canvas.getContext('2d');
+      const count  = opts.count || 8;
+
+      function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      function clampN(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+      class Flower {
+        constructor() { this.reset(true); }
+        reset(init) {
+          const W = canvas.width, H = canvas.height;
+          const secs = 11 + Math.random() * 14;
+          this.vy  = H / (secs * 60);
+          const d  = (this.vy - H / (25 * 60)) / (H / (11 * 60) - H / (25 * 60));
+          this.sz  = clampN(16 + d * 48, 13, 65);
+          this.op  = clampN(0.13 + d * 0.43, 0.10, 0.62);
+          this.rot = Math.random() * Math.PI * 2;
+          this.rv  = (Math.random() - 0.5) * (0.003 + Math.random() * 0.017);
+          this.x   = Math.random() * W;
+          this.y   = init ? Math.random() * H : -(this.sz * 2);
+          this.vx  = (Math.random() - 0.5) * 0.5;
+          this.swA = 0.28 + Math.random() * 0.75;
+          this.swS = 0.004 + Math.random() * 0.011;
+          this.swP = Math.random() * Math.PI * 2;
+          this.img = flowerImgs[Math.floor(Math.random() * flowerImgs.length)];
+        }
+        update(t) {
+          this.x += this.vx + Math.sin(t * this.swS + this.swP) * this.swA;
+          this.y += this.vy;
+          this.rot += this.rv;
+          if (this.y > canvas.height + this.sz * 2) this.reset(false);
+        }
+        draw(ctx) {
+          if (!this.img?.complete || !this.img.naturalWidth) return;
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.rot);
+          ctx.globalAlpha = this.op;
+          ctx.drawImage(this.img, -this.sz / 2, -this.sz / 2, this.sz, this.sz);
+          ctx.restore();
+        }
+      }
+
+      const flowers = Array.from({ length: count }, () => new Flower());
+      let t = 0;
+      (function loop() {
+        if (!document.hidden) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          t++;
+          flowers.forEach(f => { f.update(t); f.draw(ctx); });
+        }
+        requestAnimationFrame(loop);
+      })();
+    }
+
+    /* ──────────────────────────────────────────
+       EVENT ROUTING & DETAIL VIEW
+    ────────────────────────────────────────── */
+    let currentEventId     = null;
+    let mainSiteScrollY    = 0;
+    let evDetailObservers  = [];
+
+    function getEvent(id) { return EVENTS.find(e => e.id === id) || null; }
+    function getNextEvent(id) {
+      const idx = EVENTS.findIndex(e => e.id === id);
+      return idx >= 0 && idx < EVENTS.length - 1 ? EVENTS[idx + 1] : null;
+    }
+
+    function openEvent(eventId) {
+      const ev = getEvent(eventId);
+      if (!ev) return;
+      mainSiteScrollY = window.scrollY;
+      history.pushState({ eventId }, ev.label, '#' + eventId);
+      currentEventId = eventId;
+      buildEventDetail(ev);
+      showEventDetail();
+    }
+
+    function showEventDetail() {
+      mainSite.setAttribute('aria-hidden', 'true');
+      mainSite.style.pointerEvents = 'none';
+      eventDetailView.classList.add('is-active');
+      eventBackBtn.classList.add('is-active');
+      eventDetailView.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeEvent() {
+      evDetailObservers.forEach(obs => obs.disconnect());
+      evDetailObservers = [];
+
+      eventDetailView.classList.remove('is-active');
+      eventBackBtn.classList.remove('is-active');
+      mainSite.removeAttribute('aria-hidden');
+      mainSite.style.pointerEvents = '';
+      document.body.style.overflow = '';
+      currentEventId = null;
+
+      window.scrollTo(0, mainSiteScrollY);
+
+      setTimeout(() => {
+        if (!eventDetailView.classList.contains('is-active')) {
+          eventDetailContent.innerHTML = '';
+        }
+      }, 500);
+    }
+
+    function buildEventDetail(ev) {
+      const nextEv = getNextEvent(ev.id);
+
+      eventDetailContent.innerHTML = `
+        <!-- Hero -->
+        <div class="event-hero" style="background:${ev.bgColor};">
+          <img class="event-hero-img"
+               src="ASSETS/dollhouse/${ev.file}"
+               alt="${ev.label}" />
+          <div class="event-hero-grad"></div>
+          <div class="event-hero-text">
+            <p class="ev-eyebrow" id="ev-eyebrow">The Celebrations</p>
+            <div class="ev-gold-rule"></div>
+            <h2 class="ev-title" id="ev-title">${ev.label}</h2>
+            <p class="ev-tagline" id="ev-tagline">${ev.tagline}</p>
+          </div>
+        </div>
+
+        <!-- Story & Details -->
+        <div style="background:${ev.bgColor}; position:relative; z-index:2;">
+
+          <div class="ev-chapter">
+            <div class="ev-gold-rule" style="margin-bottom:clamp(24px,4vh,48px);"></div>
+            <p class="ev-story" id="ev-story">${ev.story}</p>
+            <div class="ev-gold-rule" style="margin-top:clamp(24px,4vh,48px);"></div>
+          </div>
+
+          <!-- Details Grid -->
+          <div class="ev-details-row" id="ev-details">
+            <div class="ev-detail-item">
+              <div class="ev-detail-icon" aria-hidden="true">📅</div>
+              <div class="ev-detail-label">Date</div>
+              <div class="ev-detail-value">${ev.date}</div>
+            </div>
+            <div class="ev-detail-item">
+              <div class="ev-detail-icon" aria-hidden="true">🕐</div>
+              <div class="ev-detail-label">Time</div>
+              <div class="ev-detail-value">${ev.time}</div>
+            </div>
+            <div class="ev-detail-item">
+              <div class="ev-detail-icon" aria-hidden="true">📍</div>
+              <div class="ev-detail-label">Venue</div>
+              <div class="ev-detail-value">${ev.location}</div>
+              <div class="ev-detail-sub">${ev.locationSub}</div>
+              ${ev.mapsUrl ? `
+                <a href="${ev.mapsUrl}" target="_blank" rel="noopener noreferrer" class="ev-route-btn" aria-label="View Route to ${ev.location}">
+                  <span>View Route</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                </a>
+              ` : ''}
+            </div>
+          </div>
+
+          <!-- Dress Code -->
+          <div class="ev-dresscode-wrap">
+            <span class="ev-dresscode-label">Dress Code</span>
+            <div class="ev-dresscode-tag" id="ev-dresscode">
+              <span aria-hidden="true">👗</span>
+              <span>${ev.dressCode}</span>
+            </div>
+          </div>
+
+          <!-- Next Event / Return -->
+          <div class="ev-next-zone">
+            ${nextEv ? `
+              <span class="ev-next-label">Continue the journey</span>
+              <div class="ev-next-title" id="ev-next-btn"
+                   role="button" tabindex="0"
+                   aria-label="Next: ${nextEv.label}">
+                ${nextEv.label} &rarr;
+              </div>
+            ` : `
+              <span class="ev-next-label">The journey is complete</span>
+              <button class="ev-return-btn" id="ev-return-btn"
+                      aria-label="Return to events overview">
+                &larr; Return to Events
+              </button>
+            `}
+          </div>
+        </div>
+      `;
+
+      if (!prefersReduced) {
+        const eyebrow = document.getElementById('ev-eyebrow');
+        const title   = document.getElementById('ev-title');
+        const tagline = document.getElementById('ev-tagline');
+        gsap.fromTo([eyebrow, title, tagline],
+          { opacity: 0, y: 22 },
+          { opacity: 1, y: 0, duration: 0.88, stagger: 0.14, ease: 'power3.out', delay: 0.25 }
+        );
+
+        const story = document.getElementById('ev-story');
+        if (story) {
+          const stObs = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+              gsap.fromTo(story,
+                { opacity: 0, y: 28 },
+                { opacity: 1, y: 0, duration: 0.78, ease: 'power2.out' }
+              );
+              stObs.disconnect();
+            }
+          }, { threshold: 0.25, root: eventDetailView });
+          stObs.observe(story);
+          evDetailObservers.push(stObs);
+        }
+
+        const detailItems  = document.querySelectorAll('.ev-detail-item');
+        const dresscode    = document.getElementById('ev-dresscode');
+        const detailObs = new IntersectionObserver((entries) => {
+          if (entries.some(e => e.isIntersecting)) {
+            gsap.fromTo(Array.from(detailItems),
+              { opacity: 0, y: 28 },
+              { opacity: 1, y: 0, duration: 0.7, stagger: 0.11, ease: 'power2.out' }
+            );
+            if (dresscode) {
+              gsap.fromTo(dresscode,
+                { opacity: 0 },
+                { opacity: 1, duration: 0.6, delay: 0.36 }
+              );
+            }
+            detailObs.disconnect();
+          }
+        }, { threshold: 0.15, root: eventDetailView });
+        detailItems.forEach(el => detailObs.observe(el));
+        evDetailObservers.push(detailObs);
+      } else {
+        document.querySelectorAll(
+          '.ev-eyebrow, .ev-title, .ev-tagline, .ev-story, .ev-detail-item, .ev-dresscode-tag'
+        ).forEach(el => { el.style.opacity = '1'; });
+      }
+
+      const nextBtn   = document.getElementById('ev-next-btn');
+      const returnBtn = document.getElementById('ev-return-btn');
+
+      if (nextBtn && nextEv) {
+        const goNext = () => transitionToEvent(nextEv.id);
+        nextBtn.addEventListener('click', goNext);
+        nextBtn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goNext(); }
+        });
+      }
+      if (returnBtn) {
+        returnBtn.addEventListener('click', () => history.back());
+      }
+    }
+
+    function transitionToEvent(nextId) {
+      const nextEv = getEvent(nextId);
+      if (!nextEv) return;
+
+      if (prefersReduced) {
+        evDetailObservers.forEach(obs => obs.disconnect());
+        evDetailObservers = [];
+        history.pushState({ eventId: nextId }, nextEv.label, '#' + nextId);
+        currentEventId = nextId;
+        buildEventDetail(nextEv);
+        eventDetailView.scrollTop = 0;
+        return;
+      }
+
+      eventTransition.style.background = nextEv.bgColor;
+
+      const tl = gsap.timeline();
+      tl.to(eventTransition, { opacity: 1, duration: 0.48, ease: 'power2.inOut' })
+        .call(() => {
+          evDetailObservers.forEach(obs => obs.disconnect());
+          evDetailObservers = [];
+          history.pushState({ eventId: nextId }, nextEv.label, '#' + nextId);
+          currentEventId = nextId;
+          buildEventDetail(nextEv);
+          eventDetailView.scrollTop = 0;
+        })
+        .to(eventTransition, { opacity: 0, duration: 0.65, ease: 'power2.out' }, '+=0.08');
+    }
+
+    /* ──────────────────────────────────────────
+       POPSTATE & ROUTING
+    ────────────────────────────────────────── */
+    eventBackBtn.addEventListener('click', () => { history.back(); });
+
+    window.addEventListener('popstate', (e) => {
+      if (e.state?.eventId) {
+        const ev = getEvent(e.state.eventId);
+        if (ev) {
+          evDetailObservers.forEach(obs => obs.disconnect());
+          evDetailObservers = [];
+          currentEventId = e.state.eventId;
+          buildEventDetail(ev);
+          showEventDetail();
+          eventDetailView.scrollTop = 0;
+        }
+      } else {
+        closeEvent();
+      }
+    });
+
+    function handleInitialHash() {
+      const hash = location.hash.replace('#', '');
+      if (hash) {
+        const ev = getEvent(hash);
+        if (ev) openEvent(ev.id);
+      }
+    }
+
+    /* ──────────────────────────────────────────
+       BOOT
+    ────────────────────────────────────────── */
+    async function boot() {
+      gsap.registerPlugin(ScrollTrigger);
+
+      buildDollhouseCards();
+      buildThings();
+
+      preloadFlowers();
+      initFlowers('petal-back',  { count: isMobile ? 4 : 7 });
+      initFlowers('petal-front', { count: isMobile ? 6 : 11 });
+
+      const minWait = new Promise(r => setTimeout(r, MIN_MS));
+      const loaded  = preloadAssets();
+      await Promise.all([minWait, loaded]);
+      await new Promise(r => setTimeout(r, 180));
+
+      await openReveal();
+      await animateHeroIn();
+
+      initHeroScrollEffects();
+      initBgSequence();
+      initFramesAnimation();
+      initFloating();
+      initPolaroidDrift();
+      initDollhouseAnimation();
+      initThingsAnimation();
+      initWardrobeAnimation();
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      initRSVP();
+
+      ScrollTrigger.refresh();
+
+      handleInitialHash();
+    }
+
+    boot().catch(console.error);
+
+  })();
+  </script>
+</body>
+</html>

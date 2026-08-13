@@ -428,7 +428,7 @@
        §3  GRAND EVENTS (Transparent Embossed Invitations)
     ══════════════════════════════════════════════ */
     #dollhouse-section {
-      padding: clamp(60px, 9vh, 110px) clamp(16px, 4vw, 48px) clamp(60px, 9vh, 110px);
+      padding: clamp(60px, 9vh, 120px) clamp(16px, 4vw, 64px);
       text-align: center; position: relative; z-index: 20;
       background: transparent;
     }
@@ -439,26 +439,27 @@
       margin-bottom: clamp(48px, 7vh, 88px);
     }
 
-    /* Editorial 2 + 2 + 1 Grid Layout */
+    /* 6-Column CSS Grid: 3 cards on Row 1 (cols 1-2, 3-4, 5-6), 2 cards centered on Row 2 (cols 2-3, 4-5) */
     #dollhouse-cards {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: clamp(28px, 4vw, 64px) clamp(32px, 6vw, 90px);
-      max-width: 980px; margin: 0 auto;
+      grid-template-columns: repeat(6, 1fr);
+      gap: clamp(28px, 3.5vw, 60px) clamp(24px, 3vw, 56px);
+      max-width: 1440px; margin: 0 auto;
       align-items: center; justify-items: center;
     }
 
-    .dollhouse-card:nth-child(5) {
-      grid-column: 1 / -1;
-      justify-self: center;
-    }
+    .dollhouse-card:nth-child(1) { grid-column: span 2; }
+    .dollhouse-card:nth-child(2) { grid-column: span 2; }
+    .dollhouse-card:nth-child(3) { grid-column: span 2; }
+    .dollhouse-card:nth-child(4) { grid-column: 2 / span 2; }
+    .dollhouse-card:nth-child(5) { grid-column: 4 / span 2; }
 
-    /* Floating physical PNG invitation */
+    /* Floating physical PNG invitation — 1.4x-1.7x larger on desktop */
     .dollhouse-card {
       cursor: pointer; opacity: 0;
       position: relative; background: transparent;
       border: none; box-shadow: none;
-      width: clamp(220px, 26vw, 350px);
+      width: 100%; max-width: clamp(290px, 25vw, 440px);
       transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.22, 1);
       will-change: transform;
     }
@@ -548,25 +549,35 @@
 
     /* RSVP — Chhabra Family Block */
     .rsvp-family-card {
-      margin-top: clamp(16px, 3vh, 32px);
+      margin-top: clamp(20px, 4vh, 40px);
       display: flex; flex-direction: column; align-items: center;
-      gap: clamp(6px, 1.2vh, 10px); text-align: center;
+      gap: clamp(8px, 1.4vh, 14px); text-align: center;
+      padding: clamp(24px, 4vh, 40px) clamp(20px, 5vw, 48px);
+      width: 100%; max-width: 540px;
+      background: rgba(10, 3, 0, 0.45);
+      border-top: 1px solid rgba(201, 162, 39, 0.28);
+      border-bottom: 1px solid rgba(201, 162, 39, 0.28);
+      border-radius: 4px;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3);
     }
     .rsvp-family-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(12px, 1.5vw, 15px);
-      letter-spacing: 0.32em; text-transform: uppercase;
-      color: var(--gold); margin-top: 8px; font-weight: 500;
+      font-size: clamp(11px, 1.3vw, 14px);
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold-light); font-weight: 500;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.85);
     }
     .rsvp-family-names {
       font-family: 'IM Fell English', serif;
-      font-size: clamp(20px, 3vw, 32px);
-      color: var(--ivory); font-weight: 400;
+      font-size: clamp(24px, 4.5vw, 42px);
+      color: var(--ivory); font-weight: 400; line-height: 1.15;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 20px rgba(201,162,39,0.25);
     }
     .rsvp-family-special {
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: clamp(14px, 1.8vw, 18px);
-      color: var(--ivory-dim); opacity: 0.88;
+      font-style: italic; font-size: clamp(16px, 2.2vw, 22px);
+      color: var(--ivory-dim); opacity: 0.95;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.85);
     }
 
     /* ══════════════════════════════════════════════
@@ -651,33 +662,48 @@
       display: flex; flex-direction: column; align-items: center;
       gap: clamp(8px, 1.5vh, 16px);
     }
+    #countdown-section .eyebrow {
+      color: var(--gold-light);
+      letter-spacing: 0.4em;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.85);
+    }
+    #countdown-section .display-title {
+      color: var(--ivory);
+      text-shadow: 0 2px 16px rgba(0,0,0,0.8);
+    }
     #countdown-grid {
-      display: flex; flex-wrap: wrap; justify-content: center;
-      gap: clamp(10px, 2.8vw, 38px);
+      display: flex; flex-wrap: nowrap; justify-content: center; align-items: center;
+      gap: clamp(6px, 2vw, 32px); width: 100%; max-width: 720px;
     }
     .cd-block {
       display: flex; flex-direction: column; align-items: center;
-      gap: clamp(5px, 1vh, 11px); min-width: clamp(68px, 13vw, 115px);
+      gap: clamp(4px, 1vh, 10px); flex: 1 1 0; min-width: clamp(52px, 16vw, 110px);
     }
     .cd-digits {
-      font-family: 'IM Fell English', serif; font-size: clamp(48px, 9.5vw, 100px);
+      font-family: 'IM Fell English', serif; font-size: clamp(40px, 7.5vw, 92px);
       font-weight: 400; line-height: 1; color: var(--ivory);
       position: relative; overflow: hidden; height: 1.1em;
       display: flex; align-items: center; justify-content: center;
-      text-shadow: 0 2px 24px rgba(201,162,39,0.28);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.9), 0 0 12px rgba(201,162,39,0.35);
     }
     .cd-value { display: inline-block; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.22s; }
     .cd-value.flipping-out { transform: translateY(-110%); opacity: 0; }
     .cd-value.flipping-in  { transform: translateY(110%);  opacity: 0; }
     .cd-separator {
-      font-family: 'IM Fell English', serif; font-size: clamp(38px, 7.5vw, 76px);
-      color: var(--gold); opacity: 0.45; align-self: flex-start; margin-top: 0.05em; line-height: 1;
+      font-family: 'IM Fell English', serif; font-size: clamp(32px, 6vw, 70px);
+      color: var(--gold-light); opacity: 0.75; align-self: center; margin-top: -0.2em; line-height: 1;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.85);
     }
-    .cd-label { font-size: clamp(9px, 1.2vw, 12px); letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); opacity: 0.65; }
-    .cd-gold-line { width: clamp(55px, 9vw, 95px); height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+    .cd-label {
+      font-size: clamp(10px, 1.3vw, 13px); letter-spacing: 0.35em;
+      text-transform: uppercase; color: var(--gold-light); opacity: 0.92;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.85); font-weight: 500;
+    }
+    .cd-gold-line { width: clamp(45px, 8vw, 90px); height: 1px; background: linear-gradient(to right, transparent, var(--gold-light), transparent); opacity: 0.8; }
     #countdown-date-note {
-      font-family: 'Cormorant Garamond', serif; font-size: clamp(14px, 1.9vw, 18px);
-      color: var(--ivory-dim); opacity: 0.68; letter-spacing: 0.1em;
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2.2vw, 22px);
+      color: var(--ivory-dim); opacity: 0.95; letter-spacing: 0.12em;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.85);
     }
 
     /* ══════════════════════════════════════════════
@@ -685,12 +711,13 @@
     ══════════════════════════════════════════════ */
     #site-footer {
       position: relative; z-index: 20; text-align: center;
-      padding: clamp(30px, 5vh, 58px) clamp(16px, 4vw, 48px);
-      border-top: 1px solid rgba(201,162,39,0.14);
+      padding: clamp(36px, 6vh, 68px) clamp(16px, 4vw, 48px);
+      border-top: 1px solid rgba(201,162,39,0.2);
     }
     #site-footer p {
-      font-size: clamp(11px, 1.3vw, 13px); letter-spacing: 0.25em;
-      color: var(--gold); opacity: 0.52; text-transform: uppercase;
+      font-size: clamp(12px, 1.6vw, 15px); letter-spacing: 0.28em;
+      color: var(--gold-light); opacity: 0.85; text-transform: uppercase;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.85); font-weight: 500;
     }
 
     /* ══════════════════════════════════════════════
@@ -873,8 +900,22 @@
     }
 
     /* ══════════════════════════════════════════════
-       MOBILE RESPONSIVENESS
+       TABLET & MOBILE RESPONSIVENESS
     ══════════════════════════════════════════════ */
+    @media (max-width: 1023px) and (min-width: 600px) {
+      #dollhouse-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(24px, 4vw, 48px);
+        max-width: 760px;
+      }
+      .dollhouse-card:nth-child(1),
+      .dollhouse-card:nth-child(2),
+      .dollhouse-card:nth-child(3),
+      .dollhouse-card:nth-child(4) { grid-column: span 1; }
+      .dollhouse-card:nth-child(5) { grid-column: 1 / -1; justify-self: center; }
+      .dollhouse-card { max-width: clamp(240px, 40vw, 360px); }
+    }
+
     @media (max-width: 599px) {
       #hero-text-outer { top: 5%; }
       .corner-comp.top-left-large  { width: clamp(65px, 16vw, 95px); left: 2px; }
@@ -887,8 +928,12 @@
         gap: clamp(20px, 4vh, 36px);
         max-width: 310px;
       }
-      .dollhouse-card:nth-child(5) { grid-column: 1; }
-      .dollhouse-card { width: clamp(200px, 72vw, 290px); }
+      .dollhouse-card:nth-child(1),
+      .dollhouse-card:nth-child(2),
+      .dollhouse-card:nth-child(3),
+      .dollhouse-card:nth-child(4),
+      .dollhouse-card:nth-child(5) { grid-column: 1; justify-self: center; }
+      .dollhouse-card { max-width: clamp(200px, 72vw, 290px); }
 
       .ev-details-row { flex-direction: column; align-items: center; }
       .ev-detail-item { flex: 0 0 auto; width: 100%; }

@@ -20,23 +20,68 @@
     max-width: clamp(330px, 28vw, 460px);
   }
 
-  /* Frames Gallery on Desktop */
+  /* Frames Gallery on Desktop: Art-Directed 3+2 Composition */
   #frames-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: clamp(28px, 3.8vw, 56px);
-    max-width: 1380px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: clamp(32px, 4.5vw, 64px) clamp(24px, 3.2vw, 48px);
+    max-width: 1340px;
+    padding: 0 32px;
   }
-  .frame-item[data-size="xl"]    img { width: clamp(240px, 25vw, 380px); }
-  .frame-item[data-size="lg"]    img { width: clamp(200px, 21vw, 320px); }
-  .frame-item[data-size="md"]    img { width: clamp(170px, 18vw, 270px); }
-  .frame-item[data-size="horiz"] img { width: clamp(240px, 26vw, 390px); }
 
-  /* Carousel Desktop: 3.5 - 4.5 images visible */
+  .frame-item:nth-child(1) {
+    grid-column: span 2;
+    transform: rotate(-1.2deg) translateY(12px);
+  }
+  .frame-item:nth-child(1) img {
+    width: clamp(210px, 21vw, 310px);
+  }
+
+  .frame-item:nth-child(2) {
+    grid-column: span 2;
+    transform: rotate(0.8deg) translateY(-14px);
+  }
+  .frame-item:nth-child(2) img {
+    width: clamp(240px, 25vw, 380px);
+  }
+
+  .frame-item:nth-child(3) {
+    grid-column: span 2;
+    transform: rotate(-0.8deg) translateY(12px);
+  }
+  .frame-item:nth-child(3) img {
+    width: clamp(210px, 21vw, 310px);
+  }
+
+  .frame-item:nth-child(4) {
+    grid-column: 2 / span 2;
+    transform: rotate(1deg) translateY(-6px);
+  }
+  .frame-item:nth-child(4) img {
+    width: clamp(200px, 20vw, 300px);
+  }
+
+  .frame-item:nth-child(5) {
+    grid-column: 4 / span 2;
+    transform: rotate(-0.6deg) translateY(8px);
+  }
+  .frame-item:nth-child(5) img {
+    width: clamp(240px, 24vw, 360px);
+  }
+
+  /* Carousel Desktop */
   .carousel-card {
     width: clamp(240px, 22vw, 340px);
+  }
+
+  /* Event Detail View Desktop Zoom */
+  #event-detail-view,
+  .event-hero {
+    background-size: 130% auto;
+    background-position: center 15%;
+  }
+  .event-hero-artwork-wrap {
+    max-width: clamp(340px, 44vw, 560px);
   }
 }
 
@@ -64,13 +109,16 @@
     max-width: clamp(280px, 42vw, 360px);
   }
 
-  /* Frames on Tablet */
+  /* Frames on Tablet: 2-column with 5th centered */
   #frames-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: clamp(20px, 4vw, 36px);
     max-width: 720px;
     padding: 0 24px;
+  }
+  .frame-item {
+    grid-column: span 1;
   }
   .frame-item:nth-child(5) {
     grid-column: 1 / span 2;
@@ -85,6 +133,16 @@
   /* Carousel Tablet */
   .carousel-card {
     width: clamp(200px, 28vw, 260px);
+  }
+
+  /* Event Detail View Tablet */
+  #event-detail-view,
+  .event-hero {
+    background-size: cover;
+    background-position: center top;
+  }
+  .event-hero-artwork-wrap {
+    max-width: clamp(280px, 50vw, 420px);
   }
 }
 
@@ -172,14 +230,14 @@
 
   /* ── Mobile Frames Gallery: Exactly 2 Columns, 4-5 Frames Total ── */
   #frames-section {
-    padding: clamp(36px, 6vh, 64px) clamp(16px, 4vw, 24px) clamp(48px, 7vh, 80px);
+    padding: clamp(40px, 6vh, 68px) clamp(14px, 3.5vw, 22px) clamp(30px, 5vh, 50px);
   }
 
   #frames-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(14px, 3.5vw, 20px);
-    padding: 0 clamp(16px, 4.5vw, 22px);
+    gap: clamp(14px, 3.8vw, 22px);
+    padding: 0 clamp(8px, 2vw, 16px);
     max-width: 480px;
     margin: 0 auto;
     align-items: center;
@@ -187,25 +245,38 @@
   }
 
   .frame-item {
+    grid-column: span 1 !important;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: none !important;
   }
 
   .frame-item img {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
     object-fit: contain;
   }
 
+  .frame-item:nth-child(1) { transform: rotate(-0.8deg) !important; }
+  .frame-item:nth-child(2) { transform: rotate(0.6deg) !important; }
+  .frame-item:nth-child(3) { transform: rotate(-0.5deg) !important; }
+  .frame-item:nth-child(4) { transform: rotate(0.8deg) !important; }
+
   /* 5th frame centered on row 3 */
   .frame-item:nth-child(5) {
-    grid-column: 1 / span 2;
+    grid-column: 1 / span 2 !important;
     justify-self: center;
-    width: 65%;
+    width: 65% !important;
     max-width: 220px;
+    transform: rotate(-0.4deg) !important;
+  }
+
+  /* ── Mobile Polaroid Section ── */
+  #polaroid-rope-section {
+    padding: clamp(24px, 4vh, 48px) clamp(14px, 3.5vw, 24px) clamp(48px, 7vh, 80px);
   }
 
   /* ── Mobile Grand Events: 1 Card per Row, Preserved Proportions ── */
@@ -237,11 +308,40 @@
     font-size: clamp(15px, 4vw, 19px);
   }
 
-  /* ── Mobile Details & Navigation ── */
+  /* ── Mobile Event Detail View (Zoomed & Immersive) ── */
+  #event-detail-view {
+    background-size: cover;
+    background-position: center top;
+  }
+
+  .event-hero {
+    min-height: clamp(380px, 62vh, 560px);
+    padding: clamp(50px, 8vh, 70px) 16px 24px;
+    background-size: cover;
+    background-position: center top;
+  }
+
+  .event-hero-artwork-wrap {
+    max-width: clamp(240px, 76vw, 360px);
+    margin-bottom: 14px;
+  }
+
+  .event-hero-img {
+    max-height: 52vh;
+  }
+
+  .event-hero-text {
+    padding: 10px 16px;
+  }
+
+  .ev-title {
+    font-size: clamp(30px, 9vw, 48px);
+  }
+
   .ev-details-row {
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 22px;
   }
 
   .ev-detail-item {
@@ -252,12 +352,8 @@
   #event-back-btn {
     top: 10px;
     left: 10px;
-    padding: 7px 12px;
-    font-size: 11px;
-  }
-
-  .ev-title {
-    font-size: clamp(32px, 11vw, 56px);
+    padding: 7px 14px;
+    font-size: 12px;
   }
 
   /* ── Mobile Carousel: 1.3 - 2 images visible ── */
@@ -272,10 +368,5 @@
 
   .carousel-card {
     width: clamp(170px, 56vw, 230px);
-  }
-
-  /* ── Transition Gradients on Mobile ── */
-  .transition-gradient {
-    height: clamp(80px, 12vh, 140px);
   }
 }

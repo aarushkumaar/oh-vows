@@ -212,15 +212,18 @@
     const bgUrl = ev.background ? `url('${ev.background}')` : 'none';
 
     // Apply the configured thematic background directly to the view container
-    eventDetailView.style.background = `${ev.bgColor} ${bgUrl} center top / cover no-repeat`;
+    eventDetailView.style.backgroundImage = bgUrl;
+    eventDetailView.style.backgroundColor = ev.bgColor;
 
     eventDetailContent.innerHTML = `
       <!-- Hero -->
-      <div class="event-hero" style="background: ${ev.bgColor} ${bgUrl} center top / cover no-repeat;">
-        <img class="event-hero-img"
-             src="assets/images/events/${ev.file}"
-             alt="${ev.label}" />
+      <div class="event-hero" style="background-image: ${bgUrl}; background-color: ${ev.bgColor};">
         <div class="event-hero-grad"></div>
+        <div class="event-hero-artwork-wrap">
+          <img class="event-hero-img"
+               src="assets/images/events/${ev.file}"
+               alt="${ev.label}" />
+        </div>
         <div class="event-hero-text">
           <p class="ev-eyebrow" id="ev-eyebrow">The Celebrations</p>
           <div class="ev-gold-rule"></div>
@@ -229,8 +232,8 @@
         </div>
       </div>
 
-      <!-- Story & Details -->
-      <div style="background: ${ev.bgColor} ${bgUrl} center top / cover repeat-y; position: relative; z-index: 2;">
+      <!-- Story & Details Container -->
+      <div class="event-detail-body">
 
         <div class="ev-chapter">
           <div class="ev-gold-rule" style="margin-bottom: clamp(24px, 4vh, 48px);"></div>
@@ -296,12 +299,21 @@
     `;
 
     if (!prefersReduced) {
+      const heroArtwork = eventDetailContent.querySelector('.event-hero-artwork-wrap');
       const eyebrow = document.getElementById('ev-eyebrow');
       const title   = document.getElementById('ev-title');
       const tagline = document.getElementById('ev-tagline');
+
+      if (heroArtwork) {
+        gsap.fromTo(heroArtwork,
+          { opacity: 0, scale: 0.94, y: 30 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.9, ease: 'power3.out', delay: 0.1 }
+        );
+      }
+
       gsap.fromTo([eyebrow, title, tagline],
-        { opacity: 0, y: 22 },
-        { opacity: 1, y: 0, duration: 0.88, stagger: 0.14, ease: 'power3.out', delay: 0.25 }
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.85, stagger: 0.12, ease: 'power3.out', delay: 0.25 }
       );
 
       const story = document.getElementById('ev-story');
@@ -340,7 +352,7 @@
       evDetailObservers.push(detailObs);
     } else {
       document.querySelectorAll(
-        '.ev-eyebrow, .ev-title, .ev-tagline, .ev-story, .ev-detail-item, .ev-dresscode-tag'
+        '.ev-eyebrow, .ev-title, .ev-tagline, .ev-story, .ev-detail-item, .ev-dresscode-tag, .event-hero-artwork-wrap'
       ).forEach(el => { el.style.opacity = '1'; });
     }
 
@@ -379,7 +391,7 @@
     eventTransition.style.background = nextEv.bgColor;
 
     const tl = gsap.timeline();
-    tl.to(eventTransition, { opacity: 1, duration: 0.45, ease: 'power2.inOut' })
+    tl.to(eventTransition, { opacity: 1, duration: 0.4, ease: 'power2.inOut' })
       .call(() => {
         evDetailObservers.forEach(obs => obs.disconnect());
         evDetailObservers = [];
@@ -388,7 +400,7 @@
         buildEventDetail(nextEv);
         eventDetailView.scrollTop = 0;
       })
-      .to(eventTransition, { opacity: 0, duration: 0.6, ease: 'power2.out' }, '+=0.06');
+      .to(eventTransition, { opacity: 0, duration: 0.55, ease: 'power2.out' }, '+=0.05');
   }
 
   /* ──────────────────────────────────────────

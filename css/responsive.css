@@ -20,20 +20,20 @@
     max-width: clamp(330px, 28vw, 460px);
   }
 
-  /* Top Architectural Canopy on Desktop */
+  /* Top Architectural Canopy on Desktop (Enormous 8x-10x Scale originating at top: 0) */
   .events-top-decor {
     padding: 0 40px;
   }
   .events-lantern-item.lantern-left-far,
   .events-lantern-item.lantern-right-far {
-    width: clamp(70px, 6.5vw, 110px);
+    width: clamp(140px, 14vw, 240px);
   }
   .events-lantern-item.lantern-left-near,
   .events-lantern-item.lantern-right-near {
-    width: clamp(55px, 5vw, 85px);
+    width: clamp(100px, 10vw, 175px);
   }
   .events-lantern-item.lantern-center {
-    width: clamp(65px, 6vw, 100px);
+    width: clamp(125px, 12vw, 210px);
   }
 
   /* Frames Gallery on Desktop: Art-Directed 3+2 Large Composition */
@@ -167,12 +167,13 @@
 ══════════════════════════════════════════════ */
 @media (max-width: 767px) {
 
-  /* ── Mobile Hero Section: Dominant, Zoomed, Immersive Opening Scene ── */
+  /* ── Mobile Hero Section: Seamless Height (ZERO Gap to Frames Section) ── */
   #hero {
-    min-height: 85vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
   }
 
   #hero-img-wrap {
@@ -246,7 +247,7 @@
 
   /* ── Mobile Frames Gallery: Exactly 2 Columns, 15-20% Larger ── */
   #frames-section {
-    padding: clamp(48px, 7vh, 76px) clamp(12px, 3vw, 20px) clamp(24px, 4vh, 40px);
+    padding: clamp(44px, 6.5vh, 72px) clamp(12px, 3vw, 20px) clamp(24px, 4vh, 40px);
   }
 
   #frames-section .display-title {
@@ -302,22 +303,24 @@
     gap: 18px;
   }
 
-  /* ── Mobile Red Section Top Canopy ── */
+  /* ── Mobile Red Section Top Canopy (Draping naturally from top: 0) ── */
+  #dollhouse-section {
+    padding-top: clamp(95px, 14vh, 140px);
+  }
+
   .events-top-decor {
     padding: 0 10px;
-    margin-bottom: 20px;
   }
   .events-lantern-item.lantern-left-far,
   .events-lantern-item.lantern-right-far {
-    width: clamp(40px, 11vw, 55px);
+    width: clamp(65px, 17vw, 105px);
   }
   .events-lantern-item.lantern-left-near,
   .events-lantern-item.lantern-right-near {
-    width: clamp(30px, 8.5vw, 42px);
-    margin-top: 8px;
+    width: clamp(50px, 13vw, 85px);
   }
   .events-lantern-item.lantern-center {
-    width: clamp(36px, 10vw, 48px);
+    width: clamp(58px, 15vw, 95px);
   }
 
   /* ── Mobile Grand Events: 1 Card per Row ── */

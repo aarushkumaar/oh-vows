@@ -27,6 +27,8 @@
     'assets/images/backgrounds/lehenga-bg.png',
     'assets/images/backgrounds/bg-red.png',
     'assets/images/backgrounds/bg-green.png',
+    'assets/images/backgrounds/bg-pink.png',
+    'assets/images/backgrounds/pink-bg.png',
     'assets/images/backgrounds/yellow-bg.png',
     'assets/images/backgrounds/cocktail-bg.png',
   ];
@@ -59,112 +61,116 @@
   /* ──────────────────────────────────────────
      REVEAL BLOOM
   ────────────────────────────────────────── */
-  function openReveal() {
+  function playRevealAnimation() {
+    if (prefersReduced) {
+      if (loadingOverlay) loadingOverlay.style.display = 'none';
+      return Promise.resolve();
+    }
     return new Promise((resolve) => {
-      if (!loadingOverlay) {
-        resolve();
-        return;
-      }
       const tl = gsap.timeline({
-        onComplete() {
-          loadingOverlay.style.display = 'none';
+        onComplete: () => {
+          if (loadingOverlay) loadingOverlay.style.display = 'none';
           resolve();
         }
       });
-      if (lightBloom) {
-        tl.to(lightBloom, { opacity: 0.65, duration: 0.28, ease: 'power1.in' }, 0.3)
-          .to(lightBloom, { opacity: 0,    duration: 0.65, ease: 'power2.out' }, 0.58);
-      }
-      tl.to(loadingOverlay, { opacity: 0, duration: 0.75, ease: 'power2.inOut' }, 0.45);
+      tl.to(loadingOverlay, { opacity: 0, duration: 0.6, ease: 'power2.inOut' }, '+=0.1')
+        .to(lightBloom,     { opacity: 0.85, duration: 0.3, ease: 'power2.out' }, '-=0.35')
+        .to(lightBloom,     { opacity: 0, duration: 0.9, ease: 'power2.inOut' });
     });
   }
 
   /* ──────────────────────────────────────────
-     HERO ENTRANCE
+     HERO TEXT ENTRANCE
   ────────────────────────────────────────── */
-  function animateHeroIn() {
-    return new Promise((resolve) => {
-      if (prefersReduced) {
-        if (heroTextGroup)  gsap.set(heroTextGroup,  { opacity: 1, y: 0 });
-        if (heroScrollHint) gsap.set(heroScrollHint, { opacity: 1 });
-        resolve();
-        return;
-      }
-      const tl = gsap.timeline({ onComplete: resolve });
-      if (heroTextGroup) {
-        tl.fromTo(heroTextGroup,
-          { opacity: 0, y: 18 },
-          { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' },
-          0
-        );
-      }
-      if (heroScrollHint) {
-        tl.fromTo(heroScrollHint,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.75, ease: 'power2.out' },
-          0.55
-        );
-      }
-    });
+  function playHeroTextEntrance() {
+    if (prefersReduced || !heroTextGroup) return;
+    const eyebrow = heroTextGroup.querySelector('.eyebrow');
+    const title   = heroTextGroup.querySelector('.display-title');
+    const tagline = heroTextGroup.querySelector('.tagline');
+    const rule    = heroTextGroup.querySelector('.gold-rule');
+
+    gsap.set([eyebrow, title, tagline, rule], { opacity: 0, y: 24 });
+    if (heroScrollHint) gsap.set(heroScrollHint, { opacity: 0 });
+
+    const tl = gsap.timeline({ delay: 0.35 });
+    tl.to(eyebrow, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
+      .to(rule,    { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.4')
+      .to(title,   { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=0.3')
+      .to(tagline, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5');
+
+    if (heroScrollHint) {
+      tl.to(heroScrollHint, { opacity: 0.85, duration: 0.6, ease: 'power2.out' }, '-=0.2');
+    }
   }
 
   /* ──────────────────────────────────────────
-     BOOT
+     BOOT SEQUENCE
   ────────────────────────────────────────── */
-  async function boot() {
-    gsap.registerPlugin(ScrollTrigger);
+  document.addEventListener('DOMContentLoaded', async () => {
+    const startT = Date.now();
 
-    // 1. Build dynamic content
-    if (window.EventsModule) {
+    // 1. Preload flower petal assets & critical backgrounds
+    if (window.AnimationsModule?.preloadFlowers) {
+      await window.AnimationsModule.preloadFlowers();
+    }
+    await preloadAssets();
+
+    // Ensure minimum splash time
+    const elapsed = Date.now() - startT;
+    if (elapsed < MIN_MS) {
+      await new Promise(r => setTimeout(r, MIN_MS - elapsed));
+    }
+
+    // 2. Build dynamic DOM content
+    if (window.EventsModule?.buildDollhouseCards) {
       window.EventsModule.buildDollhouseCards();
+    }
+    if (window.EventsModule?.buildThings) {
       window.EventsModule.buildThings();
+    }
+    if (window.EventsModule?.buildCarousel) {
       window.EventsModule.buildCarousel();
-      window.EventsModule.initRSVP();
     }
 
-    // 2. Preload decorative flowers
-    if (window.AnimationsModule) {
-      window.AnimationsModule.preloadFlowers();
-      window.AnimationsModule.initFlowers('petal-back',  { count: isMobile ? 4 : 7 });
-      window.AnimationsModule.initFlowers('petal-front', { count: isMobile ? 6 : 11 });
-    }
+    // 3. Play preloader fade & light bloom
+    await playRevealAnimation();
+    playHeroTextEntrance();
 
-    // 3. Preload critical assets
-    const minWait = new Promise(r => setTimeout(r, MIN_MS));
-    const loaded  = preloadAssets();
-    await Promise.all([minWait, loaded]);
-    await new Promise(r => setTimeout(r, 160));
-
-    // 4. Reveal & Hero Entrance
-    await openReveal();
-    await animateHeroIn();
-
-    // 5. Initialize scroll and ambient animations
-    if (window.AnimationsModule) {
+    // 4. Init interactive & scroll animation modules
+    if (window.AnimationsModule?.initHeroScrollEffects) {
       window.AnimationsModule.initHeroScrollEffects();
-      window.AnimationsModule.initFramesAnimation();
-      window.AnimationsModule.initFloating();
-      window.AnimationsModule.initPolaroidDrift();
     }
-
-    if (window.EventsModule) {
+    if (window.AnimationsModule?.initFloating) {
+      window.AnimationsModule.initFloating();
+    }
+    if (window.AnimationsModule?.initFramesAnimation) {
+      window.AnimationsModule.initFramesAnimation();
+    }
+    if (window.EventsModule?.initDollhouseAnimation) {
       window.EventsModule.initDollhouseAnimation();
+    }
+    if (window.EventsModule?.initThingsAnimation) {
       window.EventsModule.initThingsAnimation();
+    }
+    if (window.EventsModule?.initWardrobeAnimation) {
       window.EventsModule.initWardrobeAnimation();
     }
-
-    // 6. Countdown
-    if (window.CountdownModule) {
-      window.CountdownModule.init();
+    if (window.EventsModule?.initRSVP) {
+      window.EventsModule.initRSVP();
     }
-
-    // 7. Refresh ScrollTrigger & check initial URL hash
-    ScrollTrigger.refresh();
-
-    if (window.EventsModule) {
+    if (window.AnimationsModule?.initFlowers) {
+      window.AnimationsModule.initFlowers();
+    }
+    if (window.CountdownModule?.start) {
+      window.CountdownModule.start();
+    }
+    if (window.EventsModule?.handleInitialHash) {
       window.EventsModule.handleInitialHash();
     }
-  }
 
-  window.addEventListener('DOMContentLoaded', boot);
+    // Refresh ScrollTrigger after DOM build
+    if (window.ScrollTrigger) {
+      setTimeout(() => ScrollTrigger.refresh(), 300);
+    }
+  });
 })();

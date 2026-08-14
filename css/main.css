@@ -18,6 +18,7 @@
   --deep-bg:      #0A0300;
   --deep-red-bg:  #180303;
   --deep-green-bg:#05140a;
+  --deep-pink-bg: #18030b;
   --sec-pad:      clamp(60px, 8vh, 120px);
 }
 
@@ -148,6 +149,7 @@ section {
   position: relative;
   z-index: 20;
   width: 100%;
+  margin: 0;
 }
 
 .gold-rule {
@@ -561,7 +563,7 @@ section {
 .polaroid-clip::before, .polaroid-clip::after {
   content: '';
   position: absolute;
-  width: 10px;
+  width: 100%;
   height: 2px;
   background: rgba(0, 0, 0, 0.3);
   left: 50%;
@@ -626,28 +628,33 @@ section {
 }
 
 /* ══════════════════════════════════════════════
-   §3 GRAND EVENTS (Architectural Top Canopy + Red Environment)
+   §3 GRAND EVENTS (Red Fabric Environment & Enormous Top Canopy)
 ══════════════════════════════════════════════ */
 #dollhouse-section {
   margin: 0;
-  padding: clamp(30px, 5vh, 60px) clamp(16px, 4vw, 64px) clamp(60px, 9vh, 120px);
+  padding: clamp(140px, 18vh, 240px) clamp(16px, 4vw, 64px) clamp(60px, 9vh, 120px);
   text-align: center;
   position: relative;
   z-index: 20;
   background: var(--deep-red-bg) url('../assets/images/backgrounds/bg-red.png') repeat-y center top / 100% auto;
+  overflow: hidden;
 }
 
-/* Architectural Hanging Canopy at upper edge of Red section */
+/* Enormous Architectural Hanging Canopy (Originating from exact TOP EDGE of Red Section) */
 .events-top-decor {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto clamp(20px, 3vh, 40px);
+  max-width: 1600px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   pointer-events: none;
-  z-index: 5;
+  z-index: 2;
+  padding: 0 clamp(10px, 3vw, 40px);
 }
 
 .events-lantern-item {
@@ -655,40 +662,38 @@ section {
   flex-direction: column;
   align-items: center;
   transform-origin: top center;
-  filter: drop-shadow(0 6px 18px rgba(201, 162, 39, 0.4));
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.75)) drop-shadow(0 4px 14px rgba(201, 162, 39, 0.45));
   will-change: transform;
 }
 
+/* Enormous 8x-10x scale compared to small icons */
 .events-lantern-item.lantern-left-far {
-  width: clamp(55px, 8vw, 110px);
-  animation: lanternSway 7.2s ease-in-out infinite alternate;
-  animation-delay: -1.2s;
+  width: clamp(140px, 14vw, 240px);
+  animation: lanternBreeze1 11.5s ease-in-out infinite alternate;
 }
 
 .events-lantern-item.lantern-left-near {
-  width: clamp(40px, 6vw, 80px);
-  margin-top: clamp(10px, 2vh, 25px);
-  animation: lanternSway 8.5s ease-in-out infinite alternate;
-  animation-delay: -3.5s;
+  width: clamp(100px, 10vw, 175px);
+  animation: lanternBreeze2 13.2s ease-in-out infinite alternate;
+  animation-delay: -3.8s;
 }
 
 .events-lantern-item.lantern-center {
-  width: clamp(50px, 7.5vw, 95px);
-  animation: lanternSway 6.8s ease-in-out infinite alternate;
-  animation-delay: -0.5s;
+  width: clamp(125px, 12vw, 210px);
+  animation: lanternBreeze3 10.4s ease-in-out infinite alternate;
+  animation-delay: -1.5s;
 }
 
 .events-lantern-item.lantern-right-near {
-  width: clamp(40px, 6vw, 80px);
-  margin-top: clamp(10px, 2vh, 25px);
-  animation: lanternSway 7.9s ease-in-out infinite alternate;
-  animation-delay: -2.2s;
+  width: clamp(100px, 10vw, 175px);
+  animation: lanternBreeze4 12.8s ease-in-out infinite alternate;
+  animation-delay: -5.2s;
 }
 
 .events-lantern-item.lantern-right-far {
-  width: clamp(55px, 8vw, 110px);
-  animation: lanternSway 6.5s ease-in-out infinite alternate;
-  animation-delay: -4.0s;
+  width: clamp(140px, 14vw, 240px);
+  animation: lanternBreeze5 11.0s ease-in-out infinite alternate;
+  animation-delay: -2.1s;
 }
 
 .events-lantern-item .drape-garland {
@@ -698,13 +703,45 @@ section {
 }
 
 .events-lantern-item .drape-lantern {
-  width: 60%;
+  width: 58%;
   height: auto;
-  margin-top: -12%;
+  margin-top: -14%;
   display: block;
 }
 
+@keyframes lanternBreeze1 {
+  0%   { transform: rotate(-0.35deg) translateX(-1px); }
+  50%  { transform: rotate(0.4deg) translateX(1px); }
+  100% { transform: rotate(-0.25deg) translateX(0); }
+}
+
+@keyframes lanternBreeze2 {
+  0%   { transform: rotate(0.4deg) translateX(1px); }
+  50%  { transform: rotate(-0.3deg) translateX(-1px); }
+  100% { transform: rotate(0.2deg) translateX(0); }
+}
+
+@keyframes lanternBreeze3 {
+  0%   { transform: rotate(-0.25deg) translateX(0); }
+  50%  { transform: rotate(0.35deg) translateX(1px); }
+  100% { transform: rotate(-0.3deg) translateX(-1px); }
+}
+
+@keyframes lanternBreeze4 {
+  0%   { transform: rotate(0.3deg) translateX(1px); }
+  50%  { transform: rotate(-0.4deg) translateX(-1px); }
+  100% { transform: rotate(0.25deg) translateX(0); }
+}
+
+@keyframes lanternBreeze5 {
+  0%   { transform: rotate(-0.4deg) translateX(-1px); }
+  50%  { transform: rotate(0.3deg) translateX(1px); }
+  100% { transform: rotate(-0.2deg) translateX(0); }
+}
+
 #dollhouse-section .section-head {
+  position: relative;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -713,6 +750,8 @@ section {
 }
 
 #dollhouse-cards {
+  position: relative;
+  z-index: 5;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: clamp(32px, 4vw, 68px) clamp(24px, 3.5vw, 60px);
@@ -958,13 +997,13 @@ section {
 }
 
 /* ══════════════════════════════════════════════
-   §5b WARDROBE PLANNER (Green Fabric Environment)
+   §5b WARDROBE PLANNER (Pink Fabric Environment)
 ══════════════════════════════════════════════ */
 #wardrobe-section {
   margin: 0;
   padding: var(--sec-pad) clamp(16px, 5vw, 80px);
   text-align: center;
-  background: var(--deep-green-bg) url('../assets/images/backgrounds/bg-green.png') repeat-y center top / 100% auto;
+  background: var(--deep-pink-bg) url('../assets/images/backgrounds/pink-bg.png') repeat-y center top / 100% auto;
   position: relative;
   z-index: 20;
 }

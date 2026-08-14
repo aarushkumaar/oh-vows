@@ -439,27 +439,72 @@
       margin-bottom: clamp(48px, 7vh, 88px);
     }
 
-    /* 6-Column CSS Grid: 3 cards on Row 1 (cols 1-2, 3-4, 5-6), 2 cards centered on Row 2 (cols 2-3, 4-5) */
+    /* Fluid CSS Grid for Grand Events */
     #dollhouse-cards {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: clamp(28px, 3.5vw, 60px) clamp(24px, 3vw, 56px);
-      max-width: 1440px; margin: 0 auto;
+      gap: clamp(32px, 4vw, 68px) clamp(24px, 3.5vw, 60px);
+      max-width: 1560px; margin: 0 auto;
       align-items: center; justify-items: center;
     }
 
-    .dollhouse-card:nth-child(1) { grid-column: span 2; }
-    .dollhouse-card:nth-child(2) { grid-column: span 2; }
-    .dollhouse-card:nth-child(3) { grid-column: span 2; }
-    .dollhouse-card:nth-child(4) { grid-column: 2 / span 2; }
-    .dollhouse-card:nth-child(5) { grid-column: 4 / span 2; }
+    /* Desktop: 3 cards on Row 1, 2 cards centered on Row 2 */
+    @media (min-width: 1024px) {
+      #dollhouse-cards {
+        grid-template-columns: repeat(6, 1fr);
+        max-width: 1560px;
+      }
+      .dollhouse-card:nth-child(1) { grid-column: span 2; }
+      .dollhouse-card:nth-child(2) { grid-column: span 2; }
+      .dollhouse-card:nth-child(3) { grid-column: span 2; }
+      .dollhouse-card:nth-child(4) { grid-column: 2 / span 2; }
+      .dollhouse-card:nth-child(5) { grid-column: 4 / span 2; }
+      .dollhouse-card {
+        max-width: clamp(330px, 28vw, 460px);
+      }
+    }
 
-    /* Floating physical PNG invitation — 1.4x-1.7x larger on desktop */
+    /* Tablet: 2 cards per row, 5th card centered */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      #dollhouse-cards {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 780px;
+        gap: clamp(24px, 4vw, 42px);
+      }
+      .dollhouse-card:nth-child(1),
+      .dollhouse-card:nth-child(2),
+      .dollhouse-card:nth-child(3),
+      .dollhouse-card:nth-child(4) {
+        grid-column: span 1;
+      }
+      .dollhouse-card:nth-child(5) {
+        grid-column: 1 / span 2;
+        justify-self: center;
+      }
+      .dollhouse-card {
+        max-width: clamp(280px, 42vw, 360px);
+      }
+    }
+
+    /* Mobile: 1 card per row, preserved elegant proportions */
+    @media (max-width: 767px) {
+      #dollhouse-cards {
+        grid-template-columns: 1fr;
+        max-width: 340px;
+        gap: clamp(28px, 5.5vh, 44px);
+      }
+      .dollhouse-card {
+        grid-column: 1;
+        max-width: clamp(240px, 80vw, 310px);
+        margin: 0 auto;
+      }
+    }
+
+    /* Floating physical PNG invitation */
     .dollhouse-card {
       cursor: pointer; opacity: 0;
       position: relative; background: transparent;
-      border: none; box-shadow: none;
-      width: 100%; max-width: clamp(290px, 25vw, 440px);
+      border: none; box-shadow: none; width: 100%;
       transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.22, 1);
       will-change: transform;
     }
@@ -547,37 +592,39 @@
     .btn-gold:hover { filter: brightness(1.14); transform: translateY(-2px); }
     .btn-gold:active { transform: translateY(0); }
 
-    /* RSVP — Chhabra Family Block */
+    /* RSVP — Chhabra Family Block (Prominent Invitation Focal Point) */
     .rsvp-family-card {
       margin-top: clamp(20px, 4vh, 40px);
       display: flex; flex-direction: column; align-items: center;
-      gap: clamp(8px, 1.4vh, 14px); text-align: center;
-      padding: clamp(24px, 4vh, 40px) clamp(20px, 5vw, 48px);
-      width: 100%; max-width: 540px;
-      background: rgba(10, 3, 0, 0.45);
-      border-top: 1px solid rgba(201, 162, 39, 0.28);
-      border-bottom: 1px solid rgba(201, 162, 39, 0.28);
+      gap: clamp(10px, 1.6vh, 16px); text-align: center;
+      padding: clamp(24px, 4.5vh, 44px) clamp(16px, 5vw, 48px);
+      width: 100%; max-width: 560px;
+      background: rgba(10, 3, 0, 0.52);
+      border-top: 1px solid rgba(201, 162, 39, 0.32);
+      border-bottom: 1px solid rgba(201, 162, 39, 0.32);
       border-radius: 4px;
-      box-shadow: inset 0 0 30px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3);
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.45), 0 8px 24px rgba(0,0,0,0.35);
     }
     .rsvp-family-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(11px, 1.3vw, 14px);
       letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--gold-light); font-weight: 500;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.85);
+      color: var(--gold-light); font-weight: 600;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
     }
     .rsvp-family-names {
       font-family: 'IM Fell English', serif;
-      font-size: clamp(24px, 4.5vw, 42px);
-      color: var(--ivory); font-weight: 400; line-height: 1.15;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 20px rgba(201,162,39,0.25);
+      font-size: clamp(26px, 6.5vw, 44px);
+      color: var(--ivory); font-weight: 400; line-height: 1.2;
+      padding: 0 clamp(8px, 2vw, 24px);
+      word-break: normal; overflow-wrap: break-word;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.95), 0 0 24px rgba(201,162,39,0.32);
     }
     .rsvp-family-special {
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: clamp(16px, 2.2vw, 22px);
+      font-style: italic; font-size: clamp(16px, 3.8vw, 24px);
       color: var(--ivory-dim); opacity: 0.95;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.85);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.88);
     }
 
     /* ══════════════════════════════════════════════
@@ -664,12 +711,20 @@
     }
     #countdown-section .eyebrow {
       color: var(--gold-light);
-      letter-spacing: 0.4em;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.85);
+      letter-spacing: 0.45em;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.9);
+      font-weight: 600;
     }
     #countdown-section .display-title {
       color: var(--ivory);
-      text-shadow: 0 2px 16px rgba(0,0,0,0.8);
+      text-shadow: 0 2px 18px rgba(0,0,0,0.85);
+    }
+    #countdown-section .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(16px, 2.4vw, 24px);
+      color: var(--ivory-dim);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.9);
     }
     #countdown-grid {
       display: flex; flex-wrap: nowrap; justify-content: center; align-items: center;
@@ -677,33 +732,33 @@
     }
     .cd-block {
       display: flex; flex-direction: column; align-items: center;
-      gap: clamp(4px, 1vh, 10px); flex: 1 1 0; min-width: clamp(52px, 16vw, 110px);
+      gap: clamp(4px, 1vh, 10px); flex: 1 1 0; min-width: clamp(52px, 18vw, 110px);
     }
     .cd-digits {
-      font-family: 'IM Fell English', serif; font-size: clamp(40px, 7.5vw, 92px);
+      font-family: 'IM Fell English', serif; font-size: clamp(38px, 7vw, 88px);
       font-weight: 400; line-height: 1; color: var(--ivory);
       position: relative; overflow: hidden; height: 1.1em;
       display: flex; align-items: center; justify-content: center;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.9), 0 0 12px rgba(201,162,39,0.35);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.95), 0 0 14px rgba(201,162,39,0.4);
     }
     .cd-value { display: inline-block; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.22s; }
     .cd-value.flipping-out { transform: translateY(-110%); opacity: 0; }
     .cd-value.flipping-in  { transform: translateY(110%);  opacity: 0; }
     .cd-separator {
-      font-family: 'IM Fell English', serif; font-size: clamp(32px, 6vw, 70px);
-      color: var(--gold-light); opacity: 0.75; align-self: center; margin-top: -0.2em; line-height: 1;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.85);
+      font-family: 'IM Fell English', serif; font-size: clamp(28px, 5vw, 64px);
+      color: var(--gold-light); opacity: 0.8; align-self: center; margin-top: -0.2em; line-height: 1;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
     }
     .cd-label {
       font-size: clamp(10px, 1.3vw, 13px); letter-spacing: 0.35em;
-      text-transform: uppercase; color: var(--gold-light); opacity: 0.92;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.85); font-weight: 500;
+      text-transform: uppercase; color: var(--gold-light); opacity: 0.95;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9); font-weight: 600;
     }
     .cd-gold-line { width: clamp(45px, 8vw, 90px); height: 1px; background: linear-gradient(to right, transparent, var(--gold-light), transparent); opacity: 0.8; }
     #countdown-date-note {
       font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2.2vw, 22px);
       color: var(--ivory-dim); opacity: 0.95; letter-spacing: 0.12em;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.85);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.9);
     }
 
     /* ══════════════════════════════════════════════
@@ -712,12 +767,13 @@
     #site-footer {
       position: relative; z-index: 20; text-align: center;
       padding: clamp(36px, 6vh, 68px) clamp(16px, 4vw, 48px);
-      border-top: 1px solid rgba(201,162,39,0.2);
+      padding-bottom: clamp(48px, 8vh, 80px);
+      border-top: 1px solid rgba(201,162,39,0.22);
     }
     #site-footer p {
       font-size: clamp(12px, 1.6vw, 15px); letter-spacing: 0.28em;
-      color: var(--gold-light); opacity: 0.85; text-transform: uppercase;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.85); font-weight: 500;
+      color: var(--gold-light); opacity: 0.9; text-transform: uppercase;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.9); font-weight: 500;
     }
 
     /* ══════════════════════════════════════════════

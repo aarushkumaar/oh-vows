@@ -22,11 +22,15 @@
 }
 
 html {
+  margin: 0;
+  padding: 0;
   background: var(--deep-bg);
   scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
   background: var(--deep-bg);
   color: var(--ivory);
@@ -360,11 +364,11 @@ section {
 }
 
 /* ══════════════════════════════════════════════
-   §2 FRAMES GALLERY (Lehenga Background Canvas)
+   §2 FRAMES GALLERY (High Visibility & Larger Frames)
 ══════════════════════════════════════════════ */
 #frames-section {
   margin: 0;
-  padding: clamp(50px, 8vh, 100px) clamp(16px, 4vw, 60px) clamp(40px, 6vh, 70px);
+  padding: clamp(60px, 9vh, 120px) clamp(16px, 4vw, 60px) clamp(30px, 5vh, 60px);
   text-align: center;
   background: #140800 url('../assets/images/backgrounds/lehenga-bg.png') repeat-y center top / 100% auto;
   position: relative;
@@ -375,15 +379,39 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(8px, 1.5vh, 16px);
-  margin-bottom: clamp(48px, 7vh, 88px);
+  gap: clamp(10px, 1.8vh, 18px);
+  margin-bottom: clamp(52px, 8vh, 96px);
+  position: relative;
+  z-index: 5;
+}
+
+#frames-section .eyebrow {
+  font-size: clamp(11px, 1.4vw, 14px);
+  letter-spacing: 0.42em;
+  color: var(--gold);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+#frames-section .display-title {
+  font-family: 'IM Fell English', serif;
+  font-size: clamp(38px, 6.8vw, 84px);
+  color: var(--ivory);
+  text-shadow: 0 3px 20px rgba(0, 0, 0, 0.9), 0 0 16px rgba(201, 162, 39, 0.4);
+  letter-spacing: 0.02em;
+  line-height: 1.06;
+}
+
+#frames-section .tagline {
+  font-size: clamp(16px, 2.3vw, 24px);
+  color: var(--ivory-dim);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
 #frames-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: clamp(28px, 4vw, 56px) clamp(20px, 3vw, 44px);
-  max-width: 1280px;
+  gap: clamp(32px, 4.5vw, 64px) clamp(22px, 3.2vw, 48px);
+  max-width: 1400px;
   margin: 0 auto;
   align-items: center;
   justify-items: center;
@@ -397,76 +425,63 @@ section {
 }
 
 .frame-item img {
-  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.38));
+  filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.45));
   display: block;
   pointer-events: none;
   user-select: none;
 }
 
-/* Desktop Composition: 3 on Row 1, 2 on Row 2 with subtle offsets */
+/* Desktop Composition: 3 on Row 1, 2 on Row 2 with Larger Impact */
 .frame-item:nth-child(1) {
   grid-column: span 2;
-  transform: rotate(-1.2deg) translateY(10px);
+  transform: rotate(-1.2deg) translateY(12px);
 }
 .frame-item:nth-child(1) img {
-  width: clamp(200px, 20vw, 300px);
+  width: clamp(230px, 23vw, 350px);
 }
 
 .frame-item:nth-child(2) {
   grid-column: span 2;
-  transform: rotate(0.8deg) translateY(-12px);
+  transform: rotate(0.8deg) translateY(-16px);
 }
 .frame-item:nth-child(2) img {
-  width: clamp(230px, 24vw, 360px);
+  width: clamp(270px, 28vw, 420px);
 }
 
 .frame-item:nth-child(3) {
   grid-column: span 2;
-  transform: rotate(-0.8deg) translateY(10px);
+  transform: rotate(-0.8deg) translateY(12px);
 }
 .frame-item:nth-child(3) img {
-  width: clamp(200px, 20vw, 300px);
+  width: clamp(230px, 23vw, 350px);
 }
 
 .frame-item:nth-child(4) {
   grid-column: 2 / span 2;
-  transform: rotate(1deg) translateY(-6px);
+  transform: rotate(1deg) translateY(-8px);
 }
 .frame-item:nth-child(4) img {
-  width: clamp(190px, 19vw, 290px);
+  width: clamp(220px, 22vw, 340px);
 }
 
 .frame-item:nth-child(5) {
   grid-column: 4 / span 2;
-  transform: rotate(-0.6deg) translateY(6px);
+  transform: rotate(-0.6deg) translateY(8px);
 }
 .frame-item:nth-child(5) img {
-  width: clamp(230px, 23vw, 350px);
+  width: clamp(260px, 26vw, 400px);
 }
 
 /* ══════════════════════════════════════════════
-   §2b POLAROID ROPE (Continuous Lehenga Background)
+   §2b POLAROID SECTION (Physical Hanging Breeze Animation)
 ══════════════════════════════════════════════ */
 #polaroid-rope-section {
   background: #140800 url('../assets/images/backgrounds/lehenga-bg.png') repeat-y center top / 100% auto;
   position: relative;
   z-index: 20;
   margin: 0;
-  padding: clamp(30px, 5vh, 70px) clamp(16px, 4vw, 48px) clamp(60px, 9vh, 110px);
+  padding: clamp(30px, 5vh, 60px) clamp(16px, 4vw, 48px) clamp(64px, 10vh, 120px);
   overflow: visible;
-}
-
-#rope-svg-wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  pointer-events: none;
-}
-
-#rope-svg-wrap svg {
-  width: 100%;
 }
 
 #polaroids-row {
@@ -474,8 +489,8 @@ section {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: clamp(22px, 3.8vw, 52px);
-  padding-top: clamp(34px, 5.5vh, 60px);
+  gap: clamp(24px, 4vw, 56px);
+  padding-top: clamp(20px, 3vh, 40px);
 }
 
 .polaroid-item {
@@ -483,7 +498,52 @@ section {
   flex-direction: column;
   align-items: center;
   opacity: 0;
+  transform-origin: top center;
   will-change: transform;
+}
+
+/* Subtle unsynchronized physical breeze swinging */
+.polaroid-item:nth-child(1) {
+  animation: polaroidBreeze1 7.2s ease-in-out infinite alternate;
+}
+
+.polaroid-item:nth-child(2) {
+  animation: polaroidBreeze2 6.5s ease-in-out infinite alternate;
+  animation-delay: -1.8s;
+}
+
+.polaroid-item:nth-child(3) {
+  animation: polaroidBreeze3 7.8s ease-in-out infinite alternate;
+  animation-delay: -3.2s;
+}
+
+.polaroid-item:nth-child(4) {
+  animation: polaroidBreeze4 6.8s ease-in-out infinite alternate;
+  animation-delay: -0.9s;
+}
+
+@keyframes polaroidBreeze1 {
+  0%   { transform: rotate(-1.5deg) translateX(-2px) translateY(0); }
+  50%  { transform: rotate(1.2deg) translateX(2px) translateY(-2px); }
+  100% { transform: rotate(-0.8deg) translateX(-1px) translateY(0); }
+}
+
+@keyframes polaroidBreeze2 {
+  0%   { transform: rotate(1.3deg) translateX(2px) translateY(0); }
+  50%  { transform: rotate(-1.4deg) translateX(-2px) translateY(-3px); }
+  100% { transform: rotate(0.8deg) translateX(1px) translateY(0); }
+}
+
+@keyframes polaroidBreeze3 {
+  0%   { transform: rotate(-1.2deg) translateX(-1px) translateY(-1px); }
+  50%  { transform: rotate(1.4deg) translateX(2px) translateY(-2px); }
+  100% { transform: rotate(-0.6deg) translateX(0) translateY(0); }
+}
+
+@keyframes polaroidBreeze4 {
+  0%   { transform: rotate(1.1deg) translateX(1px) translateY(0); }
+  50%  { transform: rotate(-1.3deg) translateX(-2px) translateY(-2px); }
+  100% { transform: rotate(0.7deg) translateX(2px) translateY(0); }
 }
 
 .polaroid-clip {
@@ -517,10 +577,8 @@ section {
   border: 1px solid rgba(201, 162, 39, 0.28);
   border-radius: 4px;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.38), 0 2px 8px rgba(0, 0, 0, 0.22);
-  transform-origin: top center;
   width: clamp(155px, 17vw, 215px);
   transition: box-shadow 0.4s ease;
-  will-change: transform;
 }
 
 .polaroid-body:hover {
@@ -568,15 +626,82 @@ section {
 }
 
 /* ══════════════════════════════════════════════
-   §3 GRAND EVENTS (Red Fabric Environment)
+   §3 GRAND EVENTS (Architectural Top Canopy + Red Environment)
 ══════════════════════════════════════════════ */
 #dollhouse-section {
   margin: 0;
-  padding: clamp(60px, 9vh, 120px) clamp(16px, 4vw, 64px);
+  padding: clamp(30px, 5vh, 60px) clamp(16px, 4vw, 64px) clamp(60px, 9vh, 120px);
   text-align: center;
   position: relative;
   z-index: 20;
   background: var(--deep-red-bg) url('../assets/images/backgrounds/bg-red.png') repeat-y center top / 100% auto;
+}
+
+/* Architectural Hanging Canopy at upper edge of Red section */
+.events-top-decor {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto clamp(20px, 3vh, 40px);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.events-lantern-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+  filter: drop-shadow(0 6px 18px rgba(201, 162, 39, 0.4));
+  will-change: transform;
+}
+
+.events-lantern-item.lantern-left-far {
+  width: clamp(55px, 8vw, 110px);
+  animation: lanternSway 7.2s ease-in-out infinite alternate;
+  animation-delay: -1.2s;
+}
+
+.events-lantern-item.lantern-left-near {
+  width: clamp(40px, 6vw, 80px);
+  margin-top: clamp(10px, 2vh, 25px);
+  animation: lanternSway 8.5s ease-in-out infinite alternate;
+  animation-delay: -3.5s;
+}
+
+.events-lantern-item.lantern-center {
+  width: clamp(50px, 7.5vw, 95px);
+  animation: lanternSway 6.8s ease-in-out infinite alternate;
+  animation-delay: -0.5s;
+}
+
+.events-lantern-item.lantern-right-near {
+  width: clamp(40px, 6vw, 80px);
+  margin-top: clamp(10px, 2vh, 25px);
+  animation: lanternSway 7.9s ease-in-out infinite alternate;
+  animation-delay: -2.2s;
+}
+
+.events-lantern-item.lantern-right-far {
+  width: clamp(55px, 8vw, 110px);
+  animation: lanternSway 6.5s ease-in-out infinite alternate;
+  animation-delay: -4.0s;
+}
+
+.events-lantern-item .drape-garland {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.events-lantern-item .drape-lantern {
+  width: 60%;
+  height: auto;
+  margin-top: -12%;
+  display: block;
 }
 
 #dollhouse-section .section-head {
@@ -633,18 +758,6 @@ section {
 
 .dollhouse-card:active {
   transform: translateY(-3px) scale(1.01);
-}
-
-.lantern-row {
-  display: flex;
-  justify-content: center;
-  gap: clamp(36px, 7vw, 110px);
-  margin-top: clamp(48px, 7vh, 80px);
-  pointer-events: none;
-}
-
-.lantern-row img {
-  filter: drop-shadow(0 4px 12px rgba(201, 162, 39, 0.35));
 }
 
 /* ══════════════════════════════════════════════
@@ -1180,18 +1293,19 @@ section {
   display: none;
   align-items: center;
   gap: 7px;
-  padding: 9px 18px;
-  background: rgba(10, 4, 0, 0.85);
-  border: 1px solid rgba(201, 162, 39, 0.5);
+  padding: 10px 20px;
+  background: rgba(10, 4, 0, 0.88);
+  border: 1px solid rgba(201, 162, 39, 0.55);
   color: var(--gold-light);
   font-family: 'Cormorant Garamond', serif;
   font-size: 14px;
-  letter-spacing: 0.18em;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   cursor: pointer;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
   transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.2s;
 }
 
@@ -1203,7 +1317,7 @@ section {
   background: rgba(201, 162, 39, 0.28);
   border-color: var(--gold-light);
   color: var(--ivory);
-  transform: translateX(-2px);
+  transform: translateX(-3px);
 }
 
 #event-back-btn svg {
@@ -1241,7 +1355,7 @@ section {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: clamp(300px, 42vw, 560px);
+  max-width: clamp(320px, 44vw, 580px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1323,7 +1437,7 @@ section {
 .event-detail-body {
   position: relative;
   z-index: 2;
-  background: rgba(10, 5, 2, 0.82);
+  background: rgba(10, 5, 2, 0.84);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-top: 1px solid rgba(201, 162, 39, 0.28);
@@ -1419,33 +1533,88 @@ section {
   height: 12px;
 }
 
+/* ── Experiential Dress Code Visual Component & Color Palette ── */
 .ev-dresscode-wrap {
   text-align: center;
-  padding: clamp(20px, 4vh, 40px) clamp(16px, 4vw, 32px);
+  padding: clamp(24px, 4vh, 44px) clamp(16px, 4vw, 32px);
+  display: flex;
+  justify-content: center;
+}
+
+.ev-dresscode-card {
+  background: rgba(255, 248, 235, 0.05);
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  border-radius: 4px;
+  padding: clamp(20px, 3.5vh, 32px) clamp(22px, 4vw, 44px);
+  max-width: 580px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: clamp(10px, 1.8vh, 16px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
 }
 
 .ev-dresscode-label {
   font-size: clamp(10px, 1.2vw, 12px);
-  letter-spacing: 0.3em;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
 }
 
-.ev-dresscode-tag {
-  display: inline-flex;
+.ev-dresscode-palette {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
-  padding: clamp(8px, 1.5vh, 12px) clamp(18px, 3vw, 28px);
-  background: rgba(255, 248, 235, 0.08);
-  border: 1px solid rgba(201, 162, 39, 0.35);
+  gap: clamp(14px, 2.5vw, 24px);
+  margin: 4px 0;
+  flex-wrap: wrap;
+}
+
+.ev-palette-swatch-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.ev-palette-swatch {
+  width: clamp(28px, 4vw, 38px);
+  height: clamp(28px, 4vw, 38px);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 8px rgba(201, 162, 39, 0.2);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.ev-palette-swatch:hover {
+  transform: scale(1.15);
+  border-color: var(--gold-light);
+}
+
+.ev-palette-name {
+  font-size: clamp(10px, 1.1vw, 12px);
+  letter-spacing: 0.1em;
+  color: var(--ivory-dim);
+  font-style: italic;
+}
+
+.ev-dresscode-title {
   font-family: 'IM Fell English', serif;
-  font-size: clamp(16px, 2.2vw, 22px);
+  font-size: clamp(20px, 2.8vw, 28px);
   color: var(--ivory);
   font-style: italic;
+  line-height: 1.2;
+}
+
+.ev-dresscode-note {
+  font-size: clamp(13px, 1.5vw, 15px);
+  color: var(--gold-light);
+  opacity: 0.9;
+  letter-spacing: 0.04em;
+  max-width: 440px;
+  line-height: 1.5;
 }
 
 .ev-next-zone {

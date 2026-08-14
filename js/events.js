@@ -23,7 +23,15 @@
       location:    'The Grand Palace Lawns',
       locationSub: 'New Delhi, India',
       mapsUrl:     'https://maps.google.com/?q=The+Grand+Palace+Lawns+New+Delhi',
-      dressCode:   'Glitz and glam indo-western',
+      dressCode: {
+        title: 'Glitz and glam indo-western',
+        note: 'Shimmering metallic accents, sophisticated evening silhouettes',
+        colors: [
+          { name: 'Royal Gold', hex: '#DFB76C' },
+          { name: 'Champagne', hex: '#F3DFA2' },
+          { name: 'Midnight', hex: '#1A0A00' }
+        ]
+      },
       tagline:     'Where two worlds came together under golden skies.',
       story:       'An evening of laughter, light, and the first toast to forever. As dusk settles over the garden and fairy lights begin to shimmer, two families become one.',
       bgColor:     '#100500',
@@ -39,7 +47,15 @@
       location:    'The Heritage Gardens',
       locationSub: 'New Delhi, India',
       mapsUrl:     'https://maps.google.com/?q=The+Heritage+Gardens+New+Delhi',
-      dressCode:   'Shades of pastel with mirrors',
+      dressCode: {
+        title: 'Shades of pastel with mirrors',
+        note: 'Fresh morning pastels, reflective mirror-work & sunshine hues',
+        colors: [
+          { name: 'Sunshine Yellow', hex: '#F7D055' },
+          { name: 'Marigold Ochre', hex: '#E5A93C' },
+          { name: 'Pastel Ivory', hex: '#FAF6EE' }
+        ]
+      },
       tagline:     'Colour, laughter, and the blessing of a thousand flowers.',
       story:       'Come dressed in the colour of sunshine and blessings. A morning of pure joy — where turmeric, flowers, and family music paint the air gold.',
       bgColor:     '#1A1400',
@@ -56,7 +72,15 @@
       location:    'The Palace Amphitheatre',
       locationSub: 'New Delhi, India',
       mapsUrl:     'https://maps.google.com/?q=The+Palace+Amphitheatre+New+Delhi',
-      dressCode:   'Peacock Blues & Forest Greens',
+      dressCode: {
+        title: 'Peacock Blues & Forest Greens',
+        note: 'Deep devotional tones, rich silk weaves & jewel accents',
+        colors: [
+          { name: 'Peacock Teal', hex: '#13606B' },
+          { name: 'Forest Emerald', hex: '#164E37' },
+          { name: 'Feather Gold', hex: '#DFB76C' }
+        ]
+      },
       tagline:     'An evening of divine connection',
       story:       'A spiritual celebration filled with bhajans, lights, and the energy of pure devotion. Come with an open heart and be swept away by the divine.',
       bgColor:     '#001408',
@@ -72,7 +96,15 @@
       location:    'The Grand Palace, Main Hall',
       locationSub: 'New Delhi, India',
       mapsUrl:     'https://maps.google.com/?q=The+Grand+Palace+Main+Hall+New+Delhi',
-      dressCode:   'Red & Orange — Traditional Ethnic',
+      dressCode: {
+        title: 'Red & Orange — Traditional Ethnic',
+        note: 'Auspicious crimson silks, marigold saffron & heritage embroideries',
+        colors: [
+          { name: 'Sindoor Crimson', hex: '#8B0000' },
+          { name: 'Saffron Orange', hex: '#D9581E' },
+          { name: 'Antique Gold', hex: '#DFB76C' }
+        ]
+      },
       tagline:     'An Evening of Divine Blessings',
       story:       'A sacred evening of kirtan and prayer to seek the blessings of the divine for the union ahead. Come with reverence and leave with grace.',
       bgColor:     '#150000',
@@ -88,7 +120,15 @@
       location:    'The Grand Palace',
       locationSub: 'New Delhi, India',
       mapsUrl:     'https://maps.google.com/?q=The+Grand+Palace+New+Delhi',
-      dressCode:   'Grand Indian Traditionals',
+      dressCode: {
+        title: 'Grand Indian Traditionals',
+        note: 'Regal royal attire, classic heavy weaves & heirloom elegance',
+        colors: [
+          { name: 'Royal Crimson', hex: '#700913' },
+          { name: 'Heirloom Gold', hex: '#DFB76C' },
+          { name: 'Raw Silk Cream', hex: '#FAF6EE' }
+        ]
+      },
       tagline:     'The moment everything was always leading to.',
       story:       'Under the mandap, with fire as witness and family as shelter, Vartika and Hardik become forever. Come dressed in your finest and carry your joy.',
       bgColor:     '#0D0200',
@@ -198,13 +238,27 @@
     document.body.style.overflow = '';
     currentEventId = null;
 
-    window.scrollTo(0, mainSiteScrollY);
-
     setTimeout(() => {
       if (!eventDetailView.classList.contains('is-active')) {
         eventDetailContent.innerHTML = '';
       }
     }, 500);
+  }
+
+  /**
+   * Return to Main Index Page and smoothly scroll to Grand Events Section
+   */
+  function returnToEventsSection() {
+    closeEvent();
+
+    if (window.history.replaceState) {
+      window.history.replaceState(null, document.title, window.location.pathname + window.location.search);
+    }
+
+    const eventsSection = document.getElementById('dollhouse-section');
+    if (eventsSection) {
+      eventsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   function buildEventDetail(ev) {
@@ -269,12 +323,20 @@
           </div>
         </div>
 
-        <!-- Dress Code -->
+        <!-- Experiential Dress Code & Palette Card -->
         <div class="ev-dresscode-wrap">
-          <span class="ev-dresscode-label">Dress Code</span>
-          <div class="ev-dresscode-tag" id="ev-dresscode">
-            <span aria-hidden="true">👗</span>
-            <span>${ev.dressCode}</span>
+          <div class="ev-dresscode-card" id="ev-dresscode">
+            <span class="ev-dresscode-label">Dress Code &amp; Palette</span>
+            <div class="ev-dresscode-palette">
+              ${ev.dressCode.colors.map(c => `
+                <div class="ev-palette-swatch-wrap">
+                  <span class="ev-palette-swatch" style="background-color: ${c.hex};" title="${c.name}"></span>
+                  <span class="ev-palette-name">${c.name}</span>
+                </div>
+              `).join('')}
+            </div>
+            <h3 class="ev-dresscode-title">${ev.dressCode.title}</h3>
+            <p class="ev-dresscode-note">${ev.dressCode.note}</p>
           </div>
         </div>
 
@@ -341,18 +403,19 @@
           );
           if (dresscode) {
             gsap.fromTo(dresscode,
-              { opacity: 0 },
-              { opacity: 1, duration: 0.6, delay: 0.36 }
+              { opacity: 0, y: 24 },
+              { opacity: 1, y: 0, duration: 0.75, delay: 0.25, ease: 'power2.out' }
             );
           }
           detailObs.disconnect();
         }
       }, { threshold: 0.15, root: eventDetailView });
       detailItems.forEach(el => detailObs.observe(el));
+      if (dresscode) detailObs.observe(dresscode);
       evDetailObservers.push(detailObs);
     } else {
       document.querySelectorAll(
-        '.ev-eyebrow, .ev-title, .ev-tagline, .ev-story, .ev-detail-item, .ev-dresscode-tag, .event-hero-artwork-wrap'
+        '.ev-eyebrow, .ev-title, .ev-tagline, .ev-story, .ev-detail-item, .ev-dresscode-card, .event-hero-artwork-wrap'
       ).forEach(el => { el.style.opacity = '1'; });
     }
 
@@ -370,7 +433,7 @@
       });
     }
     if (returnBtn) {
-      returnBtn.addEventListener('click', () => history.back());
+      returnBtn.addEventListener('click', returnToEventsSection);
     }
   }
 
@@ -511,7 +574,7 @@
      ROUTING & HASH HANDLING
   ────────────────────────────────────────── */
   if (eventBackBtn) {
-    eventBackBtn.addEventListener('click', () => { history.back(); });
+    eventBackBtn.addEventListener('click', returnToEventsSection);
   }
 
   window.addEventListener('popstate', (e) => {
@@ -544,6 +607,7 @@
     initDollhouseAnimation,
     openEvent,
     closeEvent,
+    returnToEventsSection,
     buildThings,
     initThingsAnimation,
     initWardrobeAnimation,

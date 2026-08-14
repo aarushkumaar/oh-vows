@@ -20,53 +20,69 @@
     max-width: clamp(330px, 28vw, 460px);
   }
 
-  /* Frames Gallery on Desktop: Art-Directed 3+2 Composition */
+  /* Top Architectural Canopy on Desktop */
+  .events-top-decor {
+    padding: 0 40px;
+  }
+  .events-lantern-item.lantern-left-far,
+  .events-lantern-item.lantern-right-far {
+    width: clamp(70px, 6.5vw, 110px);
+  }
+  .events-lantern-item.lantern-left-near,
+  .events-lantern-item.lantern-right-near {
+    width: clamp(55px, 5vw, 85px);
+  }
+  .events-lantern-item.lantern-center {
+    width: clamp(65px, 6vw, 100px);
+  }
+
+  /* Frames Gallery on Desktop: Art-Directed 3+2 Large Composition */
   #frames-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: clamp(32px, 4.5vw, 64px) clamp(24px, 3.2vw, 48px);
-    max-width: 1340px;
-    padding: 0 32px;
+    gap: clamp(36px, 5vw, 72px) clamp(28px, 3.8vw, 56px);
+    max-width: 1440px;
+    padding: 0 40px;
   }
 
   .frame-item:nth-child(1) {
     grid-column: span 2;
-    transform: rotate(-1.2deg) translateY(12px);
+    transform: rotate(-1.2deg) translateY(14px);
   }
   .frame-item:nth-child(1) img {
-    width: clamp(210px, 21vw, 310px);
+    width: clamp(250px, 24vw, 370px);
   }
 
   .frame-item:nth-child(2) {
     grid-column: span 2;
-    transform: rotate(0.8deg) translateY(-14px);
+    transform: rotate(0.8deg) translateY(-18px);
   }
   .frame-item:nth-child(2) img {
-    width: clamp(240px, 25vw, 380px);
+    width: clamp(290px, 29vw, 450px);
   }
 
   .frame-item:nth-child(3) {
     grid-column: span 2;
-    transform: rotate(-0.8deg) translateY(12px);
+    transform: rotate(-0.8deg) translateY(14px);
   }
   .frame-item:nth-child(3) img {
-    width: clamp(210px, 21vw, 310px);
+    width: clamp(250px, 24vw, 370px);
   }
 
   .frame-item:nth-child(4) {
     grid-column: 2 / span 2;
-    transform: rotate(1deg) translateY(-6px);
+    transform: rotate(1deg) translateY(-8px);
   }
   .frame-item:nth-child(4) img {
-    width: clamp(200px, 20vw, 300px);
+    width: clamp(240px, 23vw, 360px);
   }
 
   .frame-item:nth-child(5) {
     grid-column: 4 / span 2;
-    transform: rotate(-0.6deg) translateY(8px);
+    transform: rotate(-0.6deg) translateY(10px);
   }
   .frame-item:nth-child(5) img {
-    width: clamp(240px, 24vw, 360px);
+    width: clamp(280px, 27vw, 430px);
   }
 
   /* Carousel Desktop */
@@ -81,7 +97,7 @@
     background-position: center 15%;
   }
   .event-hero-artwork-wrap {
-    max-width: clamp(340px, 44vw, 560px);
+    max-width: clamp(360px, 46vw, 580px);
   }
 }
 
@@ -113,8 +129,8 @@
   #frames-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(20px, 4vw, 36px);
-    max-width: 720px;
+    gap: clamp(24px, 4vw, 40px);
+    max-width: 760px;
     padding: 0 24px;
   }
   .frame-item {
@@ -123,7 +139,7 @@
   .frame-item:nth-child(5) {
     grid-column: 1 / span 2;
     justify-self: center;
-    max-width: 55%;
+    max-width: 60%;
   }
   .frame-item img {
     width: 100%;
@@ -142,7 +158,7 @@
     background-position: center top;
   }
   .event-hero-artwork-wrap {
-    max-width: clamp(280px, 50vw, 420px);
+    max-width: clamp(300px, 52vw, 440px);
   }
 }
 
@@ -191,7 +207,7 @@
     font-size: clamp(14px, 3.8vw, 18px);
   }
 
-  /* ── Mobile Hanging Lanterns (Noticeably Larger, Framing Hero) ── */
+  /* ── Mobile Hanging Lanterns in Hero ── */
   .corner-comp.top-left-large {
     left: 0;
     top: 0;
@@ -228,17 +244,21 @@
     max-height: clamp(90px, 22vw, 130px);
   }
 
-  /* ── Mobile Frames Gallery: Exactly 2 Columns, 4-5 Frames Total ── */
+  /* ── Mobile Frames Gallery: Exactly 2 Columns, 15-20% Larger ── */
   #frames-section {
-    padding: clamp(40px, 6vh, 68px) clamp(14px, 3.5vw, 22px) clamp(30px, 5vh, 50px);
+    padding: clamp(48px, 7vh, 76px) clamp(12px, 3vw, 20px) clamp(24px, 4vh, 40px);
+  }
+
+  #frames-section .display-title {
+    font-size: clamp(32px, 8.5vw, 48px);
   }
 
   #frames-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(14px, 3.8vw, 22px);
-    padding: 0 clamp(8px, 2vw, 16px);
-    max-width: 480px;
+    gap: clamp(16px, 4.2vw, 24px);
+    padding: 0 clamp(6px, 1.8vw, 12px);
+    max-width: 520px;
     margin: 0 auto;
     align-items: center;
     justify-items: center;
@@ -250,7 +270,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: none !important;
   }
 
   .frame-item img {
@@ -269,17 +288,39 @@
   .frame-item:nth-child(5) {
     grid-column: 1 / span 2 !important;
     justify-self: center;
-    width: 65% !important;
-    max-width: 220px;
+    width: 72% !important;
+    max-width: 250px;
     transform: rotate(-0.4deg) !important;
   }
 
   /* ── Mobile Polaroid Section ── */
   #polaroid-rope-section {
-    padding: clamp(24px, 4vh, 48px) clamp(14px, 3.5vw, 24px) clamp(48px, 7vh, 80px);
+    padding: clamp(24px, 4vh, 48px) clamp(12px, 3vw, 20px) clamp(48px, 7vh, 80px);
   }
 
-  /* ── Mobile Grand Events: 1 Card per Row, Preserved Proportions ── */
+  #polaroids-row {
+    gap: 18px;
+  }
+
+  /* ── Mobile Red Section Top Canopy ── */
+  .events-top-decor {
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+  .events-lantern-item.lantern-left-far,
+  .events-lantern-item.lantern-right-far {
+    width: clamp(40px, 11vw, 55px);
+  }
+  .events-lantern-item.lantern-left-near,
+  .events-lantern-item.lantern-right-near {
+    width: clamp(30px, 8.5vw, 42px);
+    margin-top: 8px;
+  }
+  .events-lantern-item.lantern-center {
+    width: clamp(36px, 10vw, 48px);
+  }
+
+  /* ── Mobile Grand Events: 1 Card per Row ── */
   #dollhouse-cards {
     grid-template-columns: 1fr;
     max-width: 340px;
@@ -322,7 +363,7 @@
   }
 
   .event-hero-artwork-wrap {
-    max-width: clamp(240px, 76vw, 360px);
+    max-width: clamp(260px, 80vw, 380px);
     margin-bottom: 14px;
   }
 
@@ -352,8 +393,16 @@
   #event-back-btn {
     top: 10px;
     left: 10px;
-    padding: 7px 14px;
-    font-size: 12px;
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .ev-dresscode-card {
+    padding: 20px 16px;
+  }
+
+  .ev-dresscode-palette {
+    gap: 14px;
   }
 
   /* ── Mobile Carousel: 1.3 - 2 images visible ── */

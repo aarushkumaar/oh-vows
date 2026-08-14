@@ -11,8 +11,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
 
-  <!-- Preload Critical Opening Scene -->
+  <!-- Preload Critical Opening Scene & Key Backgrounds -->
   <link rel="preload" as="image" href="assets/images/hero/hero-palace.png" />
+  <link rel="preload" as="image" href="assets/images/backgrounds/lehenga-bg.png" />
+  <link rel="preload" as="image" href="assets/images/backgrounds/bg-red.png" />
+  <link rel="preload" as="image" href="assets/images/backgrounds/bg-green.png" />
 
   <!-- Modular Stylesheets -->
   <link rel="stylesheet" href="css/animations.css" />
@@ -67,12 +70,6 @@
        MAIN SITE
   ══════════════════════════════════════════════════════ -->
   <div id="main-site">
-
-    <!-- BACKGROUND SEQUENCE -->
-    <div id="bg-sequence" aria-hidden="true">
-      <div class="bg-layer" id="bg-3"></div>
-      <div class="bg-layer" id="bg-4"></div>
-    </div>
 
     <!-- PETAL CANVASES -->
     <canvas class="petal-canvas" id="petal-back"  aria-hidden="true"></canvas>
@@ -221,6 +218,9 @@
       </div>
     </div>
 
+    <!-- Soft Weave Transition: Lehenga Cream → Red Textile -->
+    <div class="transition-gradient lehenga-to-red" aria-hidden="true"></div>
+
     <!-- ══════════════════════════════════
          §3 GRAND EVENTS
     ══════════════════════════════════ -->
@@ -245,9 +245,8 @@
       </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true">
-      <div class="line"></div><div class="diamond"></div><div class="diamond"></div><div class="diamond"></div><div class="line"></div>
-    </div>
+    <!-- Soft Weave Transition: Red Textile → Green Textile -->
+    <div class="transition-gradient red-to-green" aria-hidden="true"></div>
 
     <!-- ══════════════════════════════════
          §4 RSVP
@@ -362,6 +361,26 @@
         <div class="cd-block"><div class="cd-digits"><span class="cd-value" id="cd-secs">00</span></div><div class="cd-gold-line"></div><div class="cd-label">Seconds</div></div>
       </div>
       <p id="countdown-date-note">21 September 2026 &nbsp;&middot;&nbsp; New Delhi, India</p>
+    </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <div class="line"></div><div class="diamond"></div><div class="diamond"></div><div class="diamond"></div><div class="line"></div>
+    </div>
+
+    <!-- ══════════════════════════════════
+         §7 MEMORY CAROUSEL — Moments Along the Way
+    ══════════════════════════════════ -->
+    <section id="carousel-section" aria-label="Moments Along the Way">
+      <div class="section-head">
+        <p class="eyebrow">Moments Along the Way</p>
+        <div class="gold-rule"></div>
+        <h2 class="display-title" style="font-size:clamp(28px,5vw,64px);">Before the Big Day</h2>
+        <p class="tagline">Glimpses of laughter, light &amp; love</p>
+      </div>
+
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carousel-track"></div>
+      </div>
     </section>
 
     <!-- FOOTER -->

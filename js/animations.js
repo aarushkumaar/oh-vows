@@ -168,37 +168,13 @@
   }
 
   /* ──────────────────────────────────────────
-     BACKGROUND SEQUENCE (Smooth Fabric Transition)
+     BACKGROUND SEQUENCE
+     Sections now own their backgrounds via CSS url() + CSS gradient transition zones.
+     This function is kept as a no-op for compatibility.
   ────────────────────────────────────────── */
   function initBgSequence() {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const bg3 = document.getElementById('bg-3');
-    const bg4 = document.getElementById('bg-4');
-    if (!bg3 || !bg4) return;
-
-    // Cream → Red fabric transition starts smoothly near Polaroid bottom
-    ScrollTrigger.create({
-      trigger: '#polaroid-rope-section',
-      start: 'bottom 85%',
-      end: '#dollhouse-section top 35%',
-      scrub: 1.2,
-      onUpdate(self) {
-        bg3.style.opacity = String(self.progress);
-      }
-    });
-
-    // Red → Green fabric transition at bottom
-    ScrollTrigger.create({
-      trigger: '#things-section',
-      start: 'top 75%',
-      end: '#things-section bottom 20%',
-      scrub: 1.2,
-      onUpdate(self) {
-        bg3.style.opacity = String(1 - self.progress);
-        bg4.style.opacity = String(self.progress);
-      }
-    });
+    // No-op: backgrounds are CSS-driven per section.
+    // See .transition-gradient.lehenga-to-red and .transition-gradient.red-to-green in main.css.
   }
 
   /* ──────────────────────────────────────────
@@ -287,7 +263,7 @@
 
   window.AnimationsModule = {
     initHeroScrollEffects,
-    initBgSequence,
+    initBgSequence,   // kept for API compat — now a no-op
     initFramesAnimation,
     initFloating,
     initPolaroidDrift,

@@ -33,6 +33,11 @@
   .frame-item[data-size="lg"]    img { width: clamp(200px, 21vw, 320px); }
   .frame-item[data-size="md"]    img { width: clamp(170px, 18vw, 270px); }
   .frame-item[data-size="horiz"] img { width: clamp(240px, 26vw, 390px); }
+
+  /* Carousel Desktop: 3.5 - 4.5 images visible */
+  .carousel-card {
+    width: clamp(240px, 22vw, 340px);
+  }
 }
 
 /* ══════════════════════════════════════════════
@@ -75,6 +80,11 @@
   .frame-item img {
     width: 100%;
     height: auto;
+  }
+
+  /* Carousel Tablet */
+  .carousel-card {
+    width: clamp(200px, 28vw, 260px);
   }
 }
 
@@ -248,5 +258,24 @@
 
   .ev-title {
     font-size: clamp(32px, 11vw, 56px);
+  }
+
+  /* ── Mobile Carousel: 1.3 - 2 images visible ── */
+  .carousel-wrapper {
+    padding: 12px 0;
+  }
+
+  .carousel-track {
+    gap: 14px;
+    animation-duration: 26s;
+  }
+
+  .carousel-card {
+    width: clamp(170px, 56vw, 230px);
+  }
+
+  /* ── Transition Gradients on Mobile ── */
+  .transition-gradient {
+    height: clamp(80px, 12vh, 140px);
   }
 }

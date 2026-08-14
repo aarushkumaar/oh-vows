@@ -1,6 +1,7 @@
 /**
  * Events & Content Module
- * Centralized data, dollhouse invitations, modal detail view routing, RSVP, wardrobe planner, and things to know
+ * Centralized event data, dynamic background mapping, dollhouse invitations,
+ * modal detail view routing, RSVP, wardrobe planner, things to know, and infinite carousel
  */
 (() => {
   'use strict';
@@ -8,13 +9,14 @@
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ──────────────────────────────────────────
-     EVENT DATA
+     EVENT DATA & THEMATIC BACKGROUND MAPPING
   ────────────────────────────────────────── */
   const EVENTS = [
     {
       id:          'engagement-cocktail',
       label:       'Engagement Cocktail',
       file:        'engagement-cocktail.png',
+      background:  'assets/images/backgrounds/cocktail-bg.png',
       date:        'Friday, 18 September 2026',
       shortDate:   '18 Sept',
       time:        '7:00 PM Onwards',
@@ -30,6 +32,7 @@
       id:          'haldi-carnival',
       label:       'Haldi Carnival',
       file:        'haldi-carnival.png',
+      background:  'assets/images/backgrounds/yellow-bg.png',
       date:        'Saturday, 19 September 2026',
       shortDate:   '19 Sept',
       time:        '10:00 AM Onwards',
@@ -39,13 +42,14 @@
       dressCode:   'Shades of pastel with mirrors',
       tagline:     'Colour, laughter, and the blessing of a thousand flowers.',
       story:       'Come dressed in the colour of sunshine and blessings. A morning of pure joy — where turmeric, flowers, and family music paint the air gold.',
-      bgColor:     '#0E0B00',
+      bgColor:     '#1A1400',
     },
     {
       id:          'krishan-sandhya',
       label:       'Ek Shaam Kanha ke Naam',
       subtitle:    'An evening of divine connection',
       file:        'krishan-sandhya.png',
+      background:  'assets/images/backgrounds/bg-green.png',
       date:        'Sunday, 6 September 2026',
       shortDate:   '6 Sept',
       time:        '7:00 PM Onwards',
@@ -55,12 +59,13 @@
       dressCode:   'Peacock Blues & Forest Greens',
       tagline:     'An evening of divine connection',
       story:       'A spiritual celebration filled with bhajans, lights, and the energy of pure devotion. Come with an open heart and be swept away by the divine.',
-      bgColor:     '#001008',
+      bgColor:     '#001408',
     },
     {
       id:          'mata-ki-chowki',
       label:       'Mata Ki Chowki',
       file:        'mata-ki-chowki.png',
+      background:  'assets/images/backgrounds/bg-red.png',
       date:        'Sunday, 20 September 2026',
       shortDate:   '20 Sept',
       time:        '7:00 PM Onwards',
@@ -70,12 +75,13 @@
       dressCode:   'Red & Orange — Traditional Ethnic',
       tagline:     'An Evening of Divine Blessings',
       story:       'A sacred evening of kirtan and prayer to seek the blessings of the divine for the union ahead. Come with reverence and leave with grace.',
-      bgColor:     '#100000',
+      bgColor:     '#150000',
     },
     {
       id:          'wedding',
       label:       'The Wedding',
       file:        'wedding.png',
+      background:  'assets/images/backgrounds/bg-red.png',
       date:        'Monday, 21 September 2026',
       shortDate:   '21 Sept',
       time:        '11:00 AM',
@@ -85,7 +91,7 @@
       dressCode:   'Grand Indian Traditionals',
       tagline:     'The moment everything was always leading to.',
       story:       'Under the mandap, with fire as witness and family as shelter, Vartika and Hardik become forever. Come dressed in your finest and carry your joy.',
-      bgColor:     '#080200',
+      bgColor:     '#0D0200',
     },
   ];
 
@@ -158,7 +164,7 @@
   }
 
   /* ──────────────────────────────────────────
-     EVENT DETAIL VIEW & ROUTING
+     EVENT DETAIL VIEW & THEMATIC BACKGROUNDS
   ────────────────────────────────────────── */
   function openEvent(eventId) {
     const ev = getEvent(eventId);
@@ -203,10 +209,14 @@
 
   function buildEventDetail(ev) {
     const nextEv = getNextEvent(ev.id);
+    const bgUrl = ev.background ? `url('${ev.background}')` : 'none';
+
+    // Apply the configured thematic background directly to the view container
+    eventDetailView.style.background = `${ev.bgColor} ${bgUrl} center top / cover no-repeat`;
 
     eventDetailContent.innerHTML = `
       <!-- Hero -->
-      <div class="event-hero" style="background:${ev.bgColor};">
+      <div class="event-hero" style="background: ${ev.bgColor} ${bgUrl} center top / cover no-repeat;">
         <img class="event-hero-img"
              src="assets/images/events/${ev.file}"
              alt="${ev.label}" />
@@ -220,12 +230,12 @@
       </div>
 
       <!-- Story & Details -->
-      <div style="background:${ev.bgColor}; position:relative; z-index:2;">
+      <div style="background: ${ev.bgColor} ${bgUrl} center top / cover repeat-y; position: relative; z-index: 2;">
 
         <div class="ev-chapter">
-          <div class="ev-gold-rule" style="margin-bottom:clamp(24px,4vh,48px);"></div>
+          <div class="ev-gold-rule" style="margin-bottom: clamp(24px, 4vh, 48px);"></div>
           <p class="ev-story" id="ev-story">${ev.story}</p>
-          <div class="ev-gold-rule" style="margin-top:clamp(24px,4vh,48px);"></div>
+          <div class="ev-gold-rule" style="margin-top: clamp(24px, 4vh, 48px);"></div>
         </div>
 
         <!-- Details Grid -->
@@ -369,7 +379,7 @@
     eventTransition.style.background = nextEv.bgColor;
 
     const tl = gsap.timeline();
-    tl.to(eventTransition, { opacity: 1, duration: 0.48, ease: 'power2.inOut' })
+    tl.to(eventTransition, { opacity: 1, duration: 0.45, ease: 'power2.inOut' })
       .call(() => {
         evDetailObservers.forEach(obs => obs.disconnect());
         evDetailObservers = [];
@@ -378,7 +388,7 @@
         buildEventDetail(nextEv);
         eventDetailView.scrollTop = 0;
       })
-      .to(eventTransition, { opacity: 0, duration: 0.65, ease: 'power2.out' }, '+=0.08');
+      .to(eventTransition, { opacity: 0, duration: 0.6, ease: 'power2.out' }, '+=0.06');
   }
 
   /* ──────────────────────────────────────────
@@ -441,6 +451,35 @@
   }
 
   /* ──────────────────────────────────────────
+     BRIDE + GROOM INFINITE CAROUSEL
+  ────────────────────────────────────────── */
+  const CAROUSEL_IMAGES = [
+    'assets/images/gallery/carousel-1.jpg',
+    'assets/images/gallery/carousel-2.jpg',
+    'assets/images/gallery/carousel-3.jpg',
+    'assets/images/gallery/carousel-4.jpg',
+    'assets/images/gallery/carousel-5.jpg',
+    'assets/images/gallery/carousel-6.jpg',
+    'assets/images/gallery/carousel-7.jpg',
+    'assets/images/gallery/carousel-8.jpg',
+  ];
+
+  function buildCarousel() {
+    const track = document.getElementById('carousel-track');
+    if (!track) return;
+    track.innerHTML = '';
+    // Duplicate set for seamless continuous horizontal translation (-50% loop)
+    const items = [...CAROUSEL_IMAGES, ...CAROUSEL_IMAGES];
+    items.forEach((src, idx) => {
+      const card = document.createElement('div');
+      card.className = 'carousel-card';
+      card.setAttribute('aria-hidden', idx >= CAROUSEL_IMAGES.length ? 'true' : 'false');
+      card.innerHTML = `<img src="${src}" alt="Vartika &amp; Hardik Moment ${((idx % CAROUSEL_IMAGES.length) + 1)}" loading="lazy" decoding="async" />`;
+      track.appendChild(card);
+    });
+  }
+
+  /* ──────────────────────────────────────────
      RSVP INTERACTION
   ────────────────────────────────────────── */
   function initRSVP() {
@@ -488,6 +527,7 @@
   }
 
   window.EventsModule = {
+    EVENTS,
     buildDollhouseCards,
     initDollhouseAnimation,
     openEvent,
@@ -495,6 +535,7 @@
     buildThings,
     initThingsAnimation,
     initWardrobeAnimation,
+    buildCarousel,
     initRSVP,
     handleInitialHash,
   };

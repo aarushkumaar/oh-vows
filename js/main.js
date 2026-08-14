@@ -1,6 +1,6 @@
 /**
  * Main Application Boot & Initialization
- * Orchestrates preloading, reveal sequence, and modules
+ * Orchestrates preloading, reveal sequence, background caching, and modules
  */
 (() => {
   'use strict';
@@ -24,8 +24,11 @@
   const MIN_MS = 900;
   const PRELOAD = [
     'assets/images/hero/hero-palace.png',
+    'assets/images/backgrounds/lehenga-bg.png',
     'assets/images/backgrounds/bg-red.png',
     'assets/images/backgrounds/bg-green.png',
+    'assets/images/backgrounds/yellow-bg.png',
+    'assets/images/backgrounds/cocktail-bg.png',
   ];
   let preloadCount = 0;
 
@@ -115,6 +118,7 @@
     if (window.EventsModule) {
       window.EventsModule.buildDollhouseCards();
       window.EventsModule.buildThings();
+      window.EventsModule.buildCarousel();
       window.EventsModule.initRSVP();
     }
 
@@ -138,7 +142,6 @@
     // 5. Initialize scroll and ambient animations
     if (window.AnimationsModule) {
       window.AnimationsModule.initHeroScrollEffects();
-      window.AnimationsModule.initBgSequence();
       window.AnimationsModule.initFramesAnimation();
       window.AnimationsModule.initFloating();
       window.AnimationsModule.initPolaroidDrift();
@@ -163,11 +166,5 @@
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      boot().catch(console.error);
-    });
-  } else {
-    boot().catch(console.error);
-  }
+  window.addEventListener('DOMContentLoaded', boot);
 })();

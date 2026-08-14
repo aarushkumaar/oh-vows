@@ -1,0 +1,252 @@
+/* ══════════════════════════════════════════════
+   RESPONSIVE LAYOUTS & BREAKPOINTS
+══════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════
+   1. DESKTOP & LARGE SCREENS (≥ 1024px)
+══════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  /* Grand Events 3-Column Layout */
+  #dollhouse-cards {
+    grid-template-columns: repeat(6, 1fr);
+    max-width: 1560px;
+  }
+  .dollhouse-card:nth-child(1) { grid-column: span 2; }
+  .dollhouse-card:nth-child(2) { grid-column: span 2; }
+  .dollhouse-card:nth-child(3) { grid-column: span 2; }
+  .dollhouse-card:nth-child(4) { grid-column: 2 / span 2; }
+  .dollhouse-card:nth-child(5) { grid-column: 4 / span 2; }
+  .dollhouse-card {
+    max-width: clamp(330px, 28vw, 460px);
+  }
+
+  /* Frames Gallery on Desktop */
+  #frames-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(28px, 3.8vw, 56px);
+    max-width: 1380px;
+  }
+  .frame-item[data-size="xl"]    img { width: clamp(240px, 25vw, 380px); }
+  .frame-item[data-size="lg"]    img { width: clamp(200px, 21vw, 320px); }
+  .frame-item[data-size="md"]    img { width: clamp(170px, 18vw, 270px); }
+  .frame-item[data-size="horiz"] img { width: clamp(240px, 26vw, 390px); }
+}
+
+/* ══════════════════════════════════════════════
+   2. TABLET SCREENS (768px – 1023px)
+══════════════════════════════════════════════ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Grand Events 2-Column Layout */
+  #dollhouse-cards {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 780px;
+    gap: clamp(24px, 4vw, 42px);
+  }
+  .dollhouse-card:nth-child(1),
+  .dollhouse-card:nth-child(2),
+  .dollhouse-card:nth-child(3),
+  .dollhouse-card:nth-child(4) {
+    grid-column: span 1;
+  }
+  .dollhouse-card:nth-child(5) {
+    grid-column: 1 / span 2;
+    justify-self: center;
+  }
+  .dollhouse-card {
+    max-width: clamp(280px, 42vw, 360px);
+  }
+
+  /* Frames on Tablet */
+  #frames-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(20px, 4vw, 36px);
+    max-width: 720px;
+    padding: 0 24px;
+  }
+  .frame-item:nth-child(5) {
+    grid-column: 1 / span 2;
+    justify-self: center;
+    max-width: 55%;
+  }
+  .frame-item img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   3. MOBILE SCREENS (< 768px)
+══════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* ── Mobile Hero Section: Dominant, Zoomed, Immersive Opening Scene ── */
+  #hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  #hero-img-wrap {
+    height: clamp(520px, 80vh, 720px);
+    width: 100%;
+    overflow: hidden;
+  }
+
+  #hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  #hero-text-outer {
+    top: clamp(44px, 8.5vh, 85px);
+    padding: 0 clamp(18px, 5vw, 32px);
+    gap: clamp(16px, 3vh, 32px);
+  }
+
+  #hero-text-group {
+    gap: clamp(6px, 1.2vh, 14px);
+  }
+
+  .display-title {
+    font-size: clamp(34px, 8.5vw, 54px);
+    line-height: 1.08;
+  }
+
+  .tagline {
+    font-size: clamp(14px, 3.8vw, 18px);
+  }
+
+  /* ── Mobile Hanging Lanterns (Noticeably Larger, Framing Hero) ── */
+  .corner-comp.top-left-large {
+    left: 0;
+    top: 0;
+    width: clamp(135px, 36vw, 175px);
+  }
+  .corner-comp.top-left-large .comp-lantern {
+    width: 58%;
+    margin-top: -14%;
+  }
+
+  .corner-comp.top-right-large {
+    right: 0;
+    top: 0;
+    width: clamp(135px, 36vw, 175px);
+  }
+  .corner-comp.top-right-large .comp-lantern {
+    width: 58%;
+    margin-top: -14%;
+  }
+
+  .corner-comp.top-left-small {
+    top: clamp(20px, 4vh, 45px);
+    left: clamp(85px, 22vw, 130px);
+    width: clamp(75px, 18vw, 95px);
+  }
+
+  .corner-comp.top-right-small {
+    top: clamp(30px, 5vh, 60px);
+    right: clamp(85px, 22vw, 130px);
+    width: clamp(70px, 17vw, 90px);
+  }
+
+  .garland-top {
+    max-height: clamp(90px, 22vw, 130px);
+  }
+
+  /* ── Mobile Frames Gallery: Exactly 2 Columns, 4-5 Frames Total ── */
+  #frames-section {
+    padding: clamp(36px, 6vh, 64px) clamp(16px, 4vw, 24px) clamp(48px, 7vh, 80px);
+  }
+
+  #frames-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(14px, 3.5vw, 20px);
+    padding: 0 clamp(16px, 4.5vw, 22px);
+    max-width: 480px;
+    margin: 0 auto;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .frame-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .frame-item img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  /* 5th frame centered on row 3 */
+  .frame-item:nth-child(5) {
+    grid-column: 1 / span 2;
+    justify-self: center;
+    width: 65%;
+    max-width: 220px;
+  }
+
+  /* ── Mobile Grand Events: 1 Card per Row, Preserved Proportions ── */
+  #dollhouse-cards {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+    gap: clamp(28px, 5.5vh, 44px);
+  }
+
+  .dollhouse-card {
+    grid-column: 1;
+    max-width: clamp(240px, 80vw, 310px);
+    margin: 0 auto;
+  }
+
+  /* ── Mobile RSVP Prominence ── */
+  .rsvp-family-card {
+    padding: clamp(22px, 4vh, 36px) clamp(16px, 4.5vw, 28px);
+    margin-top: 24px;
+    width: 100%;
+  }
+
+  .rsvp-family-names {
+    font-size: clamp(24px, 6.2vw, 34px);
+    line-height: 1.22;
+  }
+
+  .rsvp-family-special {
+    font-size: clamp(15px, 4vw, 19px);
+  }
+
+  /* ── Mobile Details & Navigation ── */
+  .ev-details-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .ev-detail-item {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  #event-back-btn {
+    top: 10px;
+    left: 10px;
+    padding: 7px 12px;
+    font-size: 11px;
+  }
+
+  .ev-title {
+    font-size: clamp(32px, 11vw, 56px);
+  }
+}

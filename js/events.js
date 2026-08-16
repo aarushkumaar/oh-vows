@@ -61,55 +61,6 @@
       bgColor:     '#1A1400',
     },
     {
-      id:          'krishan-sandhya',
-      label:       'Ek Shaam Kanha ke Naam',
-      subtitle:    'An evening of divine connection',
-      file:        'krishan-sandhya.png',
-      background:  'assets/images/backgrounds/bg-green.png',
-      date:        'Sunday, 6 September 2026',
-      shortDate:   '6 Sept',
-      time:        '7:00 PM Onwards',
-      location:    'The Palace Amphitheatre',
-      locationSub: 'New Delhi, India',
-      mapsUrl:     'https://maps.google.com/?q=The+Palace+Amphitheatre+New+Delhi',
-      dressCode: {
-        title: 'Peacock Blues & Forest Greens',
-        note: 'Deep devotional tones, rich silk weaves & jewel accents',
-        colors: [
-          { name: 'Peacock Teal', hex: '#13606B' },
-          { name: 'Forest Emerald', hex: '#164E37' },
-          { name: 'Feather Gold', hex: '#DFB76C' }
-        ]
-      },
-      tagline:     'An evening of divine connection',
-      story:       'A spiritual celebration filled with bhajans, lights, and the energy of pure devotion. Come with an open heart and be swept away by the divine.',
-      bgColor:     '#001408',
-    },
-    {
-      id:          'mata-ki-chowki',
-      label:       'Mata Ki Chowki',
-      file:        'mata-ki-chowki.png',
-      background:  'assets/images/backgrounds/bg-red.png',
-      date:        'Sunday, 20 September 2026',
-      shortDate:   '20 Sept',
-      time:        '7:00 PM Onwards',
-      location:    'The Grand Palace, Main Hall',
-      locationSub: 'New Delhi, India',
-      mapsUrl:     'https://maps.google.com/?q=The+Grand+Palace+Main+Hall+New+Delhi',
-      dressCode: {
-        title: 'Red & Orange — Traditional Ethnic',
-        note: 'Auspicious crimson silks, marigold saffron & heritage embroideries',
-        colors: [
-          { name: 'Sindoor Crimson', hex: '#8B0000' },
-          { name: 'Saffron Orange', hex: '#D9581E' },
-          { name: 'Antique Gold', hex: '#DFB76C' }
-        ]
-      },
-      tagline:     'An Evening of Divine Blessings',
-      story:       'A sacred evening of kirtan and prayer to seek the blessings of the divine for the union ahead. Come with reverence and leave with grace.',
-      bgColor:     '#150000',
-    },
-    {
       id:          'wedding',
       label:       'The Wedding',
       file:        'wedding.png',
@@ -134,6 +85,7 @@
       bgColor:     '#0D0200',
     },
   ];
+
 
   /* ──────────────────────────────────────────
      DOM REFERENCES
@@ -608,11 +560,7 @@
     openEvent,
     closeEvent,
     returnToEventsSection,
-    buildThings,
-    initThingsAnimation,
-    initWardrobeAnimation,
     buildCarousel,
-    initRSVP,
     handleInitialHash,
   };
 })();

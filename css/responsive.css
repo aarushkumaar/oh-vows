@@ -6,83 +6,66 @@
    1. DESKTOP & LARGE SCREENS (≥ 1024px)
 ══════════════════════════════════════════════ */
 @media (min-width: 1024px) {
-  /* Grand Events 3-Column Layout */
+  /* Grand Events: 3 cards in a row on desktop */
   #dollhouse-cards {
-    grid-template-columns: repeat(6, 1fr);
-    max-width: 1560px;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
   }
-  .dollhouse-card:nth-child(1) { grid-column: span 2; }
-  .dollhouse-card:nth-child(2) { grid-column: span 2; }
-  .dollhouse-card:nth-child(3) { grid-column: span 2; }
-  .dollhouse-card:nth-child(4) { grid-column: 2 / span 2; }
-  .dollhouse-card:nth-child(5) { grid-column: 4 / span 2; }
   .dollhouse-card {
-    max-width: clamp(330px, 28vw, 460px);
+    max-width: clamp(300px, 28vw, 420px);
   }
 
-  /* Top Architectural Canopy on Desktop (Enormous 8x-10x Scale originating at top: 0) */
+  /* Top Architectural Canopy on Desktop (Slightly larger ceremonial scale) */
   .events-top-decor {
     padding: 0 40px;
   }
   .events-lantern-item.lantern-left-far,
   .events-lantern-item.lantern-right-far {
-    width: clamp(140px, 14vw, 240px);
+    width: clamp(165px, 17vw, 290px);
   }
   .events-lantern-item.lantern-left-near,
   .events-lantern-item.lantern-right-near {
-    width: clamp(100px, 10vw, 175px);
+    width: clamp(115px, 12vw, 205px);
   }
   .events-lantern-item.lantern-center {
-    width: clamp(125px, 12vw, 210px);
+    width: clamp(140px, 14vw, 245px);
   }
 
-  /* Frames Gallery on Desktop: Art-Directed 3+2 Large Composition */
+  /* Frames Gallery on Desktop: 4 equal columns */
   #frames-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: clamp(36px, 5vw, 72px) clamp(28px, 3.8vw, 56px);
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(28px, 3.8vw, 56px);
     max-width: 1440px;
     padding: 0 40px;
   }
 
   .frame-item:nth-child(1) {
-    grid-column: span 2;
     transform: rotate(-1.2deg) translateY(14px);
   }
   .frame-item:nth-child(1) img {
-    width: clamp(250px, 24vw, 370px);
+    width: clamp(240px, 22vw, 360px);
   }
 
   .frame-item:nth-child(2) {
-    grid-column: span 2;
     transform: rotate(0.8deg) translateY(-18px);
   }
   .frame-item:nth-child(2) img {
-    width: clamp(290px, 29vw, 450px);
+    width: clamp(270px, 26vw, 420px);
   }
 
   .frame-item:nth-child(3) {
-    grid-column: span 2;
     transform: rotate(-0.8deg) translateY(14px);
   }
   .frame-item:nth-child(3) img {
-    width: clamp(250px, 24vw, 370px);
+    width: clamp(240px, 22vw, 360px);
   }
 
   .frame-item:nth-child(4) {
-    grid-column: 2 / span 2;
     transform: rotate(1deg) translateY(-8px);
   }
   .frame-item:nth-child(4) img {
-    width: clamp(240px, 23vw, 360px);
-  }
-
-  .frame-item:nth-child(5) {
-    grid-column: 4 / span 2;
-    transform: rotate(-0.6deg) translateY(10px);
-  }
-  .frame-item:nth-child(5) img {
-    width: clamp(280px, 27vw, 430px);
+    width: clamp(252px, 24vw, 378px);
   }
 
   /* Carousel Desktop */
@@ -105,27 +88,22 @@
    2. TABLET SCREENS (768px – 1023px)
 ══════════════════════════════════════════════ */
 @media (min-width: 768px) and (max-width: 1023px) {
-  /* Grand Events 2-Column Layout */
+  /* Grand Events: 2-column on tablet */
   #dollhouse-cards {
     grid-template-columns: repeat(2, 1fr);
     max-width: 780px;
     gap: clamp(24px, 4vw, 42px);
   }
-  .dollhouse-card:nth-child(1),
-  .dollhouse-card:nth-child(2),
-  .dollhouse-card:nth-child(3),
-  .dollhouse-card:nth-child(4) {
-    grid-column: span 1;
-  }
-  .dollhouse-card:nth-child(5) {
+  .dollhouse-card:nth-child(3) {
     grid-column: 1 / span 2;
     justify-self: center;
+    max-width: clamp(260px, 40vw, 360px);
   }
   .dollhouse-card {
-    max-width: clamp(280px, 42vw, 360px);
+    max-width: clamp(260px, 42vw, 360px);
   }
 
-  /* Frames on Tablet: 2-column with 5th centered */
+  /* Frames on Tablet: 2x2 grid — 4 frames fit naturally */
   #frames-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -135,11 +113,6 @@
   }
   .frame-item {
     grid-column: span 1;
-  }
-  .frame-item:nth-child(5) {
-    grid-column: 1 / span 2;
-    justify-self: center;
-    max-width: 60%;
   }
   .frame-item img {
     width: 100%;
@@ -177,7 +150,7 @@
   }
 
   #hero-img-wrap {
-    height: clamp(520px, 80vh, 720px);
+    height: clamp(550px, 85vh, 770px);
     width: 100%;
     overflow: hidden;
   }
@@ -190,9 +163,9 @@
   }
 
   #hero-text-outer {
-    top: clamp(44px, 8.5vh, 85px);
+    top: clamp(95px, 15.5vh, 148px);
     padding: 0 clamp(18px, 5vw, 32px);
-    gap: clamp(16px, 3vh, 32px);
+    gap: clamp(14px, 2.5vh, 28px);
   }
 
   #hero-text-group {
@@ -208,11 +181,11 @@
     font-size: clamp(14px, 3.8vw, 18px);
   }
 
-  /* ── Mobile Hanging Lanterns in Hero ── */
+  /* ── Mobile Hanging Lanterns in Hero (Framing outward with breathing margin) ── */
   .corner-comp.top-left-large {
-    left: 0;
+    left: -8px;
     top: 0;
-    width: clamp(135px, 36vw, 175px);
+    width: clamp(150px, 39vw, 195px);
   }
   .corner-comp.top-left-large .comp-lantern {
     width: 58%;
@@ -220,9 +193,9 @@
   }
 
   .corner-comp.top-right-large {
-    right: 0;
+    right: -8px;
     top: 0;
-    width: clamp(135px, 36vw, 175px);
+    width: clamp(150px, 39vw, 195px);
   }
   .corner-comp.top-right-large .comp-lantern {
     width: 58%;
@@ -231,14 +204,14 @@
 
   .corner-comp.top-left-small {
     top: clamp(20px, 4vh, 45px);
-    left: clamp(85px, 22vw, 130px);
-    width: clamp(75px, 18vw, 95px);
+    left: clamp(40px, 10vw, 75px);
+    width: clamp(82px, 21vw, 105px);
   }
 
   .corner-comp.top-right-small {
     top: clamp(30px, 5vh, 60px);
-    right: clamp(85px, 22vw, 130px);
-    width: clamp(70px, 17vw, 90px);
+    right: clamp(40px, 10vw, 75px);
+    width: clamp(82px, 21vw, 105px);
   }
 
   .garland-top {
@@ -285,15 +258,6 @@
   .frame-item:nth-child(3) { transform: rotate(-0.5deg) !important; }
   .frame-item:nth-child(4) { transform: rotate(0.8deg) !important; }
 
-  /* 5th frame centered on row 3 */
-  .frame-item:nth-child(5) {
-    grid-column: 1 / span 2 !important;
-    justify-self: center;
-    width: 72% !important;
-    max-width: 250px;
-    transform: rotate(-0.4deg) !important;
-  }
-
   /* ── Mobile Polaroid Section ── */
   #polaroid-rope-section {
     padding: clamp(24px, 4vh, 48px) clamp(12px, 3vw, 20px) clamp(48px, 7vh, 80px);
@@ -303,24 +267,24 @@
     gap: 18px;
   }
 
-  /* ── Mobile Red Section Top Canopy (Draping naturally from top: 0) ── */
+  /* ── Mobile Red Section Top Canopy (15-20% larger ceremonial scale) ── */
   #dollhouse-section {
     padding-top: clamp(95px, 14vh, 140px);
   }
 
   .events-top-decor {
-    padding: 0 10px;
+    padding: 0 4px;
   }
   .events-lantern-item.lantern-left-far,
   .events-lantern-item.lantern-right-far {
-    width: clamp(65px, 17vw, 105px);
+    width: clamp(78px, 20vw, 125px);
   }
   .events-lantern-item.lantern-left-near,
   .events-lantern-item.lantern-right-near {
-    width: clamp(50px, 13vw, 85px);
+    width: clamp(60px, 15vw, 100px);
   }
   .events-lantern-item.lantern-center {
-    width: clamp(58px, 15vw, 95px);
+    width: clamp(70px, 18vw, 112px);
   }
 
   /* ── Mobile Grand Events: 1 Card per Row ── */

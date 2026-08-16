@@ -8,37 +8,10 @@
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ──────────────────────────────────────────
-     HERO SCROLL EFFECTS (Desktop + Mobile)
+     HERO SCROLL EFFECTS (Disabled to keep Hero unified as 1 physical artwork)
   ────────────────────────────────────────── */
   function initHeroScrollEffects() {
-    if (prefersReduced) return;
-    gsap.registerPlugin(ScrollTrigger);
-
-    const isMobile = window.innerWidth < 768;
-
-    gsap.to('#hero-img-wrap', {
-      scale: isMobile ? 1.06 : 1.14,
-      y: isMobile ? 25 : 65,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1.2,
-      }
-    });
-
-    gsap.to('#hero-text-outer', {
-      y: isMobile ? -35 : -70,
-      opacity: 0.1,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top top',
-        end: '70% top',
-        scrub: 1.2,
-      }
-    });
+    // Intentionally no-op: Hero artwork, image, decorations, and text scroll together as a single unified page section without independent drift.
   }
 
   /* ──────────────────────────────────────────

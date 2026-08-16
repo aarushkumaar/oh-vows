@@ -176,6 +176,11 @@ section {
   color: var(--ivory);
 }
 
+#hero-text-group .display-title {
+  color: #FFFDF9;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9), 0 0 24px rgba(0, 0, 0, 0.7), 0 0 12px rgba(201, 162, 39, 0.38);
+}
+
 .tagline {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
@@ -235,12 +240,12 @@ section {
   top: 0;
   left: 0;
   right: 0;
-  height: 38%;
+  height: 44%;
   background: linear-gradient(
     to bottom,
-    rgba(8, 2, 0, 0.82) 0%,
-    rgba(8, 2, 0, 0.52) 35%,
-    rgba(8, 2, 0, 0.14) 65%,
+    rgba(8, 2, 0, 0.78) 0%,
+    rgba(8, 2, 0, 0.48) 40%,
+    rgba(8, 2, 0, 0.15) 75%,
     transparent 100%
   );
   pointer-events: none;
@@ -273,33 +278,34 @@ section {
   will-change: transform;
 }
 
+/* Change 1: Slightly larger, anchored hard to edges */
 .corner-comp.top-left-large {
   left: 0;
-  width: clamp(120px, 18vw, 240px);
+  width: clamp(150px, 21vw, 280px);
   animation: lanternSway 6.8s ease-in-out infinite alternate;
   animation-delay: -1.2s;
 }
 
 .corner-comp.top-left-small {
-  left: clamp(100px, 17vw, 230px);
+  left: clamp(80px, 14vw, 190px);
   top: clamp(20px, 3vh, 40px);
-  width: clamp(70px, 10vw, 130px);
+  width: clamp(80px, 11vw, 145px);
   animation: lanternSway 8.1s ease-in-out infinite alternate;
   animation-delay: -2.8s;
 }
 
 .corner-comp.top-right-large {
   right: 0;
-  width: clamp(120px, 18vw, 240px);
+  width: clamp(150px, 21vw, 280px);
   transform-origin: top center;
   animation: lanternSway 6.2s ease-in-out infinite alternate;
   animation-delay: -3.5s;
 }
 
 .corner-comp.top-right-small {
-  right: clamp(100px, 17vw, 230px);
+  right: clamp(80px, 14vw, 190px);
   top: clamp(20px, 3vh, 40px);
-  width: clamp(70px, 10vw, 130px);
+  width: clamp(80px, 11vw, 145px);
   animation: lanternSway 7.6s ease-in-out infinite alternate;
   animation-delay: -0.8s;
 }
@@ -311,7 +317,7 @@ section {
 }
 
 .corner-comp .comp-lantern {
-  width: 52%;
+  width: 58%;
   height: auto;
   margin-top: -12%;
   display: block;
@@ -319,7 +325,7 @@ section {
 
 #hero-text-outer {
   position: absolute;
-  top: clamp(48px, 9vh, 96px);
+  top: clamp(90px, 15vh, 155px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 44;
@@ -409,10 +415,11 @@ section {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
+/* 4-frame layout: row of 4 with natural balanced stagger */
 #frames-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: clamp(32px, 4.5vw, 64px) clamp(22px, 3.2vw, 48px);
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 3.5vw, 52px);
   max-width: 1400px;
   margin: 0 auto;
   align-items: center;
@@ -433,45 +440,33 @@ section {
   user-select: none;
 }
 
-/* Desktop Composition: 3 on Row 1, 2 on Row 2 with Larger Impact */
+/* 4-frame composition */
 .frame-item:nth-child(1) {
-  grid-column: span 2;
   transform: rotate(-1.2deg) translateY(12px);
 }
 .frame-item:nth-child(1) img {
-  width: clamp(230px, 23vw, 350px);
-}
-
-.frame-item:nth-child(2) {
-  grid-column: span 2;
-  transform: rotate(0.8deg) translateY(-16px);
-}
-.frame-item:nth-child(2) img {
-  width: clamp(270px, 28vw, 420px);
-}
-
-.frame-item:nth-child(3) {
-  grid-column: span 2;
-  transform: rotate(-0.8deg) translateY(12px);
-}
-.frame-item:nth-child(3) img {
-  width: clamp(230px, 23vw, 350px);
-}
-
-.frame-item:nth-child(4) {
-  grid-column: 2 / span 2;
-  transform: rotate(1deg) translateY(-8px);
-}
-.frame-item:nth-child(4) img {
   width: clamp(220px, 22vw, 340px);
 }
 
-.frame-item:nth-child(5) {
-  grid-column: 4 / span 2;
-  transform: rotate(-0.6deg) translateY(8px);
+.frame-item:nth-child(2) {
+  transform: rotate(0.8deg) translateY(-16px);
 }
-.frame-item:nth-child(5) img {
-  width: clamp(260px, 26vw, 400px);
+.frame-item:nth-child(2) img {
+  width: clamp(255px, 26vw, 400px);
+}
+
+.frame-item:nth-child(3) {
+  transform: rotate(-0.8deg) translateY(12px);
+}
+.frame-item:nth-child(3) img {
+  width: clamp(220px, 22vw, 340px);
+}
+
+.frame-item:nth-child(4) {
+  transform: rotate(1deg) translateY(-8px);
+}
+.frame-item:nth-child(4) img {
+  width: clamp(235px, 24vw, 360px);
 }
 
 /* ══════════════════════════════════════════════
@@ -611,20 +606,22 @@ section {
 
 .polaroid-caption {
   text-align: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: clamp(12px, 1.3vw, 15px);
-  font-weight: 500;
-  color: #3A2A1A;
+  font-family: 'IM Fell English', serif;
+  font-size: clamp(14px, 1.6vw, 18px);
+  color: #2E1A0E;
+  margin-top: clamp(6px, 1vh, 10px);
   margin-bottom: 2px;
+  line-height: 1.15;
 }
 
+.polaroid-subtext,
 .polaroid-date {
   text-align: center;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: clamp(9px, 1vw, 11px);
-  color: #8C7660;
+  font-size: clamp(11px, 1.2vw, 13px);
+  color: #7C6650;
+  line-height: 1.2;
 }
 
 /* ══════════════════════════════════════════════
@@ -666,32 +663,32 @@ section {
   will-change: transform;
 }
 
-/* Enormous 8x-10x scale compared to small icons */
+/* Jashn-e-Bahar Top Canopy: 15-20% larger ceremonial scale */
 .events-lantern-item.lantern-left-far {
-  width: clamp(140px, 14vw, 240px);
+  width: clamp(195px, 20vw, 340px);
   animation: lanternBreeze1 11.5s ease-in-out infinite alternate;
 }
 
 .events-lantern-item.lantern-left-near {
-  width: clamp(100px, 10vw, 175px);
+  width: clamp(135px, 14vw, 240px);
   animation: lanternBreeze2 13.2s ease-in-out infinite alternate;
   animation-delay: -3.8s;
 }
 
 .events-lantern-item.lantern-center {
-  width: clamp(125px, 12vw, 210px);
+  width: clamp(165px, 16vw, 285px);
   animation: lanternBreeze3 10.4s ease-in-out infinite alternate;
   animation-delay: -1.5s;
 }
 
 .events-lantern-item.lantern-right-near {
-  width: clamp(100px, 10vw, 175px);
+  width: clamp(135px, 14vw, 240px);
   animation: lanternBreeze4 12.8s ease-in-out infinite alternate;
   animation-delay: -5.2s;
 }
 
 .events-lantern-item.lantern-right-far {
-  width: clamp(140px, 14vw, 240px);
+  width: clamp(195px, 20vw, 340px);
   animation: lanternBreeze5 11.0s ease-in-out infinite alternate;
   animation-delay: -2.1s;
 }
@@ -749,13 +746,24 @@ section {
   margin-bottom: clamp(48px, 7vh, 88px);
 }
 
+/* Events microcopy hint */
+.events-microcopy {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(11px, 1.3vw, 13px);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  opacity: 0.75;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.8);
+}
+
 #dollhouse-cards {
   position: relative;
   z-index: 5;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: clamp(32px, 4vw, 68px) clamp(24px, 3.5vw, 60px);
-  max-width: 1560px;
+  max-width: 1200px;
   margin: 0 auto;
   align-items: center;
   justify-items: center;
@@ -887,20 +895,71 @@ section {
   transform: translateY(0);
 }
 
-/* RSVP — Chhabra Family Block */
-.rsvp-family-card {
-  margin-top: clamp(20px, 4vh, 40px);
+/* RSVP section & subtext */
+#rsvp-section {
+  margin: 0;
+  padding: clamp(38px, 5.5vh, 64px) clamp(16px, 4vw, 48px);
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: clamp(24px, 4vh, 38px) clamp(20px, 4vw, 44px);
-  background: rgba(255, 248, 235, 0.04);
-  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: var(--deep-green-bg) url('../assets/images/backgrounds/bg-green.png') repeat-y center top / 100% auto;
+  position: relative;
+  z-index: 20;
+}
+
+#rsvp-section .section-head {
+  margin-bottom: clamp(12px, 2vh, 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(6px, 1.2vh, 12px);
+}
+
+.rsvp-subtext {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(14px, 2vw, 19px);
+  font-style: italic;
+  color: var(--gold-light);
+  opacity: 0.92;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.rsvp-invite-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: clamp(4px, 1vh, 8px);
+  margin-bottom: clamp(16px, 2.5vh, 24px);
+}
+
+.rsvp-personal-line {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(13px, 1.6vw, 16px);
+  font-style: italic;
+  letter-spacing: 0.12em;
+  color: var(--gold-light);
+  opacity: 0.88;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.rsvp-family-card {
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: clamp(24px, 3.8vh, 38px) clamp(20px, 4vw, 44px);
+  background: rgba(12, 24, 15, 0.86);
+  border: 1px solid rgba(201, 162, 39, 0.48);
   border-radius: 4px;
-  max-width: 540px;
+  max-width: 500px;
   width: 100%;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(201, 162, 39, 0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .rsvp-family-title {
@@ -1195,6 +1254,45 @@ section {
   letter-spacing: 0.12em;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
 }
+
+/* Change 14: "See Root, for the Wedding" elegant text link */
+.see-root-link {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(12px, 1.5vw, 15px);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  text-decoration: none;
+  opacity: 0.82;
+  position: relative;
+  transition: opacity 0.3s, color 0.3s, transform 0.25s;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+  margin-top: -10px;
+}
+
+.see-root-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.see-root-link:hover {
+  opacity: 1;
+  color: var(--ivory);
+  transform: translateY(-1px);
+}
+
+.see-root-link:hover::after {
+  opacity: 0.9;
+}
+
 
 /* ══════════════════════════════════════════════
    §7 BRIDE + GROOM IMAGE CAROUSEL (Infinite Marquee)

@@ -125,9 +125,6 @@
     if (window.EventsModule?.buildDollhouseCards) {
       window.EventsModule.buildDollhouseCards();
     }
-    if (window.EventsModule?.buildThings) {
-      window.EventsModule.buildThings();
-    }
     if (window.EventsModule?.buildCarousel) {
       window.EventsModule.buildCarousel();
     }
@@ -149,20 +146,11 @@
     if (window.EventsModule?.initDollhouseAnimation) {
       window.EventsModule.initDollhouseAnimation();
     }
-    if (window.EventsModule?.initThingsAnimation) {
-      window.EventsModule.initThingsAnimation();
-    }
-    if (window.EventsModule?.initWardrobeAnimation) {
-      window.EventsModule.initWardrobeAnimation();
-    }
-    if (window.EventsModule?.initRSVP) {
-      window.EventsModule.initRSVP();
-    }
     if (window.AnimationsModule?.initFlowers) {
       window.AnimationsModule.initFlowers();
     }
-    if (window.CountdownModule?.start) {
-      window.CountdownModule.start();
+    if (window.CountdownModule?.init) {
+      window.CountdownModule.init();
     }
     if (window.EventsModule?.handleInitialHash) {
       window.EventsModule.handleInitialHash();

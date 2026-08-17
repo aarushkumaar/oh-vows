@@ -19,11 +19,11 @@
      Frames have subtle organic floating movement
   ────────────────────────────────────────── */
   const FRAME_FLOAT = [
-    { sy: 0.58, sx: 0.33, sr: 0.16, ay: 4, ax: 3, ar: 0.8, py: 0.0, px: 1.1, pr: 0.4 },
-    { sy: 0.40, sx: 0.48, sr: 0.21, ay: 5, ax: 4, ar: 1.0, py: 2.0, px: 0.7, pr: 2.1 },
-    { sy: 0.68, sx: 0.26, sr: 0.14, ay: 3, ax: 3, ar: 0.7, py: 1.2, px: 2.4, pr: 0.9 },
-    { sy: 0.50, sx: 0.41, sr: 0.19, ay: 4, ax: 2, ar: 0.9, py: 3.1, px: 0.5, pr: 1.6 },
-    { sy: 0.76, sx: 0.31, sr: 0.17, ay: 4, ax: 5, ar: 0.8, py: 0.8, px: 1.9, pr: 3.0 },
+    { sy: 0.58, sx: 0.33, sr: 0.16, ay: 1.5, ax: 0.8, ar: 0.25, py: 0.0, px: 1.1, pr: 0.4 },
+    { sy: 0.40, sx: 0.48, sr: 0.21, ay: 2.0, ax: 1.2, ar: 0.30, py: 2.0, px: 0.7, pr: 2.1 },
+    { sy: 0.68, sx: 0.26, sr: 0.14, ay: 1.2, ax: 0.6, ar: 0.20, py: 1.2, px: 2.4, pr: 0.9 },
+    { sy: 0.50, sx: 0.41, sr: 0.19, ay: 1.8, ax: 0.9, ar: 0.28, py: 3.1, px: 0.5, pr: 1.6 },
+    { sy: 0.76, sx: 0.31, sr: 0.17, ay: 1.4, ax: 1.1, ar: 0.22, py: 0.8, px: 1.9, pr: 3.0 },
   ];
 
   let floatT   = 0;
@@ -167,7 +167,7 @@
     window.addEventListener('resize', resize, { passive: true });
 
     const isMobile = W < 768;
-    const COUNT = isMobile ? 12 : 24;
+    const COUNT = isMobile ? 6 : 14;
 
     class Petal {
       constructor(isFront) {

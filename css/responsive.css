@@ -204,13 +204,13 @@
 
   .corner-comp.top-left-small {
     top: clamp(20px, 4vh, 45px);
-    left: clamp(40px, 10vw, 75px);
+    left: clamp(50px, 12vw, 85px);
     width: clamp(82px, 21vw, 105px);
   }
 
   .corner-comp.top-right-small {
     top: clamp(30px, 5vh, 60px);
-    right: clamp(40px, 10vw, 75px);
+    right: clamp(50px, 12vw, 85px);
     width: clamp(82px, 21vw, 105px);
   }
 
@@ -277,14 +277,14 @@
   }
   .events-lantern-item.lantern-left-far,
   .events-lantern-item.lantern-right-far {
-    width: clamp(78px, 20vw, 125px);
+    width: clamp(100px, 26vw, 160px);
   }
   .events-lantern-item.lantern-left-near,
   .events-lantern-item.lantern-right-near {
-    width: clamp(60px, 15vw, 100px);
+    width: clamp(76px, 19vw, 125px);
   }
   .events-lantern-item.lantern-center {
-    width: clamp(70px, 18vw, 112px);
+    width: clamp(88px, 23vw, 140px);
   }
 
   /* ── Mobile Grand Events: 1 Card per Row ── */

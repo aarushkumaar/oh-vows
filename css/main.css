@@ -287,7 +287,7 @@ section {
 }
 
 .corner-comp.top-left-small {
-  left: clamp(80px, 14vw, 190px);
+  left: clamp(95px, 19vw, 210px);
   top: clamp(20px, 3vh, 40px);
   width: clamp(80px, 11vw, 145px);
   animation: lanternSway 8.1s ease-in-out infinite alternate;
@@ -303,7 +303,7 @@ section {
 }
 
 .corner-comp.top-right-small {
-  right: clamp(80px, 14vw, 190px);
+  right: clamp(95px, 19vw, 210px);
   top: clamp(20px, 3vh, 40px);
   width: clamp(80px, 11vw, 145px);
   animation: lanternSway 7.6s ease-in-out infinite alternate;
@@ -663,32 +663,32 @@ section {
   will-change: transform;
 }
 
-/* Jashn-e-Bahar Top Canopy: 15-20% larger ceremonial scale */
+/* Jashn-e-Bahar Top Canopy: ~1.5x-2x larger ceremonial scale */
 .events-lantern-item.lantern-left-far {
-  width: clamp(195px, 20vw, 340px);
+  width: clamp(240px, 26vw, 420px);
   animation: lanternBreeze1 11.5s ease-in-out infinite alternate;
 }
 
 .events-lantern-item.lantern-left-near {
-  width: clamp(135px, 14vw, 240px);
+  width: clamp(180px, 19vw, 310px);
   animation: lanternBreeze2 13.2s ease-in-out infinite alternate;
   animation-delay: -3.8s;
 }
 
 .events-lantern-item.lantern-center {
-  width: clamp(165px, 16vw, 285px);
+  width: clamp(205px, 21vw, 355px);
   animation: lanternBreeze3 10.4s ease-in-out infinite alternate;
   animation-delay: -1.5s;
 }
 
 .events-lantern-item.lantern-right-near {
-  width: clamp(135px, 14vw, 240px);
+  width: clamp(180px, 19vw, 310px);
   animation: lanternBreeze4 12.8s ease-in-out infinite alternate;
   animation-delay: -5.2s;
 }
 
 .events-lantern-item.lantern-right-far {
-  width: clamp(195px, 20vw, 340px);
+  width: clamp(240px, 26vw, 420px);
   animation: lanternBreeze5 11.0s ease-in-out infinite alternate;
   animation-delay: -2.1s;
 }

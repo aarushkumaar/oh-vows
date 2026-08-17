@@ -22,15 +22,10 @@
      CRITICAL ASSET PRELOAD
   ────────────────────────────────────────── */
   const MIN_MS = 900;
+  // Only preload the critical above-the-fold hero image.
+  // Background images load on-demand via CSS when sections scroll into view.
   const PRELOAD = [
     'assets/images/hero/hero-palace.png',
-    'assets/images/backgrounds/lehenga-bg.png',
-    'assets/images/backgrounds/bg-red.png',
-    'assets/images/backgrounds/bg-green.png',
-    'assets/images/backgrounds/bg-pink.png',
-    'assets/images/backgrounds/pink-bg.png',
-    'assets/images/backgrounds/yellow-bg.png',
-    'assets/images/backgrounds/cocktail-bg.png',
   ];
   let preloadCount = 0;
 

@@ -12,8 +12,6 @@
      DOM REFS
   ────────────────────────────────────────── */
   const loadingOverlay = document.getElementById('loading-overlay');
-  const loadingBarFill = document.getElementById('loading-bar-fill');
-  const loadingText    = document.getElementById('loading-text');
   const lightBloom     = document.getElementById('light-bloom');
   const heroTextGroup  = document.getElementById('hero-text-group');
   const heroScrollHint = document.getElementById('hero-scroll-hint');
@@ -21,7 +19,7 @@
   /* ──────────────────────────────────────────
      CRITICAL ASSET PRELOAD
   ────────────────────────────────────────── */
-  const MIN_MS = 900;
+  const MIN_MS = 600;
   // Only preload the critical above-the-fold hero image.
   // Background images load on-demand via CSS when sections scroll into view.
   const PRELOAD = [
@@ -31,21 +29,11 @@
 
   function preloadAssets() {
     return new Promise((resolve) => {
-      if (!PRELOAD.length) {
-        resolve();
-        return;
-      }
+      if (!PRELOAD.length) { resolve(); return; }
       PRELOAD.forEach((src) => {
         const img = new Image();
         img.onload = img.onerror = () => {
           preloadCount++;
-          const pct = Math.round((preloadCount / PRELOAD.length) * 100);
-          if (loadingBarFill) loadingBarFill.style.width = pct + '%';
-          if (loadingText) {
-            loadingText.textContent = pct < 100
-              ? 'Preparing your invitation\u2026 ' + pct + '%'
-              : 'Ready \u2736';
-          }
           if (preloadCount >= PRELOAD.length) resolve();
         };
         img.src = src;

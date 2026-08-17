@@ -250,17 +250,23 @@
         <!-- Details Grid -->
         <div class="ev-details-row" id="ev-details">
           <div class="ev-detail-item">
-            <div class="ev-detail-icon" aria-hidden="true">📅</div>
+            <div class="ev-detail-icon" aria-hidden="true">
+              <img class="ev-icon" src="assets/images/icons/calander-logo.png" alt="" />
+            </div>
             <div class="ev-detail-label">Date</div>
             <div class="ev-detail-value">${ev.date}</div>
           </div>
           <div class="ev-detail-item">
-            <div class="ev-detail-icon" aria-hidden="true">🕐</div>
+            <div class="ev-detail-icon" aria-hidden="true">
+              <img class="ev-icon ev-icon--time" src="assets/images/icons/time-logo.png" alt="" />
+            </div>
             <div class="ev-detail-label">Time</div>
             <div class="ev-detail-value">${ev.time}</div>
           </div>
           <div class="ev-detail-item">
-            <div class="ev-detail-icon" aria-hidden="true">📍</div>
+            <div class="ev-detail-icon" aria-hidden="true">
+              <img class="ev-icon ev-icon--venue" src="assets/images/icons/venue-logo.png" alt="" />
+            </div>
             <div class="ev-detail-label">Venue</div>
             <div class="ev-detail-value">${ev.location}</div>
             <div class="ev-detail-sub">${ev.locationSub}</div>

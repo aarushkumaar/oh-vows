@@ -60,59 +60,97 @@ img {
   pointer-events: all;
 }
 
-#loading-wordmark {
-  font-family: 'IM Fell English', serif;
-  font-size: clamp(22px, 5vw, 52px);
-  color: var(--gold-light);
-  letter-spacing: 0.35em;
-  text-shadow: 0 0 48px rgba(201, 162, 39, 0.45), 0 0 4px rgba(201, 162, 39, 0.2);
-  opacity: 0;
-  animation: ldFadeUp 0.9s ease forwards 0.25s;
-}
-
-#loading-stars {
-  color: var(--gold);
-  font-size: clamp(12px, 2vw, 18px);
-  letter-spacing: 0.6em;
-  opacity: 0;
-  animation: ldFadeUp 0.9s ease forwards 0.55s;
-}
-
-#loading-progress-wrap {
+/* ══════════════════════════════════════════════
+   LOADING OVERLAY — Stamp Composition
+══════════════════════════════════════════════ */
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: #0c0200;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 9px;
-  opacity: 0;
-  animation: ldFadeUp 0.9s ease forwards 0.85s;
-}
-
-#loading-bar-track {
-  width: clamp(140px, 32vw, 280px);
-  height: 1px;
-  background: rgba(201, 162, 39, 0.18);
-  position: relative;
+  justify-content: center;
+  gap: 0;
+  pointer-events: all;
   overflow: hidden;
-  border-radius: 1px;
 }
 
-#loading-bar-fill {
-  height: 1px;
-  width: 0%;
-  background: linear-gradient(90deg, var(--gold-dim), var(--gold-light), var(--gold-dim));
-  background-size: 200% 100%;
-  transition: width 0.18s linear;
-  animation: barShimmer 1.8s infinite linear;
-  box-shadow: 0 0 10px rgba(201, 162, 39, 0.9);
+/* Stamp wrapper — controls the reveal animation */
+#loading-stamp-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.96) translateY(8px);
+  animation: stampReveal 1.0s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.1s;
+  /* Prefers-reduced-motion: skip animation, show instantly */
 }
 
-#loading-text {
-  font-size: clamp(8px, 1.1vw, 10px);
-  letter-spacing: 0.45em;
+@media (prefers-reduced-motion: reduce) {
+  #loading-stamp-wrap {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+#loading-stamp {
+  width: clamp(180px, 40vw, 320px);
+  height: auto;
+  display: block;
+  object-fit: contain;
+  /* The SVG has a deep red/gold design on transparent bg */
+  filter: drop-shadow(0 8px 32px rgba(158, 0, 0, 0.45)) drop-shadow(0 2px 8px rgba(192, 171, 5, 0.25));
+}
+
+#loading-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(6px, 1.2vh, 12px);
+  margin-top: clamp(20px, 4vh, 40px);
+  opacity: 0;
+  animation: ldFadeUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.75s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #loading-identity {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+#loading-title {
+  font-family: 'IM Fell English', serif;
+  font-size: clamp(18px, 4vw, 32px);
+  color: var(--gold-light);
+  letter-spacing: 0.18em;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+}
+
+#loading-invite {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(11px, 2vw, 15px);
+  color: rgba(243, 223, 162, 0.6);
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.55;
-  white-space: nowrap;
+  font-weight: 300;
+  text-align: center;
+}
+
+@keyframes stampReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 /* ══════════════════════════════════════════════
@@ -1618,8 +1656,34 @@ section {
 }
 
 .ev-detail-icon {
-  font-size: clamp(24px, 3.5vw, 36px);
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(56px, 8vw, 76px);
+}
+
+/* Base icon style: calendar (landscape, slightly wider) */
+.ev-icon {
+  display: block;
+  width: auto;
+  height: clamp(56px, 8vw, 72px);
+  max-width: clamp(80px, 12vw, 110px);
+  object-fit: contain;
+  /* PNG has white bg — blend into dark event detail backgrounds */
+  mix-blend-mode: lighten;
+  opacity: 0.92;
+}
+
+/* Clock icon is roughly square, slightly smaller */
+.ev-icon--time {
+  height: clamp(50px, 7vw, 64px);
+  max-width: clamp(70px, 11vw, 100px);
+}
+
+/* Venue/map icon is landscape, similar to calendar */
+.ev-icon--venue {
+  height: clamp(48px, 7vw, 62px);
+  max-width: clamp(80px, 12vw, 108px);
 }
 
 .ev-detail-label {

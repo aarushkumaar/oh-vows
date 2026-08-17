@@ -13,6 +13,8 @@
 
   <!-- Preload only the critical above-the-fold hero image -->
   <link rel="preload" as="image" href="assets/images/hero/hero-palace.png" fetchpriority="high" />
+  <!-- Preload the loading screen stamp (displayed before anything else) -->
+  <link rel="preload" as="image" href="assets/images/loading/loading.svg" fetchpriority="high" />
 
   <!-- Modular Stylesheets -->
   <link rel="stylesheet" href="css/animations.css" />
@@ -35,14 +37,15 @@
   <div id="light-bloom" aria-hidden="true"></div>
 
   <!-- ══ LOADING OVERLAY ══ -->
-  <div id="loading-overlay" role="status" aria-live="polite" aria-label="Loading invitation">
-    <div id="loading-wordmark">Oh Vows</div>
-    <div id="loading-stars">✦ &nbsp; ✦ &nbsp; ✦</div>
-    <div id="loading-progress-wrap">
-      <div id="loading-bar-track">
-        <div id="loading-bar-fill"></div>
-      </div>
-      <p id="loading-text">Preparing your invitation…</p>
+  <div id="loading-overlay" role="status" aria-live="polite" aria-label="Loading your invitation">
+    <div id="loading-stamp-wrap">
+      <img id="loading-stamp"
+           src="assets/images/loading/loading.svg"
+           alt="The HV Story — wedding invitation seal" />
+    </div>
+    <div id="loading-identity">
+      <p id="loading-title">the hv story</p>
+      <p id="loading-invite">You are warmly invited</p>
     </div>
   </div>
 
@@ -262,7 +265,7 @@
       <div class="rsvp-family-card">
         <div class="gold-rule" style="width: 50px; opacity: 0.6;"></div>
         <p class="rsvp-family-title">RSVP — Chhabra Family</p>
-        <p class="rsvp-family-names">Deepa Chhabra &amp; Kamal Chhabra</p>
+        <p class="rsvp-family-names">Deepa Chhabra &amp; <br> Kamal Chhabra</p>
         <p class="rsvp-family-special">Special — Mehar Chhabra</p>
       </div>
     </section>

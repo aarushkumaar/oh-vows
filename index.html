@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
 
-  <!-- Preload only the critical above-the-fold hero image -->
-  <link rel="preload" as="image" href="assets/images/hero/hero-palace.png" fetchpriority="high" />
+  <!-- Preload lightweight above-the-fold hero thumbnail (29KB) -->
+  <link rel="preload" as="image" href="assets/images/thumbs/hero-palace.webp" fetchpriority="high" />
   <!-- Preload the loading screen stamp (displayed before anything else) -->
   <link rel="preload" as="image" href="assets/images/loading/loading.svg" fetchpriority="high" />
 
@@ -32,9 +32,6 @@
   <script src="js/main.js" defer></script>
 </head>
 <body>
-
-  <!-- ══ LIGHT BLOOM ══ -->
-  <div id="light-bloom" aria-hidden="true"></div>
 
   <!-- ══ LOADING OVERLAY ══ -->
   <div id="loading-overlay" role="status" aria-live="polite" aria-label="Loading your invitation">
@@ -82,7 +79,9 @@
 
       <div id="hero-img-wrap">
         <img id="hero-img"
-             src="assets/images/hero/hero-palace.png"
+             class="progressive-img"
+             src="assets/images/thumbs/hero-palace.webp"
+             data-full="assets/images/hero/hero-palace.png"
              alt="Vartika and Hardik — Palace to Lehenga"
              fetchpriority="high" />
       </div>
@@ -140,16 +139,16 @@
 
       <div id="frames-grid">
         <div class="frame-item" data-size="lg" data-dir="left" data-base-rot="-1.2" data-fi="0">
-          <img src="assets/images/frames/frame-1.png" alt="Portrait frame" loading="lazy" />
+          <img class="progressive-img" src="assets/images/thumbs/frame-1.webp" data-full="assets/images/frames/frame-1.png" alt="Portrait frame" loading="lazy" decoding="async" />
         </div>
         <div class="frame-item frame-item-primary" data-size="xl" data-dir="up" data-base-rot="0.8" data-fi="1">
-          <img src="assets/images/frames/frame-2.png" alt="Portrait frame centerpiece" loading="lazy" />
+          <img class="progressive-img" src="assets/images/thumbs/frame-2.webp" data-full="assets/images/frames/frame-2.png" alt="Portrait frame centerpiece" loading="lazy" decoding="async" />
         </div>
         <div class="frame-item" data-size="lg" data-dir="right" data-base-rot="-0.8" data-fi="2">
-          <img src="assets/images/frames/frame-3.png" alt="Portrait frame" loading="lazy" />
+          <img class="progressive-img" src="assets/images/thumbs/frame-3.webp" data-full="assets/images/frames/frame-3.png" alt="Portrait frame" loading="lazy" decoding="async" />
         </div>
         <div class="frame-item" data-size="md" data-dir="left" data-base-rot="1.0" data-fi="3">
-          <img src="assets/images/frames/frame-4.png" alt="Portrait frame" loading="lazy" />
+          <img class="progressive-img" src="assets/images/thumbs/frame-4.webp" data-full="assets/images/frames/frame-4.png" alt="Portrait frame" loading="lazy" decoding="async" />
         </div>
       </div>
     </section>
@@ -163,7 +162,7 @@
           <div class="polaroid-clip" aria-hidden="true"></div>
           <div class="polaroid-body">
             <div class="polaroid-photo-wrap">
-              <img class="polaroid-photo" src="assets/images/gallery/polaroid-1.jpg" alt="Where It Began" loading="lazy"/>
+              <img class="polaroid-photo progressive-img" src="assets/images/thumbs/polaroid-1.webp" data-full="assets/images/gallery/polaroid-1.jpg" alt="Where It Began" loading="lazy" decoding="async"/>
             </div>
             <p class="polaroid-caption">Where It Began</p>
             <p class="polaroid-subtext">The first little chapter.</p>
@@ -174,7 +173,7 @@
           <div class="polaroid-clip" aria-hidden="true"></div>
           <div class="polaroid-body">
             <div class="polaroid-photo-wrap">
-              <img class="polaroid-photo" src="assets/images/gallery/polaroid-2.jpg" alt="Shared Laughter" loading="lazy"/>
+              <img class="polaroid-photo progressive-img" src="assets/images/thumbs/polaroid-2.webp" data-full="assets/images/gallery/polaroid-2.jpg" alt="Shared Laughter" loading="lazy" decoding="async"/>
             </div>
             <p class="polaroid-caption">Shared Laughter</p>
             <p class="polaroid-subtext">Some moments simply stay.</p>
@@ -185,7 +184,7 @@
           <div class="polaroid-clip" aria-hidden="true"></div>
           <div class="polaroid-body">
             <div class="polaroid-photo-wrap">
-              <img class="polaroid-photo" src="assets/images/gallery/polaroid-3.jpg" alt="Better Together" loading="lazy"/>
+              <img class="polaroid-photo progressive-img" src="assets/images/thumbs/polaroid-3.webp" data-full="assets/images/gallery/polaroid-3.jpg" alt="Better Together" loading="lazy" decoding="async"/>
             </div>
             <p class="polaroid-caption">Better Together</p>
             <p class="polaroid-subtext">Everywhere felt like home.</p>
@@ -196,7 +195,7 @@
           <div class="polaroid-clip" aria-hidden="true"></div>
           <div class="polaroid-body">
             <div class="polaroid-photo-wrap">
-              <img class="polaroid-photo" src="assets/images/gallery/polaroid-4.jpg" alt="Forever, Always" loading="lazy"/>
+              <img class="polaroid-photo progressive-img" src="assets/images/thumbs/polaroid-4.webp" data-full="assets/images/gallery/polaroid-4.jpg" alt="Forever, Always" loading="lazy" decoding="async"/>
             </div>
             <p class="polaroid-caption">Forever, Always</p>
             <p class="polaroid-subtext">The moment became a memory.</p>

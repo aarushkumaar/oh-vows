@@ -123,9 +123,15 @@
       card.setAttribute('tabindex', '0');
       card.setAttribute('aria-label', `Open ${ev.label} details`);
       card.dataset.eventId = ev.id;
+      const thumbFile = ev.file.replace(/\.png$/i, '.webp');
       card.innerHTML = `
         <div class="dollhouse-card-img-wrap">
-          <img src="assets/images/events/${ev.file}" alt="${ev.label}" loading="lazy" />
+          <img class="progressive-img"
+               src="assets/images/thumbs/${thumbFile}"
+               data-full="assets/images/events/${ev.file}"
+               alt="${ev.label}"
+               loading="lazy"
+               decoding="async" />
         </div>
       `;
       card.addEventListener('click', () => openEvent(ev.id));
@@ -484,17 +490,17 @@
   }
 
   /* ──────────────────────────────────────────
-     BRIDE + GROOM INFINITE CAROUSEL
+     BRIDE + GROOM INFINITE CAROUSEL (Progressive Thumbnails)
   ────────────────────────────────────────── */
   const CAROUSEL_IMAGES = [
-    'assets/images/gallery/carousel-1.jpg',
-    'assets/images/gallery/carousel-2.jpg',
-    'assets/images/gallery/carousel-3.jpg',
-    'assets/images/gallery/carousel-4.jpg',
-    'assets/images/gallery/carousel-5.jpg',
-    'assets/images/gallery/carousel-6.jpg',
-    'assets/images/gallery/carousel-7.jpg',
-    'assets/images/gallery/carousel-8.jpg',
+    { thumb: 'assets/images/thumbs/carousel-1.webp', full: 'assets/images/gallery/carousel-1.jpg' },
+    { thumb: 'assets/images/thumbs/carousel-2.webp', full: 'assets/images/gallery/carousel-2.jpg' },
+    { thumb: 'assets/images/thumbs/carousel-3.webp', full: 'assets/images/gallery/carousel-3.jpg' },
+    { thumb: 'assets/images/thumbs/carousel-4.webp', full: 'assets/images/gallery/carousel-4.jpg' },
+    { thumb: 'assets/images/thumbs/carousel-5.webp', full: 'assets/images/gallery/carousel-5.jpg' },
+    { thumb: 'assets/images/thumbs/carousel-6.webp', full: 'assets/images/gallery/carousel-6.jpg' },
+    { thumb: 'assets/images/thumbs/carousel-7.webp', full: 'assets/images/gallery/carousel-7.jpg' },
+    { thumb: 'assets/images/thumbs/carousel-8.webp', full: 'assets/images/gallery/carousel-8.jpg' },
   ];
 
   function buildCarousel() {
@@ -503,11 +509,11 @@
     track.innerHTML = '';
     // Duplicate set for seamless continuous horizontal translation (-50% loop)
     const items = [...CAROUSEL_IMAGES, ...CAROUSEL_IMAGES];
-    items.forEach((src, idx) => {
+    items.forEach((item, idx) => {
       const card = document.createElement('div');
       card.className = 'carousel-card';
       card.setAttribute('aria-hidden', idx >= CAROUSEL_IMAGES.length ? 'true' : 'false');
-      card.innerHTML = `<img src="${src}" alt="Vartika &amp; Hardik Moment ${((idx % CAROUSEL_IMAGES.length) + 1)}" loading="lazy" decoding="async" />`;
+      card.innerHTML = `<img class="progressive-img" src="${item.thumb}" data-full="${item.full}" alt="Vartika &amp; Hardik Moment ${((idx % CAROUSEL_IMAGES.length) + 1)}" loading="lazy" decoding="async" />`;
       track.appendChild(card);
     });
   }

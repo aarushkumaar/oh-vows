@@ -44,6 +44,10 @@ img {
   max-width: 100%;
 }
 
+.progressive-img {
+  transition: opacity 0.25s ease-out;
+}
+
 /* ══════════════════════════════════════════════
    LOADING OVERLAY
 ══════════════════════════════════════════════ */
@@ -151,19 +155,6 @@ img {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
-}
-
-/* ══════════════════════════════════════════════
-   LIGHT BLOOM
-══════════════════════════════════════════════ */
-#light-bloom {
-  position: fixed;
-  inset: 0;
-  z-index: 850;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(ellipse at center,
-    rgba(255, 240, 200, 0.92) 0%, rgba(255, 220, 150, 0.38) 30%, transparent 70%);
 }
 
 /* ══════════════════════════════════════════════
@@ -298,13 +289,21 @@ section {
   width: 100%;
   pointer-events: none;
   z-index: 43;
-  max-height: clamp(100px, 18vw, 220px);
+
+  /* Keep the horizontal decorative garland subtle */
+  max-height: clamp(80px, 12vw, 150px);
   object-fit: cover;
   object-position: top;
-  filter: drop-shadow(0 6px 18px rgba(201, 162, 39, 0.55));
+
+  filter: drop-shadow(0 4px 12px rgba(201, 162, 39, 0.35));
 }
 
-.corner-comp {
+
+/* =========================================
+   #HERO CORNER GARLAND + LANTERN DECORATIONS
+   ========================================= */
+
+#hero .corner-comp {
   position: absolute;
   top: 0;
   display: flex;
@@ -312,58 +311,63 @@ section {
   align-items: center;
   pointer-events: none;
   z-index: 43;
-  filter: drop-shadow(0 8px 24px rgba(201, 162, 39, 0.55));
+  filter: drop-shadow(0 4px 12px rgba(201, 162, 39, 0.35));
   will-change: transform;
 }
 
-/* Change 1: Slightly larger, anchored hard to edges */
-.corner-comp.top-left-large {
+#hero .corner-comp.top-left-large {
   left: 0;
-  width: clamp(150px, 21vw, 280px);
+  width: clamp(90px, 9.5vw, 150px);
   animation: lanternSway 6.8s ease-in-out infinite alternate;
   animation-delay: -1.2s;
 }
 
-.corner-comp.top-left-small {
-  left: clamp(95px, 19vw, 210px);
-  top: clamp(20px, 3vh, 40px);
-  width: clamp(80px, 11vw, 145px);
+#hero .corner-comp.top-left-small {
+  left: clamp(60px, 7vw, 105px);
+  top: 0;
+  width: clamp(36px, 3.8vw, 56px);
   animation: lanternSway 8.1s ease-in-out infinite alternate;
   animation-delay: -2.8s;
 }
 
-.corner-comp.top-right-large {
+#hero .corner-comp.top-right-large {
   right: 0;
-  width: clamp(150px, 21vw, 280px);
+  width: clamp(90px, 9.5vw, 150px);
   transform-origin: top center;
   animation: lanternSway 6.2s ease-in-out infinite alternate;
   animation-delay: -3.5s;
 }
 
-.corner-comp.top-right-small {
-  right: clamp(95px, 19vw, 210px);
-  top: clamp(20px, 3vh, 40px);
-  width: clamp(80px, 11vw, 145px);
+#hero .corner-comp.top-right-small {
+  right: clamp(60px, 7vw, 105px);
+  top: 0;
+  width: clamp(36px, 3.8vw, 56px);
   animation: lanternSway 7.6s ease-in-out infinite alternate;
   animation-delay: -0.8s;
 }
 
-.corner-comp .comp-garland {
+#hero .corner-comp .comp-garland {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.corner-comp .comp-lantern {
-  width: 58%;
+#hero .corner-comp .comp-lantern {
+  width: 55%;
   height: auto;
-  margin-top: -12%;
+  margin-top: -8%;
   display: block;
+}
+
+#hero .corner-comp.top-left-small .comp-lantern,
+#hero .corner-comp.top-right-small .comp-lantern {
+  width: 48%;
+  margin-top: -10%;
 }
 
 #hero-text-outer {
   position: absolute;
-  top: clamp(90px, 15vh, 155px);
+  top: clamp(80px, 13vh, 135px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 44;
@@ -372,7 +376,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(18px, 3.5vh, 40px);
+  gap: clamp(14px, 2.5vh, 30px);
   width: 100%;
   max-width: 860px;
   padding: 0 clamp(16px, 4vw, 48px);
@@ -382,7 +386,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(8px, 1.5vh, 20px);
+  gap: clamp(8px, 1.5vh, 18px);
 }
 
 #hero-scroll-hint {
@@ -472,7 +476,7 @@ section {
 }
 
 .frame-item img {
-  filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.45));
+  filter: none !important;
   display: block;
   pointer-events: none;
   user-select: none;
@@ -589,7 +593,7 @@ section {
   margin-bottom: -6px;
   z-index: 2;
   position: relative;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: none !important;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -611,9 +615,13 @@ section {
   padding: clamp(10px, 1.1vw, 13px);
   border: 1px solid rgba(201, 162, 39, 0.28);
   border-radius: 4px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.38), 0 2px 8px rgba(0, 0, 0, 0.22);
+  box-shadow: none !important;
   width: clamp(155px, 17vw, 215px);
-  transition: box-shadow 0.4s ease;
+  transition: transform 0.4s ease;
+}
+
+.polaroid-body:hover {
+  box-shadow: none !important;
 }
 
 .polaroid-body:hover {
@@ -701,32 +709,32 @@ section {
   will-change: transform;
 }
 
-/* Jashn-e-Bahar Top Canopy: ~1.5x-2x larger ceremonial scale */
-.events-lantern-item.lantern-left-far {
-  width: clamp(240px, 26vw, 420px);
+/* Jashn-e-Bahar Top Canopy: Refined desktop framing scale */
+#dollhouse-section .events-lantern-item.lantern-left-far {
+  width: clamp(130px, 13vw, 210px);
   animation: lanternBreeze1 11.5s ease-in-out infinite alternate;
 }
 
-.events-lantern-item.lantern-left-near {
-  width: clamp(180px, 19vw, 310px);
+#dollhouse-section .events-lantern-item.lantern-left-near {
+  width: clamp(95px, 9.5vw, 155px);
   animation: lanternBreeze2 13.2s ease-in-out infinite alternate;
   animation-delay: -3.8s;
 }
 
-.events-lantern-item.lantern-center {
-  width: clamp(205px, 21vw, 355px);
+#dollhouse-section .events-lantern-item.lantern-center {
+  width: clamp(110px, 11vw, 175px);
   animation: lanternBreeze3 10.4s ease-in-out infinite alternate;
   animation-delay: -1.5s;
 }
 
-.events-lantern-item.lantern-right-near {
-  width: clamp(180px, 19vw, 310px);
+#dollhouse-section .events-lantern-item.lantern-right-near {
+  width: clamp(95px, 9.5vw, 155px);
   animation: lanternBreeze4 12.8s ease-in-out infinite alternate;
   animation-delay: -5.2s;
 }
 
-.events-lantern-item.lantern-right-far {
-  width: clamp(240px, 26vw, 420px);
+#dollhouse-section .events-lantern-item.lantern-right-far {
+  width: clamp(130px, 13vw, 210px);
   animation: lanternBreeze5 11.0s ease-in-out infinite alternate;
   animation-delay: -2.1s;
 }
@@ -781,7 +789,8 @@ section {
   flex-direction: column;
   align-items: center;
   gap: clamp(8px, 1.5vh, 16px);
-  margin-bottom: clamp(48px, 7vh, 88px);
+  margin-top: clamp(16px, 2.8vh, 28px);
+  margin-bottom: clamp(42px, 6.5vh, 76px);
 }
 
 /* Events microcopy hint */
@@ -800,8 +809,8 @@ section {
   z-index: 5;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(32px, 4vw, 68px) clamp(24px, 3.5vw, 60px);
-  max-width: 1200px;
+  gap: clamp(28px, 3.5vw, 56px) clamp(20px, 3vw, 48px);
+  max-width: 1100px;
   margin: 0 auto;
   align-items: center;
   justify-items: center;
@@ -815,6 +824,7 @@ section {
   border: none;
   box-shadow: none;
   width: 100%;
+  max-width: clamp(275px, 25vw, 380px);
   transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.22, 1);
   will-change: transform;
 }
@@ -1100,7 +1110,7 @@ section {
   margin: 0;
   padding: var(--sec-pad) clamp(16px, 5vw, 80px);
   text-align: center;
-  background: var(--deep-pink-bg) url('../assets/images/backgrounds/pink-bg.png') repeat-y center top / 100% auto;
+  background: var(--deep-pink-bg) url('../assets/images/backgrounds/bg-pink.png') repeat-y center top / 100% auto;
   position: relative;
   z-index: 20;
 }

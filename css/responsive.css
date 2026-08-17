@@ -6,29 +6,40 @@
    1. DESKTOP & LARGE SCREENS (≥ 1024px)
 ══════════════════════════════════════════════ */
 @media (min-width: 1024px) {
-  /* Grand Events: 3 cards in a row on desktop */
+  /* Grand Events: 3 cards in a row on desktop (slightly reduced by 5-10%) */
   #dollhouse-cards {
     grid-template-columns: repeat(3, 1fr);
-    max-width: 1200px;
+    max-width: 1100px;
+    gap: clamp(28px, 3.5vw, 56px) clamp(20px, 3vw, 48px);
   }
   .dollhouse-card {
-    max-width: clamp(300px, 28vw, 420px);
+    max-width: clamp(275px, 25vw, 380px);
   }
 
-  /* Top Architectural Canopy on Desktop (Slightly larger ceremonial scale) */
-  .events-top-decor {
-    padding: 0 40px;
+  /* Top Architectural Canopy on Desktop (Refined ~65-75% framing scale) */
+  #dollhouse-section .events-top-decor {
+    padding: 0 clamp(20px, 3vw, 50px);
   }
-  .events-lantern-item.lantern-left-far,
-  .events-lantern-item.lantern-right-far {
-    width: clamp(165px, 17vw, 290px);
+  #dollhouse-section .events-lantern-item.lantern-left-far,
+  #dollhouse-section .events-lantern-item.lantern-right-far {
+    width: clamp(130px, 13vw, 210px);
   }
-  .events-lantern-item.lantern-left-near,
-  .events-lantern-item.lantern-right-near {
-    width: clamp(115px, 12vw, 205px);
+  #dollhouse-section .events-lantern-item.lantern-left-near,
+  #dollhouse-section .events-lantern-item.lantern-right-near {
+    width: clamp(95px, 9.5vw, 155px);
   }
-  .events-lantern-item.lantern-center {
-    width: clamp(140px, 14vw, 245px);
+  #dollhouse-section .events-lantern-item.lantern-center {
+    width: clamp(110px, 11vw, 175px);
+  }
+
+  /* Hero Decorations on Desktop (Refined ~60-75% scale, edge-anchored) */
+  #hero .corner-comp.top-left-large,
+  #hero .corner-comp.top-right-large {
+    width: clamp(90px, 9.5vw, 150px);
+  }
+  #hero .corner-comp.top-left-small,
+  #hero .corner-comp.top-right-small {
+    width: clamp(52px, 5.5vw, 85px);
   }
 
   /* Frames Gallery on Desktop: 4 equal columns */
@@ -91,16 +102,39 @@
   /* Grand Events: 2-column on tablet */
   #dollhouse-cards {
     grid-template-columns: repeat(2, 1fr);
-    max-width: 780px;
-    gap: clamp(24px, 4vw, 42px);
+    max-width: 760px;
+    gap: clamp(22px, 3.5vw, 38px);
   }
   .dollhouse-card:nth-child(3) {
     grid-column: 1 / span 2;
     justify-self: center;
-    max-width: clamp(260px, 40vw, 360px);
+    max-width: clamp(240px, 38vw, 330px);
   }
   .dollhouse-card {
-    max-width: clamp(260px, 42vw, 360px);
+    max-width: clamp(240px, 38vw, 330px);
+  }
+
+  /* Top Architectural Canopy on Tablet */
+  #dollhouse-section .events-lantern-item.lantern-left-far,
+  #dollhouse-section .events-lantern-item.lantern-right-far {
+    width: clamp(100px, 13vw, 145px);
+  }
+  #dollhouse-section .events-lantern-item.lantern-left-near,
+  #dollhouse-section .events-lantern-item.lantern-right-near {
+    width: clamp(72px, 9.5vw, 110px);
+  }
+  #dollhouse-section .events-lantern-item.lantern-center {
+    width: clamp(82px, 11vw, 125px);
+  }
+
+  /* Hero Decorations on Tablet */
+  #hero .corner-comp.top-left-large,
+  #hero .corner-comp.top-right-large {
+    width: clamp(80px, 11vw, 115px);
+  }
+  #hero .corner-comp.top-left-small,
+  #hero .corner-comp.top-right-small {
+    width: clamp(48px, 6.5vw, 68px);
   }
 
   /* Frames on Tablet: 2x2 grid — 4 frames fit naturally */
@@ -163,9 +197,9 @@
   }
 
   #hero-text-outer {
-    top: clamp(95px, 15.5vh, 148px);
+    top: clamp(80px, 13vh, 120px);
     padding: 0 clamp(18px, 5vw, 32px);
-    gap: clamp(14px, 2.5vh, 28px);
+    gap: clamp(12px, 2vh, 24px);
   }
 
   #hero-text-group {
@@ -182,40 +216,46 @@
   }
 
   /* ── Mobile Hanging Lanterns in Hero (Framing outward with breathing margin) ── */
-  .corner-comp.top-left-large {
-    left: -8px;
+  #hero .corner-comp.top-left-large {
+    left: -4px;
     top: 0;
-    width: clamp(150px, 39vw, 195px);
+    width: clamp(95px, 26vw, 135px);
   }
-  .corner-comp.top-left-large .comp-lantern {
-    width: 58%;
-    margin-top: -14%;
+  #hero .corner-comp.top-left-large .comp-lantern {
+    width: 55%;
+    margin-top: -10%;
   }
 
-  .corner-comp.top-right-large {
-    right: -8px;
+  #hero .corner-comp.top-right-large {
+    right: -4px;
     top: 0;
-    width: clamp(150px, 39vw, 195px);
+    width: clamp(95px, 26vw, 135px);
   }
-  .corner-comp.top-right-large .comp-lantern {
-    width: 58%;
-    margin-top: -14%;
-  }
-
-  .corner-comp.top-left-small {
-    top: clamp(20px, 4vh, 45px);
-    left: clamp(50px, 12vw, 85px);
-    width: clamp(82px, 21vw, 105px);
+  #hero .corner-comp.top-right-large .comp-lantern {
+    width: 55%;
+    margin-top: -10%;
   }
 
-  .corner-comp.top-right-small {
-    top: clamp(30px, 5vh, 60px);
-    right: clamp(50px, 12vw, 85px);
-    width: clamp(82px, 21vw, 105px);
+  #hero .corner-comp.top-left-small {
+    top: 0;
+    left: clamp(45px, 12vw, 70px);
+    width: clamp(38px, 10vw, 50px);
   }
 
-  .garland-top {
-    max-height: clamp(90px, 22vw, 130px);
+  #hero .corner-comp.top-right-small {
+    top: 0;
+    right: clamp(45px, 12vw, 70px);
+    width: clamp(38px, 10vw, 50px);
+  }
+
+  #hero .corner-comp.top-left-small .comp-lantern,
+  #hero .corner-comp.top-right-small .comp-lantern {
+    width: 48%;
+    margin-top: -10%;
+  }
+
+  #hero .garland-top {
+    max-height: clamp(65px, 16vw, 95px);
   }
 
   /* ── Mobile Frames Gallery: Exactly 2 Columns, 15-20% Larger ── */
@@ -251,6 +291,7 @@
     height: auto !important;
     max-width: 100% !important;
     object-fit: contain;
+    filter: none !important;
   }
 
   .frame-item:nth-child(1) { transform: rotate(-0.8deg) !important; }
@@ -267,36 +308,43 @@
     gap: 18px;
   }
 
-  /* ── Mobile Red Section Top Canopy (15-20% larger ceremonial scale) ── */
+  /* ── Mobile Red Section Top Canopy (Preserved mobile framing scale) ── */
   #dollhouse-section {
-    padding-top: clamp(95px, 14vh, 140px);
+    padding-top: clamp(105px, 15vh, 145px);
   }
 
-  .events-top-decor {
+  /* Mobile Title slightly moved downward for breathing room */
+  #dollhouse-section .section-head {
+    margin-top: clamp(14px, 2.5vh, 22px);
+    gap: clamp(8px, 1.5vh, 16px);
+    margin-bottom: clamp(36px, 5.5vh, 60px);
+  }
+
+  #dollhouse-section .events-top-decor {
     padding: 0 4px;
   }
-  .events-lantern-item.lantern-left-far,
-  .events-lantern-item.lantern-right-far {
-    width: clamp(100px, 26vw, 160px);
+  #dollhouse-section .events-lantern-item.lantern-left-far,
+  #dollhouse-section .events-lantern-item.lantern-right-far {
+    width: clamp(95px, 25vw, 145px);
   }
-  .events-lantern-item.lantern-left-near,
-  .events-lantern-item.lantern-right-near {
-    width: clamp(76px, 19vw, 125px);
+  #dollhouse-section .events-lantern-item.lantern-left-near,
+  #dollhouse-section .events-lantern-item.lantern-right-near {
+    width: clamp(72px, 19vw, 110px);
   }
-  .events-lantern-item.lantern-center {
-    width: clamp(88px, 23vw, 140px);
+  #dollhouse-section .events-lantern-item.lantern-center {
+    width: clamp(82px, 22vw, 125px);
   }
 
-  /* ── Mobile Grand Events: 1 Card per Row ── */
+  /* ── Mobile Grand Events: 1 Card per Row (Reduced by 5-10%) ── */
   #dollhouse-cards {
     grid-template-columns: 1fr;
-    max-width: 340px;
-    gap: clamp(28px, 5.5vh, 44px);
+    max-width: 320px;
+    gap: clamp(24px, 5vh, 40px);
   }
 
   .dollhouse-card {
     grid-column: 1;
-    max-width: clamp(240px, 80vw, 310px);
+    max-width: clamp(225px, 75vw, 290px);
     margin: 0 auto;
   }
 

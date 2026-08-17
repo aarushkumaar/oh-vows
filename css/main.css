@@ -324,7 +324,7 @@ section {
 }
 
 #hero .corner-comp.top-left-small {
-  left: clamp(35px, 5vw, 75px);
+  left: clamp(70px, 9vw, 120px);
   top: 0;
   width: clamp(36px, 3.8vw, 56px);
   animation: lanternSway 8.1s ease-in-out infinite alternate;
@@ -340,7 +340,7 @@ section {
 }
 
 #hero .corner-comp.top-right-small {
-  right: clamp(35px, 5vw, 75px);
+  right: clamp(70px, 9vw, 120px);
   top: 0;
   width: clamp(36px, 3.8vw, 56px);
   animation: lanternSway 7.6s ease-in-out infinite alternate;

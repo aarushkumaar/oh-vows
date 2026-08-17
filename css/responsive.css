@@ -240,17 +240,17 @@
     margin-top: -10%;
   }
 
-  #hero .corner-comp.top-left-small {
+ #hero .corner-comp.top-left-small {
     top: 0;
-    left: clamp(45px, 12vw, 70px);
+    left: clamp(60px, 16vw, 85px);
     width: clamp(38px, 10vw, 50px);
-  }
+}
 
-  #hero .corner-comp.top-right-small {
+#hero .corner-comp.top-right-small {
     top: 0;
-    right: clamp(45px, 12vw, 70px);
+    right: clamp(60px, 16vw, 85px);
     width: clamp(38px, 10vw, 50px);
-  }
+}
 
   #hero .corner-comp.top-left-small .comp-lantern,
   #hero .corner-comp.top-right-small .comp-lantern {

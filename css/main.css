@@ -816,6 +816,7 @@ section {
   margin: 0 auto;
   align-items: center;
   justify-items: center;
+    margin-top: clamp(30px, 4vh, 48px);
 }
 
 .dollhouse-card {

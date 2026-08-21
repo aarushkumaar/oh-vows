@@ -1,5 +1,5 @@
 ﻿/**
- * Invitation Configuration â€” Single Source of Truth
+ * Invitation Configuration — Single Source of Truth
  *
  * Defines all 6 invitation variants. Loaded synchronously before all other
  * scripts so InvitationConfig is available when deferred modules execute.
@@ -11,7 +11,7 @@
   'use strict';
 
   /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-     DOMAIN â€” update to your actual Vercel / custom domain
+     DOMAIN — update to your actual Vercel / custom domain
      before going live. This affects OG image URLs.
   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   const SITE_DOMAIN  = 'https://thehvstory.in';
@@ -29,9 +29,9 @@
       route:       '/bride/one',
       events:      ['wedding'],
       rsvp: {
-        title:          'RSVP â€” Chhabra Family',
+        title:          'RSVP — Chhabra Family',
         names:          'Deepa Chhabra &amp;<br>Kamal Chhabra',
-        specialMention: 'Special â€” Mehar Chhabra',
+        specialMention: 'Special — Mehar Chhabra',
       },
       og: {
         title:       'Vartika & Hardik Wedding',
@@ -46,9 +46,9 @@
       route:       '/bride/two',
       events:      ['engagement-cocktail', 'wedding'],
       rsvp: {
-        title:          'RSVP â€” Chhabra Family',
+        title:          'RSVP — Chhabra Family',
         names:          'Deepa Chhabra &amp;<br>Kamal Chhabra',
-        specialMention: 'Special â€” Mehar Chhabra',
+        specialMention: 'Special — Mehar Chhabra',
       },
       og: {
         title:       'Vartika & Hardik Wedding',
@@ -63,9 +63,9 @@
       route:       '/bride/three',
       events:      ['engagement-cocktail', 'haldi-carnival', 'wedding'],
       rsvp: {
-        title:          'RSVP â€” Chhabra Family',
+        title:          'RSVP — Chhabra Family',
         names:          'Deepa Chhabra &amp;<br>Kamal Chhabra',
-        specialMention: 'Special â€” Mehar Chhabra',
+        specialMention: 'Special — Mehar Chhabra',
       },
       og: {
         title:       'Vartika & Hardik Wedding',
@@ -81,9 +81,9 @@
       route:       '/groom/one',
       events:      ['wedding'],
       rsvp: {
-        title:          'RSVP â€” Chawla Family',
+        title:          'RSVP — Chawla Family',
         names:          'Sonia Chawla &amp;<br>Vijay Chawla',
-        specialMention: 'Special Mention â€” Tarang Chawla',
+        specialMention: 'Special Mention — Tarang Chawla',
       },
       og: {
         title:       'Vartika & Hardik Wedding',
@@ -98,9 +98,9 @@
       route:       '/groom/two',
       events:      ['engagement-cocktail', 'wedding'],
       rsvp: {
-        title:          'RSVP â€” Chawla Family',
+        title:          'RSVP — Chawla Family',
         names:          'Sonia Chawla &amp;<br>Vijay Chawla',
-        specialMention: 'Special Mention â€” Tarang Chawla',
+        specialMention: 'Special Mention — Tarang Chawla',
       },
       og: {
         title:       'Vartika & Hardik Wedding',
@@ -115,9 +115,9 @@
       route:       '/groom/three',
       events:      ['engagement-cocktail', 'haldi-carnival', 'wedding'],
       rsvp: {
-        title:          'RSVP â€” Chawla Family',
+        title:          'RSVP — Chawla Family',
         names:          'Sonia Chawla &amp;<br>Vijay Chawla',
-        specialMention: 'Special Mention â€” Tarang Chawla',
+        specialMention: 'Special Mention — Tarang Chawla',
       },
       og: {
         title:       'Vartika & Hardik Wedding',

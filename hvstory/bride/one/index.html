@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-invitation="bride-one">
+<head>
+  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vartika &amp; Hardik Wedding</title>
+  <meta name="description" content="A celebration of love, family &amp; forever. #theHVstory" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Vartika &amp; Hardik" />
+  <meta property="og:title"       content="Vartika &amp; Hardik Wedding" />
+  <meta property="og:description" content="A celebration of love, family &amp; forever. #theHVstory" />
+  <meta property="og:image"       content="https://thehvstory.in/assets/images/gallery/cover-image.jpg" />
+  <meta property="og:url"         content="https://thehvstory.in/hvstory/bride/one" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Vartika &amp; Hardik Wedding" />
+  <meta name="twitter:description" content="A celebration of love, family &amp; forever. #theHVstory" />
+  <meta name="twitter:image"       content="https://thehvstory.in/assets/images/gallery/cover-image.jpg" />
+
+  <link rel="canonical" href="https://thehvstory.in/hvstory/bride/one" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
+
+  <link rel="preload" as="image" href="/assets/images/thumbs/hero-palace.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/images/loading/loading.svg"       fetchpriority="high" />
+
+  <link rel="stylesheet" href="/css/animations.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+
+  <script src="/js/invitations.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/js/countdown.js"  defer></script>
+  <script src="/js/events.js"     defer></script>
+  <script src="/js/animations.js" defer></script>
+  <script src="/js/music.js"      defer></script>
+  <script src="/js/main.js"       defer></script>
+</head>
+<body>
+
+  <div id="loading-overlay" role="status" aria-live="polite" aria-label="Loading your invitation">
+    <div id="loading-stamp-wrap">
+      <img id="loading-stamp" src="/assets/images/loading/loading.svg" alt="The HV Story â€” wedding invitation seal" />
+    </div>
+    <div id="loading-identity">
+      <p id="loading-title">the hv story</p>
+      <p id="loading-invite">You are warmly invited</p>
+    </div>
+    <div id="loading-tap-hint" aria-hidden="true">
+      <span class="tap-line"></span>
+      <p class="tap-text">Touch to Enter</p>
+    </div>
+  </div>
+
+  <button id="event-back-btn" type="button" aria-label="Return to events overview">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    Events
+  </button>
+
+  <div id="event-detail-view" aria-label="Event detail" role="region">
+    <div id="event-detail-content"></div>
+  </div>
+
+  <div id="event-transition" aria-hidden="true"></div>
+
+  <div id="main-site">
+    <canvas class="petal-canvas" id="petal-back"  aria-hidden="true"></canvas>
+    <canvas class="petal-canvas" id="petal-front" aria-hidden="true"></canvas>
+
+    <section id="hero" aria-label="Hero â€” Vartika &amp; Hardik">
+      <div id="hero-img-wrap">
+        <img id="hero-img" class="progressive-img" src="/assets/images/thumbs/hero-palace.webp" data-full="/assets/images/hero/hero-palace.png" alt="Vartika and Hardik â€” Palace to Lehenga" fetchpriority="high" />
+      </div>
+      <div id="hero-overlay" aria-hidden="true">
+        <img class="garland-top" src="/assets/images/decorative/garland-horizontal.svg" alt="" style="opacity:0.92;" />
+        <div class="corner-comp top-left-large">
+          <img class="comp-garland" src="/assets/images/decorative/garland-vertical.svg" alt="" />
+          <img class="comp-lantern" src="/assets/images/decorative/lantern.svg" alt="" />
+        </div>
+        <div class="corner-comp top-left-small">
+          <img class="comp-garland" src="/assets/images/decorative/garland-vertical.svg" alt="" />
+          <img class="comp-lantern" src="/assets/images/decorative/lantern-small.svg" alt="" />
+        </div>
+        <div class="corner-comp top-right-large">
+          <img class="comp-garland" src="/assets/images/decorative/garland-vertical.svg" alt="" />
+          <img class="comp-lantern" src="/assets/images/decorative/lantern.svg" alt="" />
+        </div>
+        <div class="corner-comp top-right-small">
+          <img class="comp-garland" src="/assets/images/decorative/garland-vertical.svg" alt="" />
+          <img class="comp-lantern" src="/assets/images/decorative/lantern-small.svg" alt="" />
+        </div>
+      </div>
+      <div id="hero-text-outer">
+        <div id="hero-text-group" aria-label="Wedding invitation">
+          <p class="eyebrow">Together Forever</p>
+          <div class="gold-rule" style="width:clamp(38px,7.5vw,78px);"></div>
+          <h1 class="display-title">Vartika &amp; Hardik</h1>
+          <p class="tagline">Celebrating love, family &amp; new beginnings</p>
+        </div>
+        <div id="hero-scroll-hint" aria-hidden="true">
+          <div class="scroll-hint-line"></div>
+          <div class="scroll-hint-chevron"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="frames-section" aria-label="Gallery â€” Our Journey">
+      <div class="section-head"><h2 class="display-title">Our Journey</h2></div>
+      <div id="frames-grid">
+        <div class="frame-item" data-size="lg" data-dir="left" data-base-rot="-1.2" data-fi="0">
+          <img class="progressive-img" src="/assets/images/thumbs/frame-1.webp" data-full="/assets/images/frames/frame-1.png" alt="Portrait frame" loading="lazy" decoding="async" />
+        </div>
+        <div class="frame-item frame-item-primary" data-size="xl" data-dir="up" data-base-rot="0.8" data-fi="1">
+          <img class="progressive-img" src="/assets/images/thumbs/frame-2.webp" data-full="/assets/images/frames/frame-2.png" alt="Portrait frame centerpiece" loading="lazy" decoding="async" />
+        </div>
+        <div class="frame-item" data-size="lg" data-dir="right" data-base-rot="-0.8" data-fi="2">
+          <img class="progressive-img" src="/assets/images/thumbs/frame-3.webp" data-full="/assets/images/frames/frame-3.png" alt="Portrait frame" loading="lazy" decoding="async" />
+        </div>
+        <div class="frame-item" data-size="md" data-dir="left" data-base-rot="1.0" data-fi="3">
+          <img class="progressive-img" src="/assets/images/thumbs/frame-4.webp" data-full="/assets/images/frames/frame-4.png" alt="Portrait frame" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </section>
+
+    <section id="polaroid-rope-section" aria-label="Our memories">
+      <div id="polaroids-row">
+        <div class="polaroid-item" data-pi="0">
+          <div class="polaroid-clip" aria-hidden="true"></div>
+          <div class="polaroid-body">
+            <div class="polaroid-photo-wrap"><img class="polaroid-photo progressive-img" src="/assets/images/thumbs/polaroid-1.webp" data-full="/assets/images/gallery/polaroid-1.jpg" alt="Where It Began" loading="lazy" decoding="async"/></div>
+            <p class="polaroid-caption">Where It Began</p>
+            <p class="polaroid-subtext">The first little chapter.</p>
+          </div>
+        </div>
+        <div class="polaroid-item" data-pi="1">
+          <div class="polaroid-clip" aria-hidden="true"></div>
+          <div class="polaroid-body">
+            <div class="polaroid-photo-wrap"><img class="polaroid-photo progressive-img" src="/assets/images/thumbs/polaroid-2.webp" data-full="/assets/images/gallery/polaroid-2.JPG" alt="Shared Laughter" loading="lazy" decoding="async"/></div>
+            <p class="polaroid-caption">Shared Laughter</p>
+            <p class="polaroid-subtext">Some moments simply stay.</p>
+          </div>
+        </div>
+        <div class="polaroid-item" data-pi="2">
+          <div class="polaroid-clip" aria-hidden="true"></div>
+          <div class="polaroid-body">
+            <div class="polaroid-photo-wrap"><img class="polaroid-photo progressive-img" src="/assets/images/thumbs/polaroid-3.webp" data-full="/assets/images/gallery/polaroid-3.HEIC" alt="Better Together" loading="lazy" decoding="async"/></div>
+            <p class="polaroid-caption">Better Together</p>
+            <p class="polaroid-subtext">Everywhere felt like home.</p>
+          </div>
+        </div>
+        <div class="polaroid-item" data-pi="3">
+          <div class="polaroid-clip" aria-hidden="true"></div>
+          <div class="polaroid-body">
+            <div class="polaroid-photo-wrap"><img class="polaroid-photo progressive-img" src="/assets/images/thumbs/polaroid-4.webp" data-full="/assets/images/gallery/polaroid-4.HEIC" alt="Forever, Always" loading="lazy" decoding="async"/></div>
+            <p class="polaroid-caption">Forever, Always</p>
+            <p class="polaroid-subtext">The moment became a memory.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dollhouse-section" aria-label="Our Grand Events">
+      <div class="events-top-decor" aria-hidden="true">
+        <div class="events-lantern-item lantern-left-far"><img src="/assets/images/decorative/garland-vertical.svg" class="drape-garland" alt="" /><img src="/assets/images/decorative/lantern.svg" class="drape-lantern" alt="" /></div>
+        <div class="events-lantern-item lantern-left-near"><img src="/assets/images/decorative/garland-vertical.svg" class="drape-garland" alt="" /><img src="/assets/images/decorative/lantern-small.svg" class="drape-lantern" alt="" /></div>
+        <div class="events-lantern-item lantern-center"><img src="/assets/images/decorative/lantern.svg" class="drape-lantern" alt="" /></div>
+        <div class="events-lantern-item lantern-right-near"><img src="/assets/images/decorative/garland-vertical.svg" class="drape-garland" alt="" /><img src="/assets/images/decorative/lantern-small.svg" class="drape-lantern" alt="" /></div>
+        <div class="events-lantern-item lantern-right-far"><img src="/assets/images/decorative/garland-vertical.svg" class="drape-garland" alt="" /><img src="/assets/images/decorative/lantern.svg" class="drape-lantern" alt="" /></div>
+      </div>
+      <div class="section-head">
+        <p class="eyebrow">The Celebrations</p>
+        <div class="gold-rule"></div>
+        <h2 class="display-title" style="font-size:clamp(30px,5.5vw,70px);">Jashn-e-Bahar</h2>
+        <p class="tagline">A season of love, laughter, and celebration.</p>
+        <p class="events-microcopy">Click for more details</p>
+      </div>
+      <div id="dollhouse-cards"></div>
+    </section>
+
+    <section id="rsvp-section" aria-label="RSVP">
+      <div class="section-head">
+        <p class="eyebrow">WITH GREAT JOY</p>
+        <div class="gold-rule"></div>
+        <h2 class="display-title" style="font-size:clamp(28px,5vw,64px);">RSVP</h2>
+        <p class="tagline">You are warmly invited to be part of our celebration.</p>
+        <p class="rsvp-subtext">Your presence would make our joy complete.</p>
+      </div>
+      <div class="rsvp-invite-cue">
+        <div class="gold-rule" style="width:44px;opacity:0.55;margin:0 auto 8px;"></div>
+        <p class="rsvp-personal-line">We hope you will join us.</p>
+      </div>
+      <div class="rsvp-family-card" id="rsvp-family-display">
+        <div class="gold-rule" style="width:50px;opacity:0.6;"></div>
+        <p class="rsvp-family-title">RSVP â€” Chhabra Family</p>
+        <p class="rsvp-family-names">Deepa Chhabra &amp; <br> Kamal Chhabra</p>
+        <p class="rsvp-family-special">Special â€” Mehar Chhabra</p>
+      </div>
+    </section>
+
+    <section id="countdown-section" aria-label="Countdown to the wedding">
+      <div class="section-head">
+        <p class="eyebrow">The Big Day</p>
+        <div class="gold-rule"></div>
+        <h2 class="display-title" style="font-size:clamp(28px,5vw,64px);">Counting Down</h2>
+        <p class="tagline">Until we say &ldquo;I do&rdquo;</p>
+      </div>
+      <div id="countdown-grid">
+        <div class="cd-block"><div class="cd-digits"><span class="cd-value" id="cd-days">00</span></div><div class="cd-gold-line"></div><div class="cd-label">Days</div></div>
+        <div class="cd-separator" aria-hidden="true">:</div>
+        <div class="cd-block"><div class="cd-digits"><span class="cd-value" id="cd-hours">00</span></div><div class="cd-gold-line"></div><div class="cd-label">Hours</div></div>
+        <div class="cd-separator" aria-hidden="true">:</div>
+        <div class="cd-block"><div class="cd-digits"><span class="cd-value" id="cd-mins">00</span></div><div class="cd-gold-line"></div><div class="cd-label">Minutes</div></div>
+        <div class="cd-separator" aria-hidden="true">:</div>
+        <div class="cd-block"><div class="cd-digits"><span class="cd-value" id="cd-secs">00</span></div><div class="cd-gold-line"></div><div class="cd-label">Seconds</div></div>
+      </div>
+      <p id="countdown-date-note">21 September 2026 &nbsp;&middot;&nbsp; New Delhi, India</p>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=The+Grand+Palace+Lawns+New+Delhi" target="_blank" rel="noopener noreferrer" class="see-root-link">Get Directions</a>
+    </section>
+
+    <section id="carousel-section" aria-label="Moments Along the Way">
+      <div class="section-head">
+        <p class="eyebrow">Moments Along the Way</p>
+        <div class="gold-rule"></div>
+        <h2 class="display-title" style="font-size:clamp(28px,5vw,64px);">Before the Big Day</h2>
+        <p class="tagline">Glimpses of laughter, light &amp; love</p>
+      </div>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carousel-track"></div>
+      </div>
+    </section>
+
+    <footer id="site-footer">
+      <p>Vartika &amp; Hardik &nbsp;&middot;&nbsp; With love</p>
+    </footer>
+  </div><!-- /#main-site -->
+
+</body>
+</html>

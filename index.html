@@ -1,52 +1,75 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vartika &amp; Hardik — A Love Story Begins</title>
-  <meta name="description" content="You are invited to witness the union of Vartika &amp; Hardik. Scroll to reveal a story of love, family &amp; new beginnings." />
+  <title>Vartika &amp; Hardik â€” A Love Story Begins</title>
+  <meta name="description" content="A celebration of love, family &amp; forever. You are warmly invited to witness the union of Vartika &amp; Hardik. #theHVstory" />
+
+  <!-- Open Graph (default / root route) -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Vartika &amp; Hardik" />
+  <meta property="og:title"       content="Vartika &amp; Hardik Wedding" />
+  <meta property="og:description" content="A celebration of love, family &amp; forever. #theHVstory" />
+  <meta property="og:image"       content="https://thehvstory.in/assets/images/gallery/cover-image.jpg" />
+  <meta property="og:url"         content="https://thehvstory.in" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Vartika &amp; Hardik Wedding" />
+  <meta name="twitter:description" content="A celebration of love, family &amp; forever. #theHVstory" />
+  <meta name="twitter:image"       content="https://thehvstory.in/assets/images/gallery/cover-image.jpg" />
+
+  <link rel="canonical" href="https://thehvstory.in" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
 
-  <!-- Preload lightweight above-the-fold hero thumbnail (29KB) -->
-  <link rel="preload" as="image" href="assets/images/thumbs/hero-palace.webp" fetchpriority="high" />
-  <!-- Preload the loading screen stamp (displayed before anything else) -->
-  <link rel="preload" as="image" href="assets/images/loading/loading.svg" fetchpriority="high" />
+  <!-- Preload above-the-fold assets -->
+  <link rel="preload" as="image" href="/assets/images/thumbs/hero-palace.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/images/loading/loading.svg"       fetchpriority="high" />
 
   <!-- Modular Stylesheets -->
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/main.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+
+  <!-- Invitation Configuration â€” synchronous, must run before any deferred scripts -->
+  <script src="/js/invitations.js"></script>
 
   <!-- External JavaScript Libraries (Deferred) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
   <!-- Modular Application Scripts (Deferred) -->
-  <script src="js/countdown.js" defer></script>
-  <script src="js/events.js" defer></script>
-  <script src="js/animations.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <script src="/js/countdown.js"  defer></script>
+  <script src="/js/events.js"     defer></script>
+  <script src="/js/animations.js" defer></script>
+  <script src="/js/music.js"      defer></script>
+  <script src="/js/main.js"       defer></script>
 </head>
 <body>
 
-  <!-- ══ LOADING OVERLAY ══ -->
+  <!-- â•â• LOADING OVERLAY â•â• -->
   <div id="loading-overlay" role="status" aria-live="polite" aria-label="Loading your invitation">
     <div id="loading-stamp-wrap">
       <img id="loading-stamp"
-           src="assets/images/loading/loading.svg"
-           alt="The HV Story — wedding invitation seal" />
+           src="/assets/images/loading/loading.svg"
+           alt="The HV Story â€” wedding invitation seal" />
     </div>
     <div id="loading-identity">
       <p id="loading-title">the hv story</p>
       <p id="loading-invite">You are warmly invited</p>
     </div>
+    <div id="loading-tap-hint" aria-hidden="true">
+      <span class="tap-line"></span>
+      <p class="tap-text">Touch to Enter</p>
+    </div>
   </div>
 
-  <!-- ══ EVENT DETAIL BACK BUTTON ══ -->
+  <!-- â•â• EVENT DETAIL BACK BUTTON â•â• -->
   <button id="event-back-btn" type="button" aria-label="Return to events overview">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -55,61 +78,61 @@
     Events
   </button>
 
-  <!-- ══ EVENT DETAIL VIEW ══ -->
+  <!-- â•â• EVENT DETAIL VIEW â•â• -->
   <div id="event-detail-view" aria-label="Event detail" role="region">
     <div id="event-detail-content"></div>
   </div>
 
-  <!-- ══ EVENT TRANSITION OVERLAY ══ -->
+  <!-- â•â• EVENT TRANSITION OVERLAY â•â• -->
   <div id="event-transition" aria-hidden="true"></div>
 
-  <!-- ══════════════════════════════════════════════════════
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        MAIN SITE
-  ══════════════════════════════════════════════════════ -->
+  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
   <div id="main-site">
 
     <!-- PETAL CANVASES -->
     <canvas class="petal-canvas" id="petal-back"  aria-hidden="true"></canvas>
     <canvas class="petal-canvas" id="petal-front" aria-hidden="true"></canvas>
 
-    <!-- ══════════════════════════════════
-         §1 HERO
-    ══════════════════════════════════ -->
-    <section id="hero" aria-label="Hero — Vartika &amp; Hardik">
+    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+         Â§1 HERO
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <section id="hero" aria-label="Hero â€” Vartika &amp; Hardik">
 
       <div id="hero-img-wrap">
         <img id="hero-img"
              class="progressive-img"
-             src="assets/images/thumbs/hero-palace.webp"
-             data-full="assets/images/hero/hero-palace.png"
-             alt="Vartika and Hardik — Palace to Lehenga"
+             src="/assets/images/thumbs/hero-palace.webp"
+             data-full="/assets/images/hero/hero-palace.png"
+             alt="Vartika and Hardik â€” Palace to Lehenga"
              fetchpriority="high" />
       </div>
 
       <!-- Decoration overlay -->
       <div id="hero-overlay" aria-hidden="true">
         <img class="garland-top"
-             src="assets/images/decorative/garland-horizontal.svg"
+             src="/assets/images/decorative/garland-horizontal.svg"
              alt="" style="opacity:0.92;" />
 
         <!-- LEFT SIDE: Large Garland + Lantern, Small Garland + Lantern -->
         <div class="corner-comp top-left-large">
-          <img class="comp-garland" src="assets/images/decorative/garland-vertical.svg" alt="" />
-          <img class="comp-lantern" src="assets/images/decorative/lantern.svg" alt="" />
+          <img class="comp-garland" src="/assets/images/decorative/garland-vertical.svg" alt="" />
+          <img class="comp-lantern" src="/assets/images/decorative/lantern.svg" alt="" />
         </div>
         <div class="corner-comp top-left-small">
-          <img class="comp-garland" src="assets/images/decorative/garland-vertical.svg" alt="" />
-          <img class="comp-lantern" src="assets/images/decorative/lantern-small.svg" alt="" />
+          <img class="comp-garland" src="/assets/images/decorative/garland-vertical.svg" alt="" />
+          <img class="comp-lantern" src="/assets/images/decorative/lantern-small.svg" alt="" />
         </div>
 
         <!-- RIGHT SIDE: Large Garland + Lantern, Small Garland + Lantern -->
         <div class="corner-comp top-right-large">
-          <img class="comp-garland" src="assets/images/decorative/garland-vertical.svg" alt="" />
-          <img class="comp-lantern" src="assets/images/decorative/lantern.svg" alt="" />
+          <img class="comp-garland" src="/assets/images/decorative/garland-vertical.svg" alt="" />
+          <img class="comp-lantern" src="/assets/images/decorative/lantern.svg" alt="" />
         </div>
         <div class="corner-comp top-right-small">
-          <img class="comp-garland" src="assets/images/decorative/garland-vertical.svg" alt="" />
-          <img class="comp-lantern" src="assets/images/decorative/lantern-small.svg" alt="" />
+          <img class="comp-garland" src="/assets/images/decorative/garland-vertical.svg" alt="" />
+          <img class="comp-lantern" src="/assets/images/decorative/lantern-small.svg" alt="" />
         </div>
       </div>
 
@@ -129,40 +152,44 @@
 
     </section>
 
-    <!-- ══════════════════════════════════
-         §2 FRAMES GALLERY (5 Strongest Frames)
-    ══════════════════════════════════ -->
-    <section id="frames-section" aria-label="Gallery — Our Journey">
+    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+         Â§2 FRAMES GALLERY (5 Strongest Frames)
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <section id="frames-section" aria-label="Gallery â€” Our Journey">
       <div class="section-head">
         <h2 class="display-title">Our Journey</h2>
       </div>
 
       <div id="frames-grid">
         <div class="frame-item" data-size="lg" data-dir="left" data-base-rot="-1.2" data-fi="0">
-          <img class="progressive-img" src="assets/images/thumbs/frame-1.webp" data-full="assets/images/frames/frame-1.png" alt="Portrait frame" loading="lazy" decoding="async" />
+          <img class="progressive-img" src="/assets/images/thumbs/frame-1.webp" data-full="/assets/images/frames/frame-1.png" alt="Portrait frame" loading="lazy" decoding="async" />
         </div>
         <div class="frame-item frame-item-primary" data-size="xl" data-dir="up" data-base-rot="0.8" data-fi="1">
-          <img class="progressive-img" src="assets/images/thumbs/frame-2.webp" data-full="assets/images/frames/frame-2.png" alt="Portrait frame centerpiece" loading="lazy" decoding="async" />
+          <img class="progressive-img" src="/assets/images/thumbs/frame-2.webp" data-full="/assets/images/frames/frame-2.png" alt="Portrait frame centerpiece" loading="lazy" decoding="async" />
         </div>
         <div class="frame-item" data-size="lg" data-dir="right" data-base-rot="-0.8" data-fi="2">
-          <img class="progressive-img" src="assets/images/thumbs/frame-3.webp" data-full="assets/images/frames/frame-3.png" alt="Portrait frame" loading="lazy" decoding="async" />
+          <img class="progressive-img" src="/assets/images/thumbs/frame-3.webp" data-full="/assets/images/frames/frame-3.png" alt="Portrait frame" loading="lazy" decoding="async" />
         </div>
         <div class="frame-item" data-size="md" data-dir="left" data-base-rot="1.0" data-fi="3">
-          <img class="progressive-img" src="assets/images/thumbs/frame-4.webp" data-full="assets/images/frames/frame-4.png" alt="Portrait frame" loading="lazy" decoding="async" />
+          <img class="progressive-img" src="/assets/images/thumbs/frame-4.webp" data-full="/assets/images/frames/frame-4.png" alt="Portrait frame" loading="lazy" decoding="async" />
         </div>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════
-         §2b POLAROID SECTION (Physical Hanging Memories)
-    ══════════════════════════════════ -->
+    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+         Â§2b POLAROID SECTION (Physical Hanging Memories)
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
     <section id="polaroid-rope-section" aria-label="Our memories">
       <div id="polaroids-row">
         <div class="polaroid-item" data-pi="0">
           <div class="polaroid-clip" aria-hidden="true"></div>
           <div class="polaroid-body">
             <div class="polaroid-photo-wrap">
-              <img class="polaroid-photo progressive-img" src="assets/images/thumbs/polaroid-1.webp" data-full="assets/images/gallery/polaroid-1.jpg" alt="Where It Began" loading="lazy" decoding="async"/>
+              <img class="polaroid-photo progressive-img"
+                   src="/assets/images/thumbs/polaroid-1.webp"
+                   data-full="/assets/images/gallery/polaroid-1.jpg"
+                   alt="Where It Began"
+                   loading="lazy" decoding="async"/>
             </div>
             <p class="polaroid-caption">Where It Began</p>
             <p class="polaroid-subtext">The first little chapter.</p>
@@ -173,7 +200,11 @@
           <div class="polaroid-clip" aria-hidden="true"></div>
           <div class="polaroid-body">
             <div class="polaroid-photo-wrap">
-              <img class="polaroid-photo progressive-img" src="assets/images/thumbs/polaroid-2.webp" data-full="assets/images/gallery/polaroid-2.jpg" alt="Shared Laughter" loading="lazy" decoding="async"/>
+              <img class="polaroid-photo progressive-img"
+                   src="/assets/images/thumbs/polaroid-2.webp"
+                   data-full="/assets/images/gallery/polaroid-2.JPG"
+                   alt="Shared Laughter"
+                   loading="lazy" decoding="async"/>
             </div>
             <p class="polaroid-caption">Shared Laughter</p>
             <p class="polaroid-subtext">Some moments simply stay.</p>
@@ -184,7 +215,11 @@
           <div class="polaroid-clip" aria-hidden="true"></div>
           <div class="polaroid-body">
             <div class="polaroid-photo-wrap">
-              <img class="polaroid-photo progressive-img" src="assets/images/thumbs/polaroid-3.webp" data-full="assets/images/gallery/polaroid-3.jpg" alt="Better Together" loading="lazy" decoding="async"/>
+              <img class="polaroid-photo progressive-img"
+                   src="/assets/images/thumbs/polaroid-3.webp"
+                   data-full="/assets/images/gallery/polaroid-3.HEIC"
+                   alt="Better Together"
+                   loading="lazy" decoding="async"/>
             </div>
             <p class="polaroid-caption">Better Together</p>
             <p class="polaroid-subtext">Everywhere felt like home.</p>
@@ -195,7 +230,11 @@
           <div class="polaroid-clip" aria-hidden="true"></div>
           <div class="polaroid-body">
             <div class="polaroid-photo-wrap">
-              <img class="polaroid-photo progressive-img" src="assets/images/thumbs/polaroid-4.webp" data-full="assets/images/gallery/polaroid-4.jpg" alt="Forever, Always" loading="lazy" decoding="async"/>
+              <img class="polaroid-photo progressive-img"
+                   src="/assets/images/thumbs/polaroid-4.webp"
+                   data-full="/assets/images/gallery/polaroid-4.HEIC"
+                   alt="Forever, Always"
+                   loading="lazy" decoding="async"/>
             </div>
             <p class="polaroid-caption">Forever, Always</p>
             <p class="polaroid-subtext">The moment became a memory.</p>
@@ -204,30 +243,30 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════
-         §3 GRAND EVENTS
-    ══════════════════════════════════ -->
+    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+         Â§3 GRAND EVENTS
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
     <section id="dollhouse-section" aria-label="Our Grand Events">
-      <!-- Architectural Hanging Canopy & Lanterns (Draping naturally from the top edge of the Red section) -->
+      <!-- Architectural Hanging Canopy & Lanterns -->
       <div class="events-top-decor" aria-hidden="true">
         <div class="events-lantern-item lantern-left-far">
-          <img src="assets/images/decorative/garland-vertical.svg" class="drape-garland" alt="" />
-          <img src="assets/images/decorative/lantern.svg" class="drape-lantern" alt="" />
+          <img src="/assets/images/decorative/garland-vertical.svg" class="drape-garland" alt="" />
+          <img src="/assets/images/decorative/lantern.svg" class="drape-lantern" alt="" />
         </div>
         <div class="events-lantern-item lantern-left-near">
-          <img src="assets/images/decorative/garland-vertical.svg" class="drape-garland" alt="" />
-          <img src="assets/images/decorative/lantern-small.svg" class="drape-lantern" alt="" />
+          <img src="/assets/images/decorative/garland-vertical.svg" class="drape-garland" alt="" />
+          <img src="/assets/images/decorative/lantern-small.svg" class="drape-lantern" alt="" />
         </div>
         <div class="events-lantern-item lantern-center">
-          <img src="assets/images/decorative/lantern.svg" class="drape-lantern" alt="" />
+          <img src="/assets/images/decorative/lantern.svg" class="drape-lantern" alt="" />
         </div>
         <div class="events-lantern-item lantern-right-near">
-          <img src="assets/images/decorative/garland-vertical.svg" class="drape-garland" alt="" />
-          <img src="assets/images/decorative/lantern-small.svg" class="drape-lantern" alt="" />
+          <img src="/assets/images/decorative/garland-vertical.svg" class="drape-garland" alt="" />
+          <img src="/assets/images/decorative/lantern-small.svg" class="drape-lantern" alt="" />
         </div>
         <div class="events-lantern-item lantern-right-far">
-          <img src="assets/images/decorative/garland-vertical.svg" class="drape-garland" alt="" />
-          <img src="assets/images/decorative/lantern.svg" class="drape-lantern" alt="" />
+          <img src="/assets/images/decorative/garland-vertical.svg" class="drape-garland" alt="" />
+          <img src="/assets/images/decorative/lantern.svg" class="drape-lantern" alt="" />
         </div>
       </div>
 
@@ -239,13 +278,12 @@
         <p class="events-microcopy">Click for more details</p>
       </div>
 
-      <!-- 3 + 2 Centered Editorial Composition of Floating PNG Artwork -->
       <div id="dollhouse-cards"></div>
     </section>
 
-    <!-- ══════════════════════════════════
-         §4 RSVP
-    ══════════════════════════════════ -->
+    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+         Â§4 RSVP
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
     <section id="rsvp-section" aria-label="RSVP">
       <div class="section-head">
         <p class="eyebrow">WITH GREAT JOY</p>
@@ -260,18 +298,19 @@
         <p class="rsvp-personal-line">We hope you will join us.</p>
       </div>
 
-      <!-- Family Information Focal Point -->
-      <div class="rsvp-family-card">
+      <!-- Family Information â€” populated dynamically by renderRSVP() in main.js -->
+      <div class="rsvp-family-card" id="rsvp-family-display">
+        <!-- Fallback (bride-side) shown if JS hasn't rendered yet -->
         <div class="gold-rule" style="width: 50px; opacity: 0.6;"></div>
-        <p class="rsvp-family-title">RSVP — Chhabra Family</p>
+        <p class="rsvp-family-title">RSVP â€” Chhabra Family</p>
         <p class="rsvp-family-names">Deepa Chhabra &amp; <br> Kamal Chhabra</p>
-        <p class="rsvp-family-special">Special — Mehar Chhabra</p>
+        <p class="rsvp-family-special">Special â€” Mehar Chhabra</p>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════
-         §6 COUNTDOWN
-    ══════════════════════════════════ -->
+    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+         Â§6 COUNTDOWN
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
     <section id="countdown-section" aria-label="Countdown to the wedding">
       <div class="section-head">
         <p class="eyebrow">The Big Day</p>
@@ -298,9 +337,9 @@
 </a>
     </section>
 
-    <!-- ══════════════════════════════════
-         §7 MEMORY CAROUSEL — Moments Along the Way
-    ══════════════════════════════════ -->
+    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+         Â§7 MEMORY CAROUSEL â€” Moments Along the Way
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
     <section id="carousel-section" aria-label="Moments Along the Way">
       <div class="section-head">
         <p class="eyebrow">Moments Along the Way</p>

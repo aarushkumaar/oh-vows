@@ -120,11 +120,11 @@
      PETAL PHYSICS (Light and Organic)
   ────────────────────────────────────────── */
   const PETAL_SVGS = [
-    'assets/images/decorative/flower-pink.svg',
-    'assets/images/decorative/flower-orange.svg',
-    'assets/images/decorative/flower-yellow.svg',
-    'assets/images/decorative/flower-yellow-orange.svg',
-    'assets/images/decorative/flower-white.svg',
+    '/assets/images/decorative/flower-pink.svg',
+    '/assets/images/decorative/flower-orange.svg',
+    '/assets/images/decorative/flower-yellow.svg',
+    '/assets/images/decorative/flower-yellow-orange.svg',
+    '/assets/images/decorative/flower-white.svg',
   ];
 
   const loadedPetalImgs = [];

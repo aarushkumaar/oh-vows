@@ -1877,3 +1877,143 @@ section {
   background: rgba(201, 162, 39, 0.32);
   color: var(--ivory);
 }
+
+/* ══════════════════════════════════════════════
+   MUSIC TOGGLE BUTTON
+   Fixed top-right — part of the invitation feel,
+   not a generic media player.
+══════════════════════════════════════════════ */
+#music-toggle {
+  position: fixed;
+  top: clamp(14px, 2.5vh, 24px);
+  right: clamp(14px, 2.8vw, 28px);
+  z-index: 601;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: rgba(10, 4, 0, 0.82);
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  border-radius: 50%;
+  color: var(--gold-light);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+  transition: background 0.3s, border-color 0.3s, transform 0.2s, opacity 0.3s;
+}
+
+#music-toggle:hover {
+  background: rgba(201, 162, 39, 0.22);
+  border-color: var(--gold-light);
+  transform: scale(1.1);
+}
+
+#music-toggle:active {
+  transform: scale(0.96);
+}
+
+#music-toggle.is-paused {
+  opacity: 0.55;
+}
+
+#music-toggle svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════
+   LOADING — TAP TO ENTER HINT
+   Appears after assets are loaded, below the stamp.
+   Signals to the visitor that a tap opens the invitation.
+══════════════════════════════════════════════ */
+#loading-tap-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(7px, 1.2vh, 12px);
+  margin-top: clamp(22px, 4vh, 44px);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hint becomes visible once assets are loaded */
+#loading-overlay.is-ready #loading-tap-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tap-line {
+  display: block;
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(to bottom, transparent, rgba(201, 162, 39, 0.65), transparent);
+  animation: tapLinePulse 2s ease-in-out infinite;
+}
+
+.tap-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(11px, 2vw, 13px);
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: rgba(243, 223, 162, 0.55);
+  font-weight: 300;
+  text-align: center;
+}
+
+@keyframes tapLinePulse {
+  0%, 100% { opacity: 0.35; transform: scaleY(0.65); }
+  55%       { opacity: 1;    transform: scaleY(1);    }
+}
+
+/* Loading overlay is now a tap target once ready */
+#loading-overlay.is-ready {
+  cursor: pointer;
+}
+
+/* ══════════════════════════════════════════════
+   EVENT COUNT — ADAPTIVE DOLLHOUSE GRID
+   1 or 2 events: grid adapts so there are no
+   awkward blank columns. Feels intentional.
+══════════════════════════════════════════════ */
+#dollhouse-cards[data-event-count="1"] {
+  grid-template-columns: 1fr;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#dollhouse-cards[data-event-count="2"] {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* On mobile: single event always full width, 2 events stay 1-col */
+@media (max-width: 767px) {
+  #dollhouse-cards[data-event-count="1"],
+  #dollhouse-cards[data-event-count="2"] {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+  #dollhouse-cards[data-event-count="2"] .dollhouse-card {
+    max-width: clamp(225px, 75vw, 290px);
+  }
+}
+
+/* On tablet: 2 events side-by-side (override default 2-col CSS) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  #dollhouse-cards[data-event-count="2"] .dollhouse-card:nth-child(3) {
+    grid-column: unset;
+    justify-self: unset;
+    max-width: clamp(240px, 38vw, 330px);
+  }
+}
+

@@ -16,7 +16,7 @@
       id:          'engagement-cocktail',
       label:       'Sagan Engagement - The Glitz Noir',
       file:        'engagement-cocktail.png',
-      background:  'assets/images/backgrounds/cocktail-bg.png',
+      background:  '/assets/images/backgrounds/cocktail-bg.png',
       date:        'Friday, 18 September 2026',
       shortDate:   '18 Sept',
       time:        '7:00 PM Onwards',
@@ -40,8 +40,8 @@
       id:          'haldi-carnival',
       label:       'Pastel Rave',
       file:        'haldi-carnival.png',
-      background:  'assets/images/backgrounds/yellow-bg.png',
-      date:        'Sunday, 19 September 2026',
+      background:  '/assets/images/backgrounds/yellow-bg.png',
+      date:        'Sunday, 20 September 2026',
       shortDate:   '20 Sept',
       time:        '12:00 PM Onwards',
       location:    'Pool Side Deck, Omnia Convention by Tivoli',
@@ -64,7 +64,7 @@
       id:          'wedding',
       label:       'Pheras of forever',
       file:        'wedding.png',
-      background:  'assets/images/backgrounds/bg-red.png',
+      background:  '/assets/images/backgrounds/bg-red.png',
       date:        'Monday, 21 September 2026',
       shortDate:   '21 Sept',
       time:        '6PM Baraat Assembly, 8:30PM Pheraas',
@@ -104,9 +104,24 @@
     return EVENTS.find(e => e.id === id) || null;
   }
 
+  /**
+   * Returns the subset of EVENTS allowed for the current invitation.
+   * Falls back to all events if InvitationConfig is unavailable.
+   */
+  function getFilteredEvents() {
+    const allowedIds = window.InvitationConfig?.getFilteredEventIds();
+    if (!allowedIds || !allowedIds.length) return EVENTS;
+    return EVENTS.filter(ev => allowedIds.includes(ev.id));
+  }
+
+  /**
+   * Returns the next event within the FILTERED set only.
+   * Visitors on single-event invitations never see a "next" pointer.
+   */
   function getNextEvent(id) {
-    const idx = EVENTS.findIndex(e => e.id === id);
-    return idx >= 0 && idx < EVENTS.length - 1 ? EVENTS[idx + 1] : null;
+    const filtered = getFilteredEvents();
+    const idx = filtered.findIndex(e => e.id === id);
+    return idx >= 0 && idx < filtered.length - 1 ? filtered[idx + 1] : null;
   }
 
   /* ──────────────────────────────────────────
@@ -116,7 +131,13 @@
     const container = document.getElementById('dollhouse-cards');
     if (!container) return;
     container.innerHTML = '';
-    EVENTS.forEach((ev) => {
+
+    const filtered = getFilteredEvents();
+
+    // Expose event count as a data attribute so CSS can adapt the grid
+    container.setAttribute('data-event-count', filtered.length);
+
+    filtered.forEach((ev) => {
       const card = document.createElement('div');
       card.className = 'dollhouse-card';
       card.setAttribute('role', 'button');
@@ -127,8 +148,8 @@
       card.innerHTML = `
         <div class="dollhouse-card-img-wrap">
           <img class="progressive-img"
-               src="assets/images/thumbs/${thumbFile}"
-               data-full="assets/images/events/${ev.file}"
+               src="/assets/images/thumbs/${thumbFile}"
+               data-full="/assets/images/events/${ev.file}"
                alt="${ev.label}"
                loading="lazy"
                decoding="async" />
@@ -233,7 +254,7 @@
         <div class="event-hero-grad"></div>
         <div class="event-hero-artwork-wrap">
           <img class="event-hero-img"
-               src="assets/images/events/${ev.file}"
+               src="/assets/images/events/${ev.file}"
                alt="${ev.label}" />
         </div>
         <div class="event-hero-text">
@@ -257,21 +278,21 @@
         <div class="ev-details-row" id="ev-details">
           <div class="ev-detail-item">
             <div class="ev-detail-icon" aria-hidden="true">
-              <img class="ev-icon" src="assets/images/icons/calander-logo.png" alt="" />
+              <img class="ev-icon" src="/assets/images/icons/calander-logo.png" alt="" />
             </div>
             <div class="ev-detail-label">Date</div>
             <div class="ev-detail-value">${ev.date}</div>
           </div>
           <div class="ev-detail-item">
             <div class="ev-detail-icon" aria-hidden="true">
-              <img class="ev-icon ev-icon--time" src="assets/images/icons/time-logo.png" alt="" />
+              <img class="ev-icon ev-icon--time" src="/assets/images/icons/time-logo.png" alt="" />
             </div>
             <div class="ev-detail-label">Time</div>
             <div class="ev-detail-value">${ev.time}</div>
           </div>
           <div class="ev-detail-item">
             <div class="ev-detail-icon" aria-hidden="true">
-              <img class="ev-icon ev-icon--venue" src="assets/images/icons/venue-logo.png" alt="" />
+              <img class="ev-icon ev-icon--venue" src="/assets/images/icons/venue-logo.png" alt="" />
             </div>
             <div class="ev-detail-label">Venue</div>
             <div class="ev-detail-value">${ev.location}</div>
@@ -493,14 +514,14 @@
      BRIDE + GROOM INFINITE CAROUSEL (Progressive Thumbnails)
   ────────────────────────────────────────── */
   const CAROUSEL_IMAGES = [
-    { thumb: 'assets/images/thumbs/carousel-1.webp', full: 'assets/images/gallery/carousel-1.jpg' },
-    { thumb: 'assets/images/thumbs/carousel-2.webp', full: 'assets/images/gallery/carousel-2.jpg' },
-    { thumb: 'assets/images/thumbs/carousel-3.webp', full: 'assets/images/gallery/carousel-3.jpg' },
-    { thumb: 'assets/images/thumbs/carousel-4.webp', full: 'assets/images/gallery/carousel-4.jpg' },
-    { thumb: 'assets/images/thumbs/carousel-5.webp', full: 'assets/images/gallery/carousel-5.jpg' },
-    { thumb: 'assets/images/thumbs/carousel-6.webp', full: 'assets/images/gallery/carousel-6.jpg' },
-    { thumb: 'assets/images/thumbs/carousel-7.webp', full: 'assets/images/gallery/carousel-7.jpg' },
-    { thumb: 'assets/images/thumbs/carousel-8.webp', full: 'assets/images/gallery/carousel-8.jpg' },
+    { thumb: '/assets/images/thumbs/carousel-1.webp', full: '/assets/images/gallery/carousel-1.jpg' },
+    { thumb: '/assets/images/thumbs/carousel-2.webp', full: '/assets/images/gallery/carousel-2.jpg' },
+    { thumb: '/assets/images/thumbs/carousel-3.webp', full: '/assets/images/gallery/carousel-3.jpg' },
+    { thumb: '/assets/images/thumbs/carousel-4.webp', full: '/assets/images/gallery/carousel-4.jpg' },
+    { thumb: '/assets/images/thumbs/carousel-5.webp', full: '/assets/images/gallery/carousel-5.jpg' },
+    { thumb: '/assets/images/thumbs/carousel-6.webp', full: '/assets/images/gallery/carousel-6.jpg' },
+    { thumb: '/assets/images/thumbs/carousel-7.webp', full: '/assets/images/gallery/carousel-7.jpg' },
+    { thumb: '/assets/images/thumbs/carousel-8.webp', full: '/assets/images/gallery/carousel-8.jpg' },
   ];
 
   function buildCarousel() {
@@ -567,6 +588,7 @@
 
   window.EventsModule = {
     EVENTS,
+    getFilteredEvents,
     buildDollhouseCards,
     initDollhouseAnimation,
     openEvent,

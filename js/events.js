@@ -67,7 +67,7 @@
       background:  '/assets/images/backgrounds/bg-red.png',
       date:        'Monday, 21 September 2026',
       shortDate:   '21 Sept',
-      time:        '6PM Baraat Assembly, 8:30PM Pheraas',
+      time:        '5:30PM Baraat Assembly<br>8:30PM Pheraas',
       location:    'GBR Hall, Omnia Convention by Tivoli',
       locationSub: 'Badshapur, Gurgaon-122102',
       mapsUrl:     'https://maps.app.goo.gl/Yx8hiEeq23txVzKZ6?g_st=ic',

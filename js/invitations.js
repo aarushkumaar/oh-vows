@@ -26,7 +26,7 @@
     'bride-one': {
       familySide:  'bride',
       familyLabel: 'CHHABRA FAMILY',
-      route:       '/hvstory/bride/one',
+      route:       '/bride/one',
       events:      ['wedding'],
       rsvp: {
         title:          'RSVP â€” Chhabra Family',
@@ -43,7 +43,7 @@
     'bride-two': {
       familySide:  'bride',
       familyLabel: 'CHHABRA FAMILY',
-      route:       '/hvstory/bride/two',
+      route:       '/bride/two',
       events:      ['engagement-cocktail', 'wedding'],
       rsvp: {
         title:          'RSVP â€” Chhabra Family',
@@ -60,7 +60,7 @@
     'bride-three': {
       familySide:  'bride',
       familyLabel: 'CHHABRA FAMILY',
-      route:       '/hvstory/bride/three',
+      route:       '/bride/three',
       events:      ['engagement-cocktail', 'haldi-carnival', 'wedding'],
       rsvp: {
         title:          'RSVP â€” Chhabra Family',
@@ -78,7 +78,7 @@
     'groom-one': {
       familySide:  'groom',
       familyLabel: 'CHAWLA FAMILY',
-      route:       '/hvstory/groom/one',
+      route:       '/groom/one',
       events:      ['wedding'],
       rsvp: {
         title:          'RSVP â€” Chawla Family',
@@ -95,7 +95,7 @@
     'groom-two': {
       familySide:  'groom',
       familyLabel: 'CHAWLA FAMILY',
-      route:       '/hvstory/groom/two',
+      route:       '/groom/two',
       events:      ['engagement-cocktail', 'wedding'],
       rsvp: {
         title:          'RSVP â€” Chawla Family',
@@ -112,7 +112,7 @@
     'groom-three': {
       familySide:  'groom',
       familyLabel: 'CHAWLA FAMILY',
-      route:       '/hvstory/groom/three',
+      route:       '/groom/three',
       events:      ['engagement-cocktail', 'haldi-carnival', 'wedding'],
       rsvp: {
         title:          'RSVP â€” Chawla Family',

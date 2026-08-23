@@ -20,7 +20,7 @@
       date:        'Friday, 18 September 2026',
       shortDate:   '18 Sept',
       time:        '7:00 PM Onwards',
-      location:    'TNTB Hall, Omnia Convention by Tivoli',
+      location:    'NTB Hall, Omnia Convention by Tivoli',
       locationSub: 'Badshapur, Gurgaon-122102',
       mapsUrl:     'https://maps.app.goo.gl/Yx8hiEeq23txVzKZ6?g_st=ic',
       dressCode: {
@@ -44,7 +44,7 @@
       date:        'Sunday, 20 September 2026',
       shortDate:   '20 Sept',
       time:        '12:00 PM Onwards',
-      location:    'Pool Side Deck, Omnia Convention by Tivoli',
+      location:    'NTB Hall, Omnia Convention by Tivoli',
       locationSub: 'Badshapur, Gurgaon-122102',
       mapsUrl:     'https://maps.app.goo.gl/Yx8hiEeq23txVzKZ6?g_st=ic',
       dressCode: {
@@ -68,7 +68,7 @@
       date:        'Monday, 21 September 2026',
       shortDate:   '21 Sept',
       time:        '5:30PM Baraat Assembly<br>8:30PM Pheraas',
-      location:    'GBR Hall, Omnia Convention by Tivoli',
+      location:    'NTB Hall, Omnia Convention by Tivoli',
       locationSub: 'Badshapur, Gurgaon-122102',
       mapsUrl:     'https://maps.app.goo.gl/Yx8hiEeq23txVzKZ6?g_st=ic',
       dressCode: {
@@ -456,7 +456,7 @@
   ────────────────────────────────────────── */
   const THINGS = [
     { icon: '👗', title: 'Dress Code',     body: 'Formal ethnic or semi-formal attire in warm tones — ivory, blush, gold, or pastels. Avoid black and white.' },
-    { icon: '✈️', title: 'Venue & Travel', body: 'All events are held at The Grand Palace, New Delhi. Complimentary shuttle service available from select hotels.' },
+    { icon: '✈️', title: 'Venue & Travel', body: 'All events are held at Omnia Convention by Tivoli, Badshapur, Gurgaon-122102. Complimentary shuttle service available from select hotels.' },
     { icon: '🏨', title: 'Accommodation',  body: 'A block of rooms has been reserved at The Heritage Suites. Please use code VARTIKA26 when booking.' },
     { icon: '📞', title: 'Contact',        body: 'For queries, reach out to our event coordinators at +91 98765 43210 or events@ohvows.in' },
   ];

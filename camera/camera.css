@@ -866,3 +866,73 @@ input  { font-family: var(--f-sans); -webkit-tap-highlight-color: transparent; }
 
 /* Scrollable on tiny phones */
 [data-screen="name-entry"] { overflow-y: auto; }
+
+/* ──────────────────────────────────────────────────
+   TORCH BUTTON
+────────────────────────────────────────────────── */
+.cam-torch-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.60);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s, color 0.18s;
+}
+.cam-torch-btn:active { background: rgba(255,255,255,0.18); }
+.cam-torch-btn.torch-on {
+  background: var(--c-amber);
+  color: #000;
+  box-shadow: 0 0 12px rgba(212,137,26,0.55);
+}
+.cam-torch-btn.torch-on:active { background: #e09a20; }
+
+/* ──────────────────────────────────────────────────
+   ZOOM CONTROLS
+────────────────────────────────────────────────── */
+.cam-zoom-controls {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(var(--sab) + 105px);
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 20px;
+  padding: 4px 6px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.30s;
+}
+.cam-zoom-controls.zoom-visible { opacity: 1; }
+
+.zoom-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.80);
+  font-size: 18px;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  line-height: 1;
+}
+.zoom-btn:active { background: rgba(255,255,255,0.22); }
+
+.zoom-label {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.70);
+  min-width: 24px;
+  text-align: center;
+  letter-spacing: 0.05em;
+}

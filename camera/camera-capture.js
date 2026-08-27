@@ -222,6 +222,130 @@
   }
 
   /* ─────────────────────────────────────────────
+     TORCH (FLASHLIGHT)
+  ───────────────────────────────────────────── */
+  let _torchOn = false;
+
+  async function toggleTorch() {
+    if (!_stream) return false;
+    const track = _stream.getVideoTracks()[0];
+    if (!track) return false;
+
+    try {
+      const capabilities = track.getCapabilities?.() || {};
+      if (!capabilities.torch) {
+        console.info('[capture] Torch not supported on this device');
+        return false;
+      }
+      _torchOn = !_torchOn;
+      await track.applyConstraints({ advanced: [{ torch: _torchOn }] });
+      return _torchOn;
+    } catch (err) {
+      console.warn('[capture] Torch toggle failed:', err);
+      _torchOn = false;
+      return false;
+    }
+  }
+
+  function isTorchOn() { return _torchOn; }
+
+  // Make sure torch is OFF when camera stops
+  const _origStop = stopCamera;
+  function stopCamera() {
+    _torchOn = false;
+    _origStop();
+  }
+
+  /* ─────────────────────────────────────────────
+     ZOOM
+  ───────────────────────────────────────────── */
+  let _currentZoom = 1;
+  let _zoomMin     = 1;
+  let _zoomMax     = 1;
+  let _zoomStep    = 0.5;
+
+  function getZoomCapabilities() {
+    if (!_stream) return null;
+    const track = _stream.getVideoTracks()[0];
+    if (!track) return null;
+    const cap = track.getCapabilities?.() || {};
+    return cap.zoom ? { min: cap.zoom.min, max: cap.zoom.max, step: cap.zoom.step } : null;
+  }
+
+  async function setZoom(level) {
+    if (!_stream) return _currentZoom;
+    const track = _stream.getVideoTracks()[0];
+    if (!track) return _currentZoom;
+
+    const cap = getZoomCapabilities();
+
+    if (cap) {
+      // Hardware zoom
+      const clamped = Math.max(cap.min, Math.min(cap.max, level));
+      try {
+        await track.applyConstraints({ advanced: [{ zoom: clamped }] });
+        _currentZoom = clamped;
+        return _currentZoom;
+      } catch (err) {
+        console.warn('[capture] Hardware zoom failed, using CSS fallback');
+      }
+    }
+
+    // CSS transform fallback (available everywhere)
+    _currentZoom = Math.max(1, Math.min(5, level));
+    if (_videoEl) {
+      _videoEl.style.transform = _currentZoom > 1 ? `scale(${_currentZoom})` : '';
+    }
+    return _currentZoom;
+  }
+
+  async function zoomIn() {
+    const cap = getZoomCapabilities();
+    const step = cap ? (cap.step || 0.5) : 0.5;
+    return setZoom(_currentZoom + step);
+  }
+
+  async function zoomOut() {
+    const cap = getZoomCapabilities();
+    const step = cap ? (cap.step || 0.5) : 0.5;
+    return setZoom(_currentZoom - step);
+  }
+
+  function getCurrentZoom() { return _currentZoom; }
+
+  /* ─────────────────────────────────────────────
+     PINCH-TO-ZOOM (touch gesture)
+  ───────────────────────────────────────────── */
+  function initPinchZoom(containerEl) {
+    let lastDist = 0;
+    let baseZoom = 1;
+
+    containerEl.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 2) {
+        lastDist = getPinchDist(e.touches);
+        baseZoom = _currentZoom;
+      }
+    }, { passive: true });
+
+    containerEl.addEventListener('touchmove', (e) => {
+      if (e.touches.length !== 2) return;
+      const dist = getPinchDist(e.touches);
+      if (lastDist === 0) { lastDist = dist; return; }
+      const scale  = dist / lastDist;
+      const newZoom = baseZoom * scale;
+      setZoom(newZoom);
+    }, { passive: true });
+
+    containerEl.addEventListener('touchend', () => { lastDist = 0; }, { passive: true });
+  }
+
+  function getPinchDist(touches) {
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  /* ─────────────────────────────────────────────
      PUBLIC API
   ───────────────────────────────────────────── */
   window.CameraCapture = {
@@ -232,5 +356,13 @@
     triggerFlash,
     checkCameraPermission,
     isActive,
+    toggleTorch,
+    isTorchOn,
+    setZoom,
+    zoomIn,
+    zoomOut,
+    getCurrentZoom,
+    getZoomCapabilities,
+    initPinchZoom,
   };
 })();

@@ -122,6 +122,10 @@
     // Apply the current filter immediately to video
     setFilter(_currentFilter);
 
+    // Init pinch-to-zoom on the camera screen
+    const camScreen = document.querySelector('[data-screen="camera"]');
+    if (camScreen) window.CameraCapture.initPinchZoom(camScreen);
+
     try {
       await window.CameraCapture.startCamera(videoEl, flashEl);
     } catch (err) {
@@ -224,6 +228,25 @@
     }
 
     setTimeout(() => { _shutterLocked = false; }, 600);
+  }
+
+  /* ─────────────────────────────────────────────
+     ZOOM LABEL
+  ───────────────────────────────────────────── */
+  let _zoomHideTimer = null;
+
+  function updateZoomLabel(zoom) {
+    const wrap  = document.getElementById('cam-zoom-wrap');
+    const label = document.getElementById('zoom-label');
+    if (!label || !wrap) return;
+
+    const level = zoom < 1.05 ? '1×' : `${zoom.toFixed(1)}×`;
+    label.textContent = level;
+
+    // Show the zoom HUD briefly, then hide
+    wrap.classList.add('zoom-visible');
+    clearTimeout(_zoomHideTimer);
+    _zoomHideTimer = setTimeout(() => wrap.classList.remove('zoom-visible'), 2000);
   }
 
   /* ─────────────────────────────────────────────
@@ -425,6 +448,26 @@
     // Flip camera
     el('cam-switch-btn')?.addEventListener('click', () => {
       window.CameraCapture.switchCamera();
+    });
+
+    // Torch / flashlight
+    el('cam-torch-btn')?.addEventListener('click', async () => {
+      const btn = el('cam-torch-btn');
+      const isOn = await window.CameraCapture.toggleTorch();
+      if (btn) {
+        btn.classList.toggle('torch-on', isOn);
+        btn.setAttribute('aria-pressed', String(isOn));
+      }
+    });
+
+    // Zoom buttons
+    el('zoom-in-btn')?.addEventListener('click', async () => {
+      const zoom = await window.CameraCapture.zoomIn();
+      updateZoomLabel(zoom);
+    });
+    el('zoom-out-btn')?.addEventListener('click', async () => {
+      const zoom = await window.CameraCapture.zoomOut();
+      updateZoomLabel(zoom);
     });
 
     // Develop button

@@ -55,7 +55,23 @@
     const { data, error } = await getClient().auth.signInWithPassword({ email, password });
 
     if (error) {
-      if (err) { err.textContent = 'Incorrect email or password.'; err.style.display = 'block'; }
+      console.error('[admin] Login error:', error.message, error.status);
+
+      let msg = 'Incorrect email or password.';
+      if (error.status === 0 || error.message?.includes('fetch')) {
+        msg = 'Cannot connect to Supabase. Check your internet connection.';
+      } else if (error.status === 400) {
+        msg = 'Wrong email or password. Use aarush@thehvstory.in and the password from .env';
+      } else if (error.status === 422) {
+        msg = 'User does not exist. Create it in Supabase → Auth → Users → Add user.';
+      }
+      if (err) { err.textContent = msg; err.style.display = 'block'; }
+      btn.disabled = false;
+      return;
+    }
+
+    if (!data?.session) {
+      if (err) { err.textContent = 'Login succeeded but no session was created. Try again.'; err.style.display = 'block'; }
       btn.disabled = false;
       return;
     }

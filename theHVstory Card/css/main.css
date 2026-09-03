@@ -51,19 +51,6 @@ img {
 /* ══════════════════════════════════════════════
    LOADING OVERLAY
 ══════════════════════════════════════════════ */
-#loading-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 900;
-  background: #080200;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(14px, 2.5vh, 28px);
-  pointer-events: all;
-}
-
 /* ══════════════════════════════════════════════
    LOADING OVERLAY — Stamp Composition
 ══════════════════════════════════════════════ */
@@ -799,7 +786,6 @@ section {
   gap: clamp(8px, 1.5vh, 16px);
   margin-top: clamp(100px, 14vh, 200px);
   margin-bottom: clamp(36px, 5.5vh, 60px);
-   top: 55px;
 }
 
 /* Events microcopy hint */

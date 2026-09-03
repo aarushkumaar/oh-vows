@@ -1,0 +1,94 @@
+/* ══════════════════════════════════════════════
+   RSVP SECTION
+══════════════════════════════════════════════ */
+#rsvp-section {
+  padding: var(--sec-pad) clamp(16px, 4vw, 48px);
+  background: var(--deep-green-bg) url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="damask2" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="30" fill="none" stroke="%23dfb76c" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="none"/><use href="%23damask2"/></svg>') repeat;
+  background-size: 200px 200px;
+}
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2vh, 24px);
+  max-width: 400px;
+  margin: var(--sec-pad) auto;
+  padding: clamp(24px, 4vh, 40px);
+  background: rgba(250, 246, 238, 0.08);
+  border: 1px solid rgba(223, 183, 108, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-input,
+.form-select {
+  padding: clamp(10px, 2vw, 14px) 12px;
+  background: rgba(10, 3, 0, 0.4);
+  border: 1px solid var(--gold-dim);
+  border-radius: 4px;
+  color: var(--ivory);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(13px, 1.6vw, 16px);
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.form-input::placeholder {
+  color: rgba(232, 201, 106, 0.4);
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--gold-light);
+  background: rgba(10, 3, 0, 0.6);
+}
+
+.form-select option {
+  background: #0a0300;
+  color: var(--ivory);
+}
+
+.btn-submit {
+  padding: clamp(12px, 2vw, 16px) clamp(24px, 5vw, 40px);
+  background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 50%, var(--gold-dim) 100%);
+  color: #1a0a00;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(13px, 1.8vw, 17px);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: filter 0.3s, transform 0.2s;
+  margin-top: clamp(8px, 1vh, 16px);
+}
+
+.btn-submit:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+.rsvp-contact {
+  font-size: clamp(12px, 1.4vw, 14px);
+  color: var(--gold-light);
+  opacity: 0.7;
+  text-align: center;
+  margin-top: clamp(20px, 3vh, 30px);
+}
+
+@media (max-width: 768px) {
+  .rsvp-form {
+    padding: clamp(16px, 3vh, 24px);
+  }
+}

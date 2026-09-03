@@ -1,0 +1,104 @@
+/* ══════════════════════════════════════════════
+   RESET & BASE VARIABLES
+══════════════════════════════════════════════ */
+:root {
+  --gold: #dfb76c;
+  --gold-light: #f3dfa2;
+  --gold-dim: #8a6d15;
+  --gold-subtle: rgba(201, 162, 39, 0.18);
+  --crimson: #6b0000;
+  --ivory: #faf6ee;
+  --ivory-dim: #ede5d8;
+  --deep-bg: #0a0300;
+  --deep-red-bg: #180303;
+  --deep-green-bg: #05140a;
+  --deep-pink-bg: #18030b;
+  --sec-pad: clamp(60px, 8vh, 120px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--deep-bg);
+  color: var(--ivory);
+  font-family: 'Cormorant Garamond', serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ══════════════════════════════════════════════
+   GLOBAL TYPOGRAPHY
+══════════════════════════════════════════════ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+}
+
+.display-title {
+  font-size: clamp(40px, 8vw, 96px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.eyebrow {
+  font-size: clamp(12px, 1.8vw, 16px);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.88;
+}
+
+.tagline {
+  font-size: clamp(16px, 2.2vw, 24px);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  opacity: 0.92;
+}
+
+/* ══════════════════════════════════════════════
+   GOLD RULE / DIVIDERS
+══════════════════════════════════════════════ */
+.gold-rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: clamp(12px, 2vh, 24px) 0;
+}
+
+/* ══════════════════════════════════════════════
+   SECTION HEAD (reusable heading component)
+══════════════════════════════════════════════ */
+.section-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 1.5vh, 16px);
+  margin-bottom: var(--sec-pad);
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════════
+   PROGRESSIVE IMAGE LOADING
+══════════════════════════════════════════════ */
+.progressive-img {
+  transition: opacity 0.25s ease-out;
+}
+
+.progressive-img.is-loaded {
+  opacity: 1;
+}

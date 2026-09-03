@@ -820,15 +820,15 @@ section {
   border: none;
   box-shadow: none;
   width: 100%;
-  max-width: clamp(330px, 30vw, 456px);
+  max-width: clamp(380px, 35vw, 520px);
   transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.22, 1);
   will-change: transform;
-  animation: breathingGlow 4s ease-in-out infinite;
 }
 
 .dollhouse-card-img-wrap {
   width: 100%;
   background: transparent;
+  animation: breathingGlow 4s ease-in-out infinite;
 }
 
 .dollhouse-card-img-wrap img {

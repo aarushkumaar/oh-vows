@@ -828,7 +828,7 @@ section {
 .dollhouse-card-img-wrap {
   width: 100%;
   background: transparent;
-  animation: breathingGlow 4s ease-in-out infinite;
+  animation: popBreath 3.5s ease-in-out infinite;
 }
 
 .dollhouse-card-img-wrap img {
@@ -847,7 +847,6 @@ section {
 
 .dollhouse-card:hover .dollhouse-card-img-wrap img {
   filter: drop-shadow(0 22px 48px rgba(0, 0, 0, 0.72)) drop-shadow(0 6px 20px rgba(201, 162, 39, 0.38));
-  animation: breathingGlow 3s ease-in-out infinite;
 }
 
 .dollhouse-card:hover .dollhouse-card-img-wrap img {

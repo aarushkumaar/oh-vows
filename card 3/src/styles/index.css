@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-paper text-ink;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .paper-texture {
+    background-image:
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" /></filter><rect width="100" height="100" fill="%23FAF6F1" filter="url(%23noise)" opacity="0.03"/></svg>');
+  }
+
+  .perforation {
+    background-image:
+      radial-gradient(circle, transparent 1px, currentColor 1px);
+    background-size: 8px 8px;
+    background-position: 0 0;
+  }
+
+  .stamp-border {
+    position: relative;
+    border: 2px solid currentColor;
+  }
+
+  .stamp-border::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background-image:
+      radial-gradient(circle, currentColor 1px, transparent 1px);
+    background-size: 8px 8px;
+    background-position: 0 0;
+    pointer-events: none;
+  }
+
+  .hand-animation {
+    will-change: transform, opacity;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Grain effect */
+.grain::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="6" /></filter><rect width="100" height="100" fill="%23000" filter="url(%23grain)" opacity="0.02"/></svg>');
+  pointer-events: none;
+  z-index: 9999;
+}

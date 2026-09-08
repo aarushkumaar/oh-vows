@@ -223,6 +223,8 @@ section {
 #hero {
   position: relative;
   width: 100%;
+  height: 100svh; /* Fixed to viewport height */
+  min-height: 100svh; /* Fallback for browsers that need min-height */
   z-index: 20;
   margin: 0;
   padding: 0;
@@ -231,14 +233,20 @@ section {
 }
 
 #hero-img-wrap {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
   will-change: transform;
 }
 
 #hero-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
   pointer-events: none;
   user-select: none;
@@ -378,10 +386,62 @@ section {
 }
 
 #hero-scroll-hint {
+  /* Anchor to the true bottom of #hero — must stay absolute */
+  position: absolute;
+  bottom: clamp(24px, 4vh, 40px);
+  /* Safe-area for iOS home-indicator */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  left: 50%;
+  transform: translateX(-50%);
+  /* Above image and overlays */
+  z-index: 50;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: var(--font-primary, "Cormorant Garamond", serif);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  white-space: nowrap;
+  /* Localized soft dark haze — tiny, only as wide as the content */
+  padding: 10px 18px 12px;
+  background: rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+}
+
+.scroll-indicator-arrow {
+  font-size: 1.8rem;
+  animation: floatY 2s ease-in-out infinite;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.40),
+               0 2px 10px rgba(0, 0, 0, 0.22);
+}
+
+.scroll-indicator-text {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35),
+               0 2px 8px rgba(0, 0, 0, 0.20);
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+#hero-scroll-hint.hidden {
+  opacity: 0;
+}
+
+/* Responsive adjustment for very short viewports */
+@media (max-height: 600px) {
+  #hero-scroll-hint {
+    bottom: clamp(16px, 3vh, 24px);
+  }
 }
 
 .scroll-hint-line {

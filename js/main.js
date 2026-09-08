@@ -258,6 +258,26 @@
 
     // 8. Init interactive & scroll animations
     if (window.AnimationsModule?.initHeroScrollEffects) window.AnimationsModule.initHeroScrollEffects();
+// Scroll hint hide on scroll
+const heroScrollHint = document.getElementById('hero-scroll-hint');
+if (heroScrollHint) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      heroScrollHint.classList.add('hidden');
+    } else {
+      heroScrollHint.classList.remove('hidden');
+    }
+  });
+}
+// Scroll hint click – smooth scroll to the next section after hero
+const nextSection = document.querySelector('#hero').nextElementSibling;
+if (heroScrollHint && nextSection) {
+  heroScrollHint.style.cursor = 'pointer';
+  heroScrollHint.addEventListener('click', (e) => {
+    e.preventDefault();
+    nextSection.scrollIntoView({ behavior: 'smooth' });
+  });
+}
     if (window.AnimationsModule?.initFloating)          window.AnimationsModule.initFloating();
     if (window.AnimationsModule?.initFramesAnimation)   window.AnimationsModule.initFramesAnimation();
     if (window.AnimationsModule?.initPolaroidDrift)     window.AnimationsModule.initPolaroidDrift();
